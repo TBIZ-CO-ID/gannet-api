@@ -1,0 +1,15 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["cljs"]
+
+ :dependencies
+ [[com.github.pkpkpk/cljs-node-io "2.0.339"]
+  [missionary/missionary "b.43"]
+  [cljs-bean/cljs-bean "1.9.0"]
+  [applied-science/js-interop "0.4.2"]
+  [com.hyperfiddle/rcf "20220926-202227"]]
+
+ :builds
+ {:cli {:target :node-script
+        :main me.cli/main
+        :output-to "out/gannet/index.js"}}}
