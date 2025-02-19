@@ -1,0 +1,30 @@
+openrpc: 1.0.0-rc1
+
+servers:
+- url: https://gannet.julia.id/jsonrpc
+
+info:
+  description: Gannet is api for booking flight, hotel, etcetera.
+  license:
+    name: UNLICENSED
+  title: Gannet JSONRPC API
+  version: 1.0.0
+
+methods:
+- name: token:create
+  summary: Create a token
+  tags:
+  - name: auth
+  params:
+    type: object
+    required:
+      - username
+      - password
+      - signature
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+      signature:
+        type: string

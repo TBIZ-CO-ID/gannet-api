@@ -50,7 +50,7 @@ export const TokenCreateParams = Schema.Struct({
   username: Schema.String,
   password: Schema.String,
   signature: Schema.String,
-  profile: Schema.Array(Profile),
+  // profile: Schema.Array(Profile),
 })
 
 export interface TokenCreateParams extends Schema.Schema.Type<typeof TokenCreateParams> {}
@@ -72,7 +72,7 @@ const PaxCount = Schema.Struct({
 
 export interface PaxCount extends Schema.Schema.Type<typeof PaxCount> {}
 
-export const ScheduleListParams = Schema.Data(
+export const FlightScheduleListParams = Schema.Data(
   Schema.Struct({
     carriers: Schema.Data(Schema.Array(Schema.String)),
     paxCount: Schema.Data(PaxCount),
@@ -92,7 +92,7 @@ export const ScheduleListParams = Schema.Data(
   }),
 )
 
-export interface ScheduleListParams extends Schema.Schema.Type<typeof ScheduleListParams> {}
+export interface ScheduleListParams extends Schema.Schema.Type<typeof FlightScheduleListParams> {}
 
 // ----------------------------------------------------------------------------
 // PARAMS - FLIGHT:SCHEDULE:FARE
@@ -120,7 +120,7 @@ export const ScheduleFareDetail = Schema.Array(
   }),
 )
 
-export const ScheduleFareParams = Schema.Struct({
+export const FlightScheduleFareParams = Schema.Struct({
   info: Schema.Struct({
     totalPaxs: Schema.Struct({
       CHD: Schema.Number,
@@ -131,7 +131,7 @@ export const ScheduleFareParams = Schema.Struct({
   scheduleFareDetail: ScheduleFareDetail,
 })
 
-export interface ScheduleFareParams extends Schema.Schema.Type<typeof ScheduleFareParams> {}
+export interface ScheduleFareParams extends Schema.Schema.Type<typeof FlightScheduleFareParams> {}
 
 // ----------------------------------------------------------------------------
 // PARAMS - FLIGHT:BOOK
@@ -220,8 +220,8 @@ export interface FlightIssueParams extends Schema.Schema.Type<typeof FlightIssue
 // PAYLOADS
 // ----------------------------------------------------------------------------
 
-const JsonRpcBaseRequestPayload = Schema.Struct({
-  jsonrpc: Schema.Literal(2),
+export const JsonRpcBaseRequestPayload = Schema.Struct({
+  jsonrpc: Schema.Literal("2.0"),
   id: Schema.String,
   token: Schema.String,
 })
@@ -230,7 +230,7 @@ const JsonRpcBaseRequestPayload = Schema.Struct({
 // PAYLOADS - TOKEN:CREATE
 // ----------------------------------------------------------------------------
 
-const JsonRpcTokenCreatePayload = JsonRpcBaseRequestPayload.pipe(
+export const JsonRpcTokenCreatePayload = JsonRpcBaseRequestPayload.pipe(
   Schema.extend(
     Schema.Struct({
       method: Schema.Literal("token:create"),
@@ -245,11 +245,11 @@ export interface JsonRpcTokenCreatePayload extends Schema.Schema.Type<typeof Jso
 // PAYLOADS - FLIGHT:SCHEDULE:LIST
 // ----------------------------------------------------------------------------
 
-const JsonRpcFlightScheduleListPayload = JsonRpcBaseRequestPayload.pipe(
+export const JsonRpcFlightScheduleListPayload = JsonRpcBaseRequestPayload.pipe(
   Schema.extend(
     Schema.Struct({
       method: Schema.Literal("flight:schedule:list"),
-      params: ScheduleListParams,
+      params: FlightScheduleListParams,
     }),
   ),
 )
@@ -264,7 +264,7 @@ export const JsonRpcFlightScheduleFarePayload = JsonRpcBaseRequestPayload.pipe(
   Schema.extend(
     Schema.Struct({
       method: Schema.Literal("flight:schedule:fare"),
-      params: ScheduleFareParams,
+      params: FlightScheduleFareParams,
     }),
   ),
 )
@@ -377,15 +377,15 @@ export type JsonRpcCommonResponseBody = Schema.Schema.Type<
 // RESPONSE - TOKEN:CREATE
 // ----------------------------------------------------------------------------
 
+export const TokenCreateResponse = Schema.Struct({
+  response: Schema.Struct({
+    result: JsonRpcResponseResult,
+    token: Schema.String,
+  }),
+})
+
 export const JsonRpcTokenCreateResponseBody = JsonRpcResponsePayload.pipe(
-  Schema.extend(
-    Schema.Struct({
-      response: Schema.Struct({
-        result: JsonRpcResponseResult,
-        token: Schema.String,
-      }),
-    }),
-  ),
+  Schema.extend(TokenCreateResponse),
 )
 
 export type JsonRpcTokenCreateResponseBody = Schema.Schema.Type<
@@ -512,20 +512,20 @@ export const isJourney = (x: JourneyX): x is Journey => {
   return "journeyID" in x
 }
 
+export const FlightScheduleListResponse = Schema.Struct({
+  response: Schema.Struct({
+    result: JsonRpcResponseResult,
+    info: Schema.Struct({
+      journeys: Schema.Array(JourneyX),
+      segments: Schema.Array(Schema.NullOr(Segment)),
+      legs: Schema.Array(Schema.NullOr(Leg)),
+    }).pipe(Schema.optional), // NOTE: info my not exists if scedules is empty
+    schedules: Schema.Array(Schedule).pipe(Schema.optional), // NOTE: schedules may not exists (?)
+  }),
+})
+
 export const JsonRpcFlightScheduleListResponseBody = JsonRpcResponsePayload.pipe(
-  Schema.extend(
-    Schema.Struct({
-      response: Schema.Struct({
-        result: JsonRpcResponseResult,
-        info: Schema.Struct({
-          journeys: Schema.Array(JourneyX),
-          segments: Schema.Array(Schema.NullOr(Segment)),
-          legs: Schema.Array(Schema.NullOr(Leg)),
-        }).pipe(Schema.optional), // NOTE: info my not exists if scedules is empty
-        schedules: Schema.Array(Schedule).pipe(Schema.optional), // NOTE: schedules may not exists (?)
-      }),
-    }),
-  ),
+  Schema.extend(FlightScheduleListResponse),
 )
 
 export type JsonRpcFlightScheduleListResponseBody = Schema.Schema.Type<
@@ -611,19 +611,19 @@ const BookingScheduleFareDetail = Schema.Struct({
   segmentSSRS: Schema.Array(BookingSegmentSSR).pipe(Schema.optional),
 })
 
-export const JsonRpcFlightScheduleFareResponseBody = JsonRpcResponsePayload.pipe(
-  Schema.extend(
-    Schema.Struct({
-      response: Schema.Struct({
-        result: JsonRpcResponseResult,
-        info: Schema.Struct({
-          totalPaxs: PaxCount,
-          segments: Schema.Array(BookingSegment),
-        }),
-        scheduleFareDetail: Schema.Array(BookingScheduleFareDetail),
-      }),
+export const FlightScheduleFareResponse = Schema.Struct({
+  response: Schema.Struct({
+    result: JsonRpcResponseResult,
+    info: Schema.Struct({
+      totalPaxs: PaxCount,
+      segments: Schema.Array(BookingSegment),
     }),
-  ),
+    scheduleFareDetail: Schema.Array(BookingScheduleFareDetail),
+  }),
+})
+
+export const JsonRpcFlightScheduleFareResponseBody = JsonRpcResponsePayload.pipe(
+  Schema.extend(FlightScheduleFareResponse),
 )
 
 export type JsonRpcFlightScheduleFareResponseBody = Schema.Schema.Type<
@@ -665,15 +665,15 @@ const BookingPnr = Schema.Struct({
   bookingCode: Schema.String,
 })
 
+export const FlightBookResponse = Schema.Struct({
+  response: Schema.Struct({
+    result: JsonRpcResponseResult,
+    pnrs: Schema.Array(BookingPnr),
+  }),
+})
+
 export const JsonRpcFlightBookResponseBody = JsonRpcResponsePayload.pipe(
-  Schema.extend(
-    Schema.Struct({
-      response: Schema.Struct({
-        result: JsonRpcResponseResult,
-        pnrs: Schema.Array(BookingPnr),
-      }),
-    }),
-  ),
+  Schema.extend(FlightBookResponse),
 )
 
 export interface FlightBookResponse extends Schema.Schema.Type<typeof JsonRpcFlightBookResponseBody> {}
