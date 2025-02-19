@@ -3,6 +3,7 @@
    [shadow.cljs.modern :refer [js-await]]
    [missionary.core :as m]
    [clojure.string]
+   ["bun" :as bun]
    ["effect" :refer [JSONSchema Schema]]
    ["@open-rpc/schema-utils-js"
     :refer [parseOpenRPCDocument
@@ -41,6 +42,18 @@
                      (.text (js/Bun.file "./doc/ref/demo-petstore.json"))))
           doc (js/JSON.parse text)]
       doc)))
+
+
+(comment
+  ,
+
+
+
+
+  )
+
+
+
 
 (defn gen-openrpc
   []
@@ -148,8 +161,71 @@
     (js/Bun.write "./out/gannet_api.json" (js/JSON.stringify (clj->js (gen-openrpc)) nil 2)))
    prn)
 
+  (-> (parseOpenRPCDocument "./out/gannet_api.json")
+      (promise->task)
+      (run-task (fn [x] (prn (validateOpenRPCDocument x)))))
+
 
   ;; validate
+
+  ;; https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/TBIZ-CO-ID/gannet-api/refs/heads/main/gannet_api.json
+
+
+
+  ;; https://raw.githubusercontent.com/TBIZ-CO-ID/gannet-api/refs/heads/main/gannet_api.json
+
+
+  )
+
+
+
+(comment
+  ,
+
+  "hotel:destinations:list"
+  {:params
+   {:term ""}}
+
+  "hotel:searchby:destination"
+  {:destinationKey ""
+   :totalRooms 1
+   :totalAdults 1
+   :totalChilds 0
+   :checkInDate "2025-04-01"
+   :checkOutDate "2025-04-02"
+   :childrenAges []
+   ,}
+
+  "hotel:fetch:detail"
+  {:params
+   {:id ""}}
+
+  "hotel:fetch:rooms"
+  {:params
+   {:id ""
+    :searchKeyData ""
+    :agentCodes [""]}}
+
+
+  "hotel:book"
+  {:params
+   {:roomSelectedData
+    [{:agentCode ""
+      :hotelID ""
+      :roomIDS [{:roomNumber 1
+                 :roomPriceKey ""}]}]
+    :roomGuestData
+    {:roomHolder {:firstName ""
+                  :lastName ""}
+     :roomGuestList
+     [{:roomNumber 1
+       :type ""
+       :title ""
+       :firstName ""
+       :lastName ""}]}
+    :clientReference ""
+    :remarkList [""]}
+   ,}
 
 
   )

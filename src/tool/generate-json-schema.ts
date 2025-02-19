@@ -23,7 +23,8 @@ import {
   JsonRpcTokenCreateResponseBody,
   TokenCreateParams,
   TokenCreateResponse,
-} from "./spec/schema"
+} from "../spec/schema"
+// import { } from "bun"
 
 function methodToName(method: string) {
   return method.replace(/:/g, "_")

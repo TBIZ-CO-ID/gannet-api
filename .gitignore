@@ -1,7 +1,7 @@
 # Gannet
 
 out
-.clj-kondo
+.clj-kondo/.cache
 .lsp
 .shadow-cljs
 

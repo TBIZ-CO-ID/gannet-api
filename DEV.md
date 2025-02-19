@@ -6,8 +6,10 @@
 - https://github.com/nervosnetwork/ckb/issues/4149
 - https://open-rpc.org/
 
-## Generate JSON Schema
+## Workflows
+
+Use this command to generate JSON Schema from Effect Schema.
 
 ```bash
-bun run src/generate-json-schema.ts
+bun run src/tool/dump-json-schemas.ts > out/schemas.json
 ```
