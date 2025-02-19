@@ -1,0 +1,136 @@
+{
+  "openrpc": "1.2.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Gannet JSONRPC API",
+    "description": "Gannet is api for booking of flight, hotel, etcetera.",
+    "license": {
+      "name": "UNLICENSED"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://gannet.julia.id/jsonrpc"
+    }
+  ],
+  "methods": [
+    {
+      "name": "token_create",
+      "summary": "Create authentication token",
+      "tags": [
+        {
+          "name": "auth"
+        }
+      ],
+      "params": [
+        {
+          "name": "TokenCreateParams",
+          "schema": {
+            "$ref": "#/components/schemas/TokenCreateParams"
+          }
+        }
+      ],
+      "result": {
+        "name": "TokenCreateResult",
+        "schema": {
+          "$ref": "#/components/schemas/TokenCreateResult"
+        }
+      }
+    }
+  ],
+  "components": {
+    "schemas": {
+      "TokenCreateParams": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "required": [
+          "username",
+          "password",
+          "signature"
+        ],
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenCreateResult": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "required": [
+          "response"
+        ],
+        "properties": {
+          "response": {
+            "type": "object",
+            "required": [
+              "result",
+              "token"
+            ],
+            "properties": {
+              "result": {
+                "type": "object",
+                "required": [
+                  "time",
+                  "status"
+                ],
+                "properties": {
+                  "time": {
+                    "type": "object",
+                    "required": [
+                      "request",
+                      "response",
+                      "process",
+                      "unit"
+                    ],
+                    "properties": {
+                      "request": {
+                        "type": "number"
+                      },
+                      "response": {
+                        "type": "number"
+                      },
+                      "process": {
+                        "type": "number"
+                      },
+                      "unit": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "OK",
+                      "ERROR"
+                    ]
+                  },
+                  "errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              },
+              "token": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
