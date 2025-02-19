@@ -4,6 +4,7 @@
     "": {
       "name": "gannet-api",
       "dependencies": {
+        "@open-rpc/meta-schema": "^1.14.9",
         "@open-rpc/schema-utils-js": "^2.1.0",
         "effect": "^3.13.1",
         "yaml": "^2.7.0",
