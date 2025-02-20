@@ -48,6 +48,518 @@
           "type": "string"
         }
       }
+    },
+    {
+      "name": "flight:schedule:list",
+      "summary": "Get flight schedule list",
+      "tags": [
+        {
+          "name": "flight"
+        }
+      ],
+      "params": [
+        {
+          "name": "carriers",
+          "schema": {
+            "$ref": "#/components/schemas/Carriers"
+          }
+        },
+        {
+          "name": "paxCount",
+          "schema": {
+            "$ref": "#/components/schemas/PaxCount"
+          }
+        },
+        {
+          "name": "schedules",
+          "schema": {
+            "$ref": "#/components/schemas/Schedules"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            },
+            "info": {
+              "$ref": "#/components/schemas/ScheduleInfo"
+            },
+            "schedules": {
+              "$ref": "#/components/schemas/ScheduleResults"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "flight:schedule:fare",
+      "summary": "Get flight schedule fare detail",
+      "tags": [
+        {
+          "name": "flight"
+        }
+      ],
+      "params": [
+        {
+          "name": "info",
+          "schema": {
+            "$ref": "#/components/schemas/ScheduleFareInfoParams"
+          }
+        },
+        {
+          "name": "scheduleFareDetail",
+          "schema": {
+            "$ref": "#/components/schemas/ScheduleFareDetails"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            },
+            "info": {
+              "$ref": "#/components/schemas/ScheduleFareInfo"
+            },
+            "scheduleFareDetail": {
+              "$ref": "#/components/schemas/ScheduleFareDetailResults"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "flight:book",
+      "summary": "Book a flight",
+      "tags": [
+        {
+          "name": "flight"
+        }
+      ],
+      "params": [
+        {
+          "name": "info",
+          "schema": {
+            "$ref": "#/components/schemas/FlightBookInfo"
+          }
+        },
+        {
+          "name": "scheduleFareDetail",
+          "schema": {
+            "$ref": "#/components/schemas/ScheduleFareDetails"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            },
+            "pnrs": {
+              "$ref": "#/components/schemas/BookingPNRs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "flight:issue",
+      "summary": "Issue ticket for a booked flight",
+      "tags": [
+        {
+          "name": "flight"
+        }
+      ],
+      "params": [
+        {
+          "name": "bookingId",
+          "schema": {
+            "$ref": "#/components/schemas/BookingID"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            },
+            "pnrs": {
+              "$ref": "#/components/schemas/BookingPNRs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "flight:cancel",
+      "summary": "Cancel a booked flight",
+      "tags": [
+        {
+          "name": "flight"
+        }
+      ],
+      "params": [
+        {
+          "name": "bookingId",
+          "schema": {
+            "$ref": "#/components/schemas/BookingID"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            },
+            "pnrs": {
+              "$ref": "#/components/schemas/BookingPNRs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "flight:sync",
+      "summary": "Synchronize a booked flight",
+      "tags": [
+        {
+          "name": "flight"
+        }
+      ],
+      "params": [
+        {
+          "name": "bookingId",
+          "schema": {
+            "$ref": "#/components/schemas/BookingID"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            },
+            "pnrs": {
+              "$ref": "#/components/schemas/BookingPNRs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "hotel:destinations:list",
+      "summary": "Get destination list available for hotel search",
+      "tags": [
+        {
+          "name": "hotel"
+        }
+      ],
+      "params": [
+        {
+          "name": "terms",
+          "schema": {
+            "$ref": "#/components/schemas/Term"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "hotel:searchby:destination",
+      "summary": "Search hotel for a given destination",
+      "tags": [
+        {
+          "name": "hotel"
+        }
+      ],
+      "params": [
+        {
+          "name": "destinationKey",
+          "schema": {
+            "$ref": "#/components/schemas/DestinationKey"
+          }
+        },
+        {
+          "name": "totalRooms",
+          "schema": {
+            "$ref": "#/components/schemas/TotalRooms"
+          }
+        },
+        {
+          "name": "totalAdults",
+          "schema": {
+            "$ref": "#/components/schemas/TotalAdults"
+          }
+        },
+        {
+          "name": "totalChilds",
+          "schema": {
+            "$ref": "#/components/schemas/TotalChilds"
+          }
+        },
+        {
+          "name": "checkInDate",
+          "schema": {
+            "$ref": "#/components/schemas/DateYMD"
+          }
+        },
+        {
+          "name": "checkOutDate",
+          "schema": {
+            "$ref": "#/components/schemas/DateYMD"
+          }
+        },
+        {
+          "name": "childrenAges",
+          "schema": {
+            "$ref": "#/components/schemas/ChildrenAges"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "hotel:fetch:detail",
+      "summary": "Get hotel detailed information",
+      "tags": [
+        {
+          "name": "hotel"
+        }
+      ],
+      "params": [
+        {
+          "name": "id",
+          "schema": {
+            "$ref": "#/components/schemas/HotelID"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "hotel:fetch:rooms",
+      "summary": "Get hotel room information for an available date",
+      "tags": [
+        {
+          "name": "hotel"
+        }
+      ],
+      "params": [
+        {
+          "name": "id",
+          "schema": {
+            "$ref": "#/components/schemas/HotelID"
+          }
+        },
+        {
+          "name": "searchKeyData",
+          "schema": {
+            "$ref": "#/components/schemas/SearchKey"
+          }
+        },
+        {
+          "name": "agentCodes",
+          "schema": {
+            "$ref": "#/components/schemas/AgentCodes"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "hotel:book",
+      "summary": "Get hotel room information for an available date",
+      "tags": [
+        {
+          "name": "hotel"
+        }
+      ],
+      "params": [
+        {
+          "name": "id",
+          "schema": {
+            "$ref": "#/components/schemas/HotelID"
+          }
+        },
+        {
+          "name": "roomSelectedData",
+          "schema": {
+            "$ref": "#/components/schemas/RoomSelected"
+          }
+        },
+        {
+          "name": "roomGuestData",
+          "schema": {
+            "$ref": "#/components/schemas/RoomGuestData"
+          }
+        },
+        {
+          "name": "clientReference",
+          "schema": {
+            "$ref": "#/components/schemas/ClientReference"
+          }
+        },
+        {
+          "name": "remarkList",
+          "schema": {
+            "$ref": "#/components/schemas/RemarkList"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "hotel:fetch:booking",
+      "summary": "Get a booked hotel",
+      "tags": [
+        {
+          "name": "hotel"
+        }
+      ],
+      "params": [
+        {
+          "name": "bookingId",
+          "schema": {
+            "$ref": "#/components/schemas/BookingID"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "hotel:cancel",
+      "summary": "Cancel a booked hotel",
+      "tags": [
+        {
+          "name": "hotel"
+        }
+      ],
+      "params": [
+        {
+          "name": "bookingId",
+          "schema": {
+            "$ref": "#/components/schemas/BookingID"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "hotel:issue",
+      "summary": "Issue ticket for a booked hotel",
+      "tags": [
+        {
+          "name": "hotel"
+        }
+      ],
+      "params": [
+        {
+          "name": "bookingId",
+          "schema": {
+            "$ref": "#/components/schemas/BookingID"
+          }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "$ref": "#/components/schemas/RPCResult"
+            }
+          }
+        }
+      }
     }
   ],
   "components": {
