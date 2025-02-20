@@ -2,8 +2,8 @@
   "openrpc": "1.2.1",
   "info": {
     "version": "1.0.0",
-    "title": "Gannet JSONRPC API",
-    "description": "Gannet is api for booking of flight, hotel, etcetera.",
+    "title": "Gannet JsonRPC API",
+    "description": "Gannet is api for booking flight, hotel, etcetera.",
     "license": {
       "name": "UNLICENSED"
     }
@@ -24,112 +24,4923 @@
       ],
       "params": [
         {
-          "name": "TokenCreateParams",
+          "name": "username",
           "schema": {
-            "$ref": "#/components/schemas/TokenCreateParams"
+            "$ref": "#/components/schemas/UserName"
+          }
+        },
+        {
+          "name": "password",
+          "schema": {
+            "$ref": "#/components/schemas/Password"
+          }
+        },
+        {
+          "name": "signature",
+          "schema": {
+            "$ref": "#/components/schemas/Signature"
           }
         }
       ],
       "result": {
-        "name": "TokenCreateResult",
+        "name": "token",
         "schema": {
-          "$ref": "#/components/schemas/TokenCreateResult"
+          "type": "string"
         }
       }
     }
   ],
   "components": {
     "schemas": {
-      "TokenCreateParams": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
+      "AgentCode": {
+        "type": "string",
+        "description": "Agent code",
+        "title": "Agent code",
+        "examples": [
+          "124959"
+        ]
+      },
+      "AgentCodes": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "description": "Agent code",
+          "title": "Agent code",
+          "examples": [
+            "124959"
+          ]
+        },
+        "description": "List of agent codes",
+        "title": "Agent codes",
+        "examples": [
+          [
+            "124959",
+            "124960"
+          ]
+        ]
+      },
+      "AgentOffers": {
         "type": "object",
         "required": [
-          "username",
-          "password",
-          "signature"
+          "agentCode",
+          "supplairCode",
+          "offers"
         ],
         "properties": {
-          "username": {
+          "agentCode": {
+            "type": "string",
+            "description": "Agent code",
+            "title": "Agent code",
+            "examples": [
+              "124959"
+            ]
+          },
+          "supplairCode": {
             "type": "string"
           },
-          "password": {
+          "isSupportNKRI": {
+            "type": "boolean"
+          },
+          "offers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "paxType",
+                "totalFare",
+                "agentSellingFare",
+                "baseFare",
+                "agentServiceFee",
+                "agentServiceFeePPN",
+                "totalTax"
+              ],
+              "properties": {
+                "paxType": {
+                  "type": "string"
+                },
+                "totalFare": {
+                  "type": "number"
+                },
+                "agentSellingFare": {
+                  "type": "number"
+                },
+                "baseFare": {
+                  "type": "number"
+                },
+                "agentServiceFee": {
+                  "type": "number"
+                },
+                "agentServiceFeePPN": {
+                  "type": "number"
+                },
+                "totalTax": {
+                  "type": "number"
+                },
+                "agentIssuedFee": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookingCode": {
+        "type": "string",
+        "description": "Booking code",
+        "title": "Booking code",
+        "examples": [
+          "IWSVZM"
+        ]
+      },
+      "BookingFareSummary": {
+        "type": "object",
+        "required": [
+          "totalBaseFare",
+          "totalTax",
+          "totalFare",
+          "NTSA",
+          "totalPrepaidBaggage",
+          "totalNTA",
+          "wholesalerFee"
+        ],
+        "properties": {
+          "totalBaseFare": {
+            "type": "number"
+          },
+          "totalTax": {
+            "type": "number"
+          },
+          "totalFare": {
+            "type": "number"
+          },
+          "agentIssuedFee": {
+            "type": "number"
+          },
+          "agentSellingFare": {
+            "type": "number"
+          },
+          "agentServiceFee": {
+            "type": "number"
+          },
+          "agentServiceFeePPN": {
+            "type": "number"
+          },
+          "NTSA": {
+            "type": "number"
+          },
+          "totalPrepaidBaggage": {
+            "type": "number"
+          },
+          "totalNTA": {
+            "type": "number"
+          },
+          "wholesalerFee": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookingID": {
+        "type": "string",
+        "description": "Booking ID",
+        "title": "Booking ID",
+        "examples": [
+          "LAW~IWSVZM~1411637"
+        ]
+      },
+      "BookingJourney": {
+        "type": "object",
+        "required": [
+          "journeyID",
+          "originCode",
+          "destinationCode",
+          "segmentIDS"
+        ],
+        "properties": {
+          "journeyID": {
+            "type": "string",
+            "description": "Journey ID",
+            "title": "Journey ID",
+            "examples": [
+              "QG194~HLP~DPS"
+            ]
+          },
+          "originCode": {
+            "type": "string",
+            "description": "Station code",
+            "title": "Station code",
+            "examples": [
+              "HLP"
+            ]
+          },
+          "destinationCode": {
+            "type": "string",
+            "description": "Station code",
+            "title": "Station code",
+            "examples": [
+              "HLP"
+            ]
+          },
+          "segmentIDS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Segment ID",
+              "title": "Segment ID",
+              "examples": [
+                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+              ]
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookingPNR": {
+        "type": "object",
+        "required": [
+          "supplairCode",
+          "agentCode",
+          "info",
+          "bookingSummary",
+          "bookingTimeLimit",
+          "bookingDateTime",
+          "scheduleFareDetail",
+          "bookingID",
+          "bookingStatus",
+          "bookingCode"
+        ],
+        "properties": {
+          "supplairCode": {
             "type": "string"
           },
-          "signature": {
+          "agentCode": {
+            "type": "string",
+            "description": "Agent code",
+            "title": "Agent code",
+            "examples": [
+              "124959"
+            ]
+          },
+          "info": {
+            "type": "object",
+            "required": [
+              "contactInfo",
+              "paxs",
+              "journeys",
+              "segments"
+            ],
+            "properties": {
+              "contactInfo": {
+                "type": "object",
+                "required": [
+                  "title",
+                  "firstName",
+                  "lastName",
+                  "phoneNumber",
+                  "email"
+                ],
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "paxs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "paxType",
+                    "paxID",
+                    "nationality",
+                    "title",
+                    "firstName",
+                    "lastName",
+                    "dob"
+                  ],
+                  "properties": {
+                    "paxType": {
+                      "type": "string"
+                    },
+                    "paxID": {
+                      "type": "string"
+                    },
+                    "nationality": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "dob": {
+                      "type": "string"
+                    },
+                    "freeCheckinBaggage": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "baggageRoute",
+                          "baggageWeight",
+                          "baggageUnit"
+                        ],
+                        "properties": {
+                          "baggageRoute": {
+                            "type": "string"
+                          },
+                          "baggageWeight": {
+                            "type": "string"
+                          },
+                          "baggageUnit": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "journeys": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "journeyID",
+                    "originCode",
+                    "destinationCode",
+                    "segmentIDS"
+                  ],
+                  "properties": {
+                    "journeyID": {
+                      "type": "string",
+                      "description": "Journey ID",
+                      "title": "Journey ID",
+                      "examples": [
+                        "QG194~HLP~DPS"
+                      ]
+                    },
+                    "originCode": {
+                      "type": "string",
+                      "description": "Station code",
+                      "title": "Station code",
+                      "examples": [
+                        "HLP"
+                      ]
+                    },
+                    "destinationCode": {
+                      "type": "string",
+                      "description": "Station code",
+                      "title": "Station code",
+                      "examples": [
+                        "HLP"
+                      ]
+                    },
+                    "segmentIDS": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "Segment ID",
+                        "title": "Segment ID",
+                        "examples": [
+                          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                        ]
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "segments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "segmentID",
+                    "operatingCarrierInfo",
+                    "marketingCarrierInfo",
+                    "originCode",
+                    "destinationCode",
+                    "departureDateTime",
+                    "arrivalDateTime"
+                  ],
+                  "properties": {
+                    "segmentID": {
+                      "type": "string",
+                      "description": "Segment ID",
+                      "title": "Segment ID",
+                      "examples": [
+                        "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                      ]
+                    },
+                    "operatingCarrierInfo": {
+                      "type": "object",
+                      "required": [
+                        "carrierCode",
+                        "flightNumber"
+                      ],
+                      "properties": {
+                        "carrierCode": {
+                          "type": "string",
+                          "description": "Carrier code",
+                          "title": "Carrier code",
+                          "examples": [
+                            "QG"
+                          ]
+                        },
+                        "flightNumber": {
+                          "type": "string",
+                          "description": "Flight number",
+                          "title": "Flight number",
+                          "examples": [
+                            "194"
+                          ]
+                        },
+                        "opSuffix": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "marketingCarrierInfo": {
+                      "type": "object",
+                      "required": [
+                        "carrierCode",
+                        "flightNumber"
+                      ],
+                      "properties": {
+                        "carrierCode": {
+                          "type": "string",
+                          "description": "Carrier code",
+                          "title": "Carrier code",
+                          "examples": [
+                            "QG"
+                          ]
+                        },
+                        "flightNumber": {
+                          "type": "string",
+                          "description": "Flight number",
+                          "title": "Flight number",
+                          "examples": [
+                            "194"
+                          ]
+                        },
+                        "opSuffix": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "originCode": {
+                      "type": "string",
+                      "description": "Station code",
+                      "title": "Station code",
+                      "examples": [
+                        "HLP"
+                      ]
+                    },
+                    "destinationCode": {
+                      "type": "string",
+                      "description": "Station code",
+                      "title": "Station code",
+                      "examples": [
+                        "HLP"
+                      ]
+                    },
+                    "departureDateTime": {
+                      "type": "string",
+                      "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+                      "title": "Date and time YYYY-MM-DDTHH:mm",
+                      "examples": [
+                        "2025-02-19T16:55"
+                      ]
+                    },
+                    "arrivalDateTime": {
+                      "type": "string",
+                      "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+                      "title": "Date and time YYYY-MM-DDTHH:mm",
+                      "examples": [
+                        "2025-02-19T16:55"
+                      ]
+                    },
+                    "arrivalTz": {
+                      "type": "number"
+                    },
+                    "departureTz": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "bookingSummary": {
+            "type": "object",
+            "required": [
+              "totalBaseFare",
+              "totalTax",
+              "totalFare",
+              "NTSA",
+              "totalPrepaidBaggage",
+              "totalNTA",
+              "wholesalerFee"
+            ],
+            "properties": {
+              "totalBaseFare": {
+                "type": "number"
+              },
+              "totalTax": {
+                "type": "number"
+              },
+              "totalFare": {
+                "type": "number"
+              },
+              "agentIssuedFee": {
+                "type": "number"
+              },
+              "agentSellingFare": {
+                "type": "number"
+              },
+              "agentServiceFee": {
+                "type": "number"
+              },
+              "agentServiceFeePPN": {
+                "type": "number"
+              },
+              "NTSA": {
+                "type": "number"
+              },
+              "totalPrepaidBaggage": {
+                "type": "number"
+              },
+              "totalNTA": {
+                "type": "number"
+              },
+              "wholesalerFee": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          },
+          "bookingTimeLimit": {
+            "type": "string",
+            "description": "Date and time in YYYY-MM-DDTHH:mm at UTC timezone",
+            "title": "Date and time YYYY-MM-DDTHH:mm",
+            "examples": [
+              "2025-02-19T16:55"
+            ]
+          },
+          "bookingDateTime": {
+            "type": "string",
+            "description": "Date and time in YYYY-MM-DDTHH:mm at UTC timezone",
+            "title": "Date and time YYYY-MM-DDTHH:mm",
+            "examples": [
+              "2025-02-19T16:55"
+            ]
+          },
+          "scheduleFareDetail": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "journeyIDS",
+                "segmentIDS",
+                "agentCode",
+                "journeySegmentFares",
+                "isCombinedJourneys"
+              ],
+              "properties": {
+                "journeyIDS": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Journey ID",
+                    "title": "Journey ID",
+                    "examples": [
+                      "QG194~HLP~DPS"
+                    ]
+                  }
+                },
+                "segmentIDS": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Segment ID",
+                    "title": "Segment ID",
+                    "examples": [
+                      "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                    ]
+                  }
+                },
+                "agentCode": {
+                  "type": "string",
+                  "description": "Agent code",
+                  "title": "Agent code",
+                  "examples": [
+                    "124959"
+                  ]
+                },
+                "journeySegmentFares": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "segmentFares",
+                      "journeyID"
+                    ],
+                    "properties": {
+                      "segmentFares": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "fareGroupCode",
+                            "fareCode",
+                            "fareBasisCode",
+                            "segmentID"
+                          ],
+                          "properties": {
+                            "fareGroupCode": {
+                              "type": "string",
+                              "enum": [
+                                "E",
+                                "PE",
+                                "B",
+                                "F",
+                                "PF"
+                              ],
+                              "description": "Fare group code",
+                              "title": "Fare group code",
+                              "examples": [
+                                "E",
+                                "PE",
+                                "B",
+                                "F",
+                                "PF"
+                              ]
+                            },
+                            "fareCode": {
+                              "type": "string"
+                            },
+                            "fareBasisCode": {
+                              "type": "string"
+                            },
+                            "segmentID": {
+                              "type": "string",
+                              "description": "Segment ID",
+                              "title": "Segment ID",
+                              "examples": [
+                                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                              ]
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      },
+                      "journeyID": {
+                        "type": "string",
+                        "description": "Journey ID",
+                        "title": "Journey ID",
+                        "examples": [
+                          "QG194~HLP~DPS"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "isCombinedJourneys": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "bookingID": {
+            "type": "string",
+            "description": "Booking ID",
+            "title": "Booking ID",
+            "examples": [
+              "LAW~IWSVZM~1411637"
+            ]
+          },
+          "bookingStatus": {
+            "type": "string",
+            "enum": [
+              "BOOKED",
+              "CANCELLED",
+              "TICKETED"
+            ]
+          },
+          "bookingCode": {
+            "type": "string",
+            "description": "Booking code",
+            "title": "Booking code",
+            "examples": [
+              "IWSVZM"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookingPNRs": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "supplairCode",
+            "agentCode",
+            "info",
+            "bookingSummary",
+            "bookingTimeLimit",
+            "bookingDateTime",
+            "scheduleFareDetail",
+            "bookingID",
+            "bookingStatus",
+            "bookingCode"
+          ],
+          "properties": {
+            "supplairCode": {
+              "type": "string"
+            },
+            "agentCode": {
+              "type": "string",
+              "description": "Agent code",
+              "title": "Agent code",
+              "examples": [
+                "124959"
+              ]
+            },
+            "info": {
+              "type": "object",
+              "required": [
+                "contactInfo",
+                "paxs",
+                "journeys",
+                "segments"
+              ],
+              "properties": {
+                "contactInfo": {
+                  "type": "object",
+                  "required": [
+                    "title",
+                    "firstName",
+                    "lastName",
+                    "phoneNumber",
+                    "email"
+                  ],
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "phoneNumber": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "paxs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "paxType",
+                      "paxID",
+                      "nationality",
+                      "title",
+                      "firstName",
+                      "lastName",
+                      "dob"
+                    ],
+                    "properties": {
+                      "paxType": {
+                        "type": "string"
+                      },
+                      "paxID": {
+                        "type": "string"
+                      },
+                      "nationality": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "firstName": {
+                        "type": "string"
+                      },
+                      "lastName": {
+                        "type": "string"
+                      },
+                      "dob": {
+                        "type": "string"
+                      },
+                      "freeCheckinBaggage": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "baggageRoute",
+                            "baggageWeight",
+                            "baggageUnit"
+                          ],
+                          "properties": {
+                            "baggageRoute": {
+                              "type": "string"
+                            },
+                            "baggageWeight": {
+                              "type": "string"
+                            },
+                            "baggageUnit": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "journeys": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "journeyID",
+                      "originCode",
+                      "destinationCode",
+                      "segmentIDS"
+                    ],
+                    "properties": {
+                      "journeyID": {
+                        "type": "string",
+                        "description": "Journey ID",
+                        "title": "Journey ID",
+                        "examples": [
+                          "QG194~HLP~DPS"
+                        ]
+                      },
+                      "originCode": {
+                        "type": "string",
+                        "description": "Station code",
+                        "title": "Station code",
+                        "examples": [
+                          "HLP"
+                        ]
+                      },
+                      "destinationCode": {
+                        "type": "string",
+                        "description": "Station code",
+                        "title": "Station code",
+                        "examples": [
+                          "HLP"
+                        ]
+                      },
+                      "segmentIDS": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Segment ID",
+                          "title": "Segment ID",
+                          "examples": [
+                            "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                          ]
+                        }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "segments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "segmentID",
+                      "operatingCarrierInfo",
+                      "marketingCarrierInfo",
+                      "originCode",
+                      "destinationCode",
+                      "departureDateTime",
+                      "arrivalDateTime"
+                    ],
+                    "properties": {
+                      "segmentID": {
+                        "type": "string",
+                        "description": "Segment ID",
+                        "title": "Segment ID",
+                        "examples": [
+                          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                        ]
+                      },
+                      "operatingCarrierInfo": {
+                        "type": "object",
+                        "required": [
+                          "carrierCode",
+                          "flightNumber"
+                        ],
+                        "properties": {
+                          "carrierCode": {
+                            "type": "string",
+                            "description": "Carrier code",
+                            "title": "Carrier code",
+                            "examples": [
+                              "QG"
+                            ]
+                          },
+                          "flightNumber": {
+                            "type": "string",
+                            "description": "Flight number",
+                            "title": "Flight number",
+                            "examples": [
+                              "194"
+                            ]
+                          },
+                          "opSuffix": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "marketingCarrierInfo": {
+                        "type": "object",
+                        "required": [
+                          "carrierCode",
+                          "flightNumber"
+                        ],
+                        "properties": {
+                          "carrierCode": {
+                            "type": "string",
+                            "description": "Carrier code",
+                            "title": "Carrier code",
+                            "examples": [
+                              "QG"
+                            ]
+                          },
+                          "flightNumber": {
+                            "type": "string",
+                            "description": "Flight number",
+                            "title": "Flight number",
+                            "examples": [
+                              "194"
+                            ]
+                          },
+                          "opSuffix": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "originCode": {
+                        "type": "string",
+                        "description": "Station code",
+                        "title": "Station code",
+                        "examples": [
+                          "HLP"
+                        ]
+                      },
+                      "destinationCode": {
+                        "type": "string",
+                        "description": "Station code",
+                        "title": "Station code",
+                        "examples": [
+                          "HLP"
+                        ]
+                      },
+                      "departureDateTime": {
+                        "type": "string",
+                        "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+                        "title": "Date and time YYYY-MM-DDTHH:mm",
+                        "examples": [
+                          "2025-02-19T16:55"
+                        ]
+                      },
+                      "arrivalDateTime": {
+                        "type": "string",
+                        "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+                        "title": "Date and time YYYY-MM-DDTHH:mm",
+                        "examples": [
+                          "2025-02-19T16:55"
+                        ]
+                      },
+                      "arrivalTz": {
+                        "type": "number"
+                      },
+                      "departureTz": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
+            "bookingSummary": {
+              "type": "object",
+              "required": [
+                "totalBaseFare",
+                "totalTax",
+                "totalFare",
+                "NTSA",
+                "totalPrepaidBaggage",
+                "totalNTA",
+                "wholesalerFee"
+              ],
+              "properties": {
+                "totalBaseFare": {
+                  "type": "number"
+                },
+                "totalTax": {
+                  "type": "number"
+                },
+                "totalFare": {
+                  "type": "number"
+                },
+                "agentIssuedFee": {
+                  "type": "number"
+                },
+                "agentSellingFare": {
+                  "type": "number"
+                },
+                "agentServiceFee": {
+                  "type": "number"
+                },
+                "agentServiceFeePPN": {
+                  "type": "number"
+                },
+                "NTSA": {
+                  "type": "number"
+                },
+                "totalPrepaidBaggage": {
+                  "type": "number"
+                },
+                "totalNTA": {
+                  "type": "number"
+                },
+                "wholesalerFee": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false
+            },
+            "bookingTimeLimit": {
+              "type": "string",
+              "description": "Date and time in YYYY-MM-DDTHH:mm at UTC timezone",
+              "title": "Date and time YYYY-MM-DDTHH:mm",
+              "examples": [
+                "2025-02-19T16:55"
+              ]
+            },
+            "bookingDateTime": {
+              "type": "string",
+              "description": "Date and time in YYYY-MM-DDTHH:mm at UTC timezone",
+              "title": "Date and time YYYY-MM-DDTHH:mm",
+              "examples": [
+                "2025-02-19T16:55"
+              ]
+            },
+            "scheduleFareDetail": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "journeyIDS",
+                  "segmentIDS",
+                  "agentCode",
+                  "journeySegmentFares",
+                  "isCombinedJourneys"
+                ],
+                "properties": {
+                  "journeyIDS": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Journey ID",
+                      "title": "Journey ID",
+                      "examples": [
+                        "QG194~HLP~DPS"
+                      ]
+                    }
+                  },
+                  "segmentIDS": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Segment ID",
+                      "title": "Segment ID",
+                      "examples": [
+                        "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                      ]
+                    }
+                  },
+                  "agentCode": {
+                    "type": "string",
+                    "description": "Agent code",
+                    "title": "Agent code",
+                    "examples": [
+                      "124959"
+                    ]
+                  },
+                  "journeySegmentFares": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "segmentFares",
+                        "journeyID"
+                      ],
+                      "properties": {
+                        "segmentFares": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "fareGroupCode",
+                              "fareCode",
+                              "fareBasisCode",
+                              "segmentID"
+                            ],
+                            "properties": {
+                              "fareGroupCode": {
+                                "type": "string",
+                                "enum": [
+                                  "E",
+                                  "PE",
+                                  "B",
+                                  "F",
+                                  "PF"
+                                ],
+                                "description": "Fare group code",
+                                "title": "Fare group code",
+                                "examples": [
+                                  "E",
+                                  "PE",
+                                  "B",
+                                  "F",
+                                  "PF"
+                                ]
+                              },
+                              "fareCode": {
+                                "type": "string"
+                              },
+                              "fareBasisCode": {
+                                "type": "string"
+                              },
+                              "segmentID": {
+                                "type": "string",
+                                "description": "Segment ID",
+                                "title": "Segment ID",
+                                "examples": [
+                                  "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                                ]
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        },
+                        "journeyID": {
+                          "type": "string",
+                          "description": "Journey ID",
+                          "title": "Journey ID",
+                          "examples": [
+                            "QG194~HLP~DPS"
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "isCombinedJourneys": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "bookingID": {
+              "type": "string",
+              "description": "Booking ID",
+              "title": "Booking ID",
+              "examples": [
+                "LAW~IWSVZM~1411637"
+              ]
+            },
+            "bookingStatus": {
+              "type": "string",
+              "enum": [
+                "BOOKED",
+                "CANCELLED",
+                "TICKETED"
+              ]
+            },
+            "bookingCode": {
+              "type": "string",
+              "description": "Booking code",
+              "title": "Booking code",
+              "examples": [
+                "IWSVZM"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "BookingStatus": {
+        "type": "string",
+        "enum": [
+          "BOOKED",
+          "CANCELLED",
+          "TICKETED"
+        ]
+      },
+      "Carrier": {
+        "type": "string",
+        "description": "Carrier code.\nAvailable codes are QG, GA, ...",
+        "title": "Carrier code",
+        "examples": [
+          "QG"
+        ]
+      },
+      "CarrierCode": {
+        "type": "string",
+        "description": "Carrier code",
+        "title": "Carrier code",
+        "examples": [
+          "QG"
+        ]
+      },
+      "CarrierInfo": {
+        "type": "object",
+        "required": [
+          "carrierCode",
+          "flightNumber"
+        ],
+        "properties": {
+          "carrierCode": {
+            "type": "string",
+            "description": "Carrier code",
+            "title": "Carrier code",
+            "examples": [
+              "QG"
+            ]
+          },
+          "flightNumber": {
+            "type": "string",
+            "description": "Flight number",
+            "title": "Flight number",
+            "examples": [
+              "194"
+            ]
+          },
+          "opSuffix": {
             "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "TokenCreateResult": {
-        "$schema": "http://json-schema.org/draft-07/schema#",
+      "Carriers": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "description": "Carrier code.\nAvailable codes are QG, GA, ...",
+          "title": "Carrier code",
+          "examples": [
+            "QG"
+          ]
+        },
+        "description": "List of carrier codes",
+        "title": "Carriers",
+        "examples": [
+          [
+            "QG",
+            "GA"
+          ]
+        ]
+      },
+      "ChildrenAges": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "description": "Children ages",
+        "title": "Children ages",
+        "examples": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "ClientReference": {
+        "type": "string",
+        "description": "Client reference",
+        "title": "Client reference",
+        "examples": [
+          "H-20250219-10018745-1"
+        ]
+      },
+      "ContactInfo": {
         "type": "object",
         "required": [
-          "response"
+          "title",
+          "firstName",
+          "lastName",
+          "phoneNumber",
+          "email"
         ],
         "properties": {
-          "response": {
+          "title": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DateTimeLocal": {
+        "type": "string",
+        "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+        "title": "Date and time YYYY-MM-DDTHH:mm",
+        "examples": [
+          "2025-02-19T16:55"
+        ]
+      },
+      "DateTimeUTC": {
+        "type": "string",
+        "description": "Date and time in YYYY-MM-DDTHH:mm at UTC timezone",
+        "title": "Date and time YYYY-MM-DDTHH:mm",
+        "examples": [
+          "2025-02-19T16:55"
+        ]
+      },
+      "DateYMD": {
+        "type": "string",
+        "description": "Date in YYYY-MM-DD format",
+        "title": "Date YYYY-MM-DD",
+        "examples": [
+          "2025-02-19"
+        ]
+      },
+      "DestinationKey": {
+        "type": "string",
+        "description": "Destination key",
+        "title": "Destination key",
+        "examples": [
+          ""
+        ]
+      },
+      "Fare": {
+        "type": "object",
+        "required": [
+          "fareCode",
+          "fareBasisCode",
+          "fareGroupCode",
+          "seatAvailable",
+          "baggageFree",
+          "canBuyAdditionalBaggage",
+          "currencyCode",
+          "agentOffersFare"
+        ],
+        "properties": {
+          "fareCode": {
+            "type": "string"
+          },
+          "fareBasisCode": {
+            "type": "string"
+          },
+          "fareGroupCode": {
+            "type": "string"
+          },
+          "seatAvailable": {
+            "type": "number"
+          },
+          "baggageFree": {
             "type": "object",
             "required": [
-              "result",
-              "token"
+              "weight",
+              "unit"
             ],
             "properties": {
-              "result": {
-                "type": "object",
-                "required": [
-                  "time",
-                  "status"
-                ],
-                "properties": {
-                  "time": {
+              "weight": {
+                "type": "string"
+              },
+              "unit": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "canBuyAdditionalBaggage": {
+            "type": "boolean"
+          },
+          "currencyCode": {
+            "type": "string"
+          },
+          "agentOffersFare": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "agentCode",
+                "supplairCode",
+                "offers"
+              ],
+              "properties": {
+                "agentCode": {
+                  "type": "string",
+                  "description": "Agent code",
+                  "title": "Agent code",
+                  "examples": [
+                    "124959"
+                  ]
+                },
+                "supplairCode": {
+                  "type": "string"
+                },
+                "isSupportNKRI": {
+                  "type": "boolean"
+                },
+                "offers": {
+                  "type": "array",
+                  "items": {
                     "type": "object",
                     "required": [
-                      "request",
-                      "response",
-                      "process",
-                      "unit"
+                      "paxType",
+                      "totalFare",
+                      "agentSellingFare",
+                      "baseFare",
+                      "agentServiceFee",
+                      "agentServiceFeePPN",
+                      "totalTax"
                     ],
                     "properties": {
-                      "request": {
-                        "type": "number"
-                      },
-                      "response": {
-                        "type": "number"
-                      },
-                      "process": {
-                        "type": "number"
-                      },
-                      "unit": {
+                      "paxType": {
                         "type": "string"
+                      },
+                      "totalFare": {
+                        "type": "number"
+                      },
+                      "agentSellingFare": {
+                        "type": "number"
+                      },
+                      "baseFare": {
+                        "type": "number"
+                      },
+                      "agentServiceFee": {
+                        "type": "number"
+                      },
+                      "agentServiceFeePPN": {
+                        "type": "number"
+                      },
+                      "totalTax": {
+                        "type": "number"
+                      },
+                      "agentIssuedFee": {
+                        "type": "number"
                       }
                     },
                     "additionalProperties": false
-                  },
-                  "status": {
-                    "type": "string",
-                    "enum": [
-                      "OK",
-                      "ERROR"
-                    ]
-                  },
-                  "errors": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
                   }
-                },
-                "additionalProperties": false
+                }
               },
-              "token": {
-                "type": "string"
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "FareDetail": {
+        "type": "object",
+        "required": [
+          "paxType",
+          "price"
+        ],
+        "properties": {
+          "paxType": {
+            "type": "string",
+            "enum": [
+              "ADT",
+              "CHD"
+            ]
+          },
+          "price": {
+            "type": "object",
+            "required": [
+              "baseFare",
+              "totalTax",
+              "taxs"
+            ],
+            "properties": {
+              "baseFare": {
+                "type": "number"
+              },
+              "totalTax": {
+                "type": "number"
+              },
+              "taxs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "taxCode",
+                    "taxFare"
+                  ],
+                  "properties": {
+                    "taxCode": {
+                      "type": "string"
+                    },
+                    "taxFare": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "agentIssuedFee": {
+                "type": "number"
+              },
+              "agentSellingFare": {
+                "type": "number"
+              },
+              "agentServiceFee": {
+                "type": "number"
+              },
+              "agentServiceFeePPN": {
+                "type": "number"
               }
             },
             "additionalProperties": false
           }
         },
         "additionalProperties": false
+      },
+      "FareGroupCode": {
+        "type": "string",
+        "enum": [
+          "E",
+          "PE",
+          "B",
+          "F",
+          "PF"
+        ],
+        "description": "Fare group code",
+        "title": "Fare group code",
+        "examples": [
+          "E",
+          "PE",
+          "B",
+          "F",
+          "PF"
+        ]
+      },
+      "FareSSR": {
+        "type": "object",
+        "required": [
+          "ssrType",
+          "ssrCode",
+          "ssrText",
+          "ssrPrice",
+          "ssrRoute",
+          "ssrWeight",
+          "ssrUnit"
+        ],
+        "properties": {
+          "ssrType": {
+            "type": "string"
+          },
+          "ssrCode": {
+            "type": "string"
+          },
+          "ssrText": {
+            "type": "string"
+          },
+          "ssrPrice": {
+            "type": "number"
+          },
+          "ssrRoute": {
+            "type": "string"
+          },
+          "ssrWeight": {
+            "type": "string"
+          },
+          "ssrUnit": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FareSegmentSSR": {
+        "type": "object",
+        "required": [
+          "segmentID",
+          "ssrs"
+        ],
+        "properties": {
+          "segmentID": {
+            "type": "string",
+            "description": "Segment ID",
+            "title": "Segment ID",
+            "examples": [
+              "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+            ]
+          },
+          "ssrs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "ssrType",
+                "ssrCode",
+                "ssrText",
+                "ssrPrice",
+                "ssrRoute",
+                "ssrWeight",
+                "ssrUnit"
+              ],
+              "properties": {
+                "ssrType": {
+                  "type": "string"
+                },
+                "ssrCode": {
+                  "type": "string"
+                },
+                "ssrText": {
+                  "type": "string"
+                },
+                "ssrPrice": {
+                  "type": "number"
+                },
+                "ssrRoute": {
+                  "type": "string"
+                },
+                "ssrWeight": {
+                  "type": "string"
+                },
+                "ssrUnit": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "FareSummary": {
+        "type": "object",
+        "required": [
+          "totalBaseFare",
+          "totalTax",
+          "totalFare"
+        ],
+        "properties": {
+          "totalBaseFare": {
+            "type": "number"
+          },
+          "totalTax": {
+            "type": "number"
+          },
+          "totalFare": {
+            "type": "number"
+          },
+          "agentIssuedFee": {
+            "type": "number"
+          },
+          "agentSellingFare": {
+            "type": "number"
+          },
+          "agentServiceFee": {
+            "type": "number"
+          },
+          "agentServiceFeePPN": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FareTax": {
+        "type": "object",
+        "required": [
+          "taxCode",
+          "taxFare"
+        ],
+        "properties": {
+          "taxCode": {
+            "type": "string"
+          },
+          "taxFare": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FlightBookInfo": {
+        "type": "object",
+        "required": [
+          "contactInfo",
+          "paxs"
+        ],
+        "properties": {
+          "contactInfo": {
+            "type": "object",
+            "required": [
+              "title",
+              "firstName",
+              "lastName",
+              "phoneNumber",
+              "email"
+            ],
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "phoneNumber": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "paxs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "paxType",
+                "paxID",
+                "nationality",
+                "title",
+                "firstName",
+                "lastName",
+                "dob"
+              ],
+              "properties": {
+                "paxType": {
+                  "type": "string"
+                },
+                "paxID": {
+                  "type": "string"
+                },
+                "nationality": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "dob": {
+                  "type": "string"
+                },
+                "freeCheckinBaggage": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "baggageRoute",
+                      "baggageWeight",
+                      "baggageUnit"
+                    ],
+                    "properties": {
+                      "baggageRoute": {
+                        "type": "string"
+                      },
+                      "baggageWeight": {
+                        "type": "string"
+                      },
+                      "baggageUnit": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "FlightNumber": {
+        "type": "string",
+        "description": "Flight number",
+        "title": "Flight number",
+        "examples": [
+          "194"
+        ]
+      },
+      "HotelID": {
+        "type": "string",
+        "description": "Hotel ID",
+        "title": "Hotel ID",
+        "examples": [
+          "ID10018745"
+        ]
+      },
+      "Journey": {
+        "type": "object",
+        "required": [
+          "journeyID",
+          "origin",
+          "destination",
+          "segmentIDS"
+        ],
+        "properties": {
+          "journeyID": {
+            "type": "string",
+            "description": "Journey ID",
+            "title": "Journey ID",
+            "examples": [
+              "QG194~HLP~DPS"
+            ]
+          },
+          "origin": {
+            "type": "string",
+            "description": "Station code",
+            "title": "Station code",
+            "examples": [
+              "HLP"
+            ]
+          },
+          "destination": {
+            "type": "string",
+            "description": "Station code",
+            "title": "Station code",
+            "examples": [
+              "HLP"
+            ]
+          },
+          "segmentIDS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Segment ID",
+              "title": "Segment ID",
+              "examples": [
+                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+              ]
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "JourneyID": {
+        "type": "string",
+        "description": "Journey ID",
+        "title": "Journey ID",
+        "examples": [
+          "QG194~HLP~DPS"
+        ]
+      },
+      "JourneySegmentFare": {
+        "type": "object",
+        "required": [
+          "journeyID",
+          "segmentFares"
+        ],
+        "properties": {
+          "journeyID": {
+            "type": "string",
+            "description": "Journey ID",
+            "title": "Journey ID",
+            "examples": [
+              "QG194~HLP~DPS"
+            ]
+          },
+          "segmentFares": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "segmentID",
+                "fares"
+              ],
+              "properties": {
+                "segmentID": {
+                  "type": "string",
+                  "description": "Segment ID",
+                  "title": "Segment ID",
+                  "examples": [
+                    "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                  ]
+                },
+                "fares": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "fareCode",
+                      "fareBasisCode",
+                      "fareGroupCode",
+                      "seatAvailable",
+                      "baggageFree",
+                      "canBuyAdditionalBaggage",
+                      "currencyCode",
+                      "agentOffersFare"
+                    ],
+                    "properties": {
+                      "fareCode": {
+                        "type": "string"
+                      },
+                      "fareBasisCode": {
+                        "type": "string"
+                      },
+                      "fareGroupCode": {
+                        "type": "string"
+                      },
+                      "seatAvailable": {
+                        "type": "number"
+                      },
+                      "baggageFree": {
+                        "type": "object",
+                        "required": [
+                          "weight",
+                          "unit"
+                        ],
+                        "properties": {
+                          "weight": {
+                            "type": "string"
+                          },
+                          "unit": {
+                            "type": "string"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "canBuyAdditionalBaggage": {
+                        "type": "boolean"
+                      },
+                      "currencyCode": {
+                        "type": "string"
+                      },
+                      "agentOffersFare": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "agentCode",
+                            "supplairCode",
+                            "offers"
+                          ],
+                          "properties": {
+                            "agentCode": {
+                              "type": "string",
+                              "description": "Agent code",
+                              "title": "Agent code",
+                              "examples": [
+                                "124959"
+                              ]
+                            },
+                            "supplairCode": {
+                              "type": "string"
+                            },
+                            "isSupportNKRI": {
+                              "type": "boolean"
+                            },
+                            "offers": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "paxType",
+                                  "totalFare",
+                                  "agentSellingFare",
+                                  "baseFare",
+                                  "agentServiceFee",
+                                  "agentServiceFeePPN",
+                                  "totalTax"
+                                ],
+                                "properties": {
+                                  "paxType": {
+                                    "type": "string"
+                                  },
+                                  "totalFare": {
+                                    "type": "number"
+                                  },
+                                  "agentSellingFare": {
+                                    "type": "number"
+                                  },
+                                  "baseFare": {
+                                    "type": "number"
+                                  },
+                                  "agentServiceFee": {
+                                    "type": "number"
+                                  },
+                                  "agentServiceFeePPN": {
+                                    "type": "number"
+                                  },
+                                  "totalTax": {
+                                    "type": "number"
+                                  },
+                                  "agentIssuedFee": {
+                                    "type": "number"
+                                  }
+                                },
+                                "additionalProperties": false
+                              }
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "JourneyType": {
+        "type": "string",
+        "enum": [
+          "OW",
+          "RT"
+        ]
+      },
+      "Leg": {
+        "type": "object",
+        "required": [
+          "legID",
+          "origin",
+          "destination",
+          "departureDateTime",
+          "arrivalDateTime"
+        ],
+        "properties": {
+          "legID": {
+            "type": "string",
+            "description": "Leg ID",
+            "title": "Leg ID",
+            "examples": [
+              "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+            ]
+          },
+          "origin": {
+            "type": "object",
+            "required": [
+              "code",
+              "tz"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Station code",
+                "title": "Station code",
+                "examples": [
+                  "HLP"
+                ]
+              },
+              "tz": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "?"
+                    ]
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "destination": {
+            "type": "object",
+            "required": [
+              "code",
+              "tz"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Station code",
+                "title": "Station code",
+                "examples": [
+                  "HLP"
+                ]
+              },
+              "tz": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "?"
+                    ]
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "departureDateTime": {
+            "type": "string",
+            "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+            "title": "Date and time YYYY-MM-DDTHH:mm",
+            "examples": [
+              "2025-02-19T16:55"
+            ]
+          },
+          "arrivalDateTime": {
+            "type": "string",
+            "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+            "title": "Date and time YYYY-MM-DDTHH:mm",
+            "examples": [
+              "2025-02-19T16:55"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "LegID": {
+        "type": "string",
+        "description": "Leg ID",
+        "title": "Leg ID",
+        "examples": [
+          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+        ]
+      },
+      "Offer": {
+        "type": "object",
+        "required": [
+          "paxType",
+          "totalFare",
+          "agentSellingFare",
+          "baseFare",
+          "agentServiceFee",
+          "agentServiceFeePPN",
+          "totalTax"
+        ],
+        "properties": {
+          "paxType": {
+            "type": "string"
+          },
+          "totalFare": {
+            "type": "number"
+          },
+          "agentSellingFare": {
+            "type": "number"
+          },
+          "baseFare": {
+            "type": "number"
+          },
+          "agentServiceFee": {
+            "type": "number"
+          },
+          "agentServiceFeePPN": {
+            "type": "number"
+          },
+          "totalTax": {
+            "type": "number"
+          },
+          "agentIssuedFee": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Password": {
+        "type": "string",
+        "description": "Api credentials password",
+        "title": "Password",
+        "examples": [
+          "password"
+        ]
+      },
+      "Pax": {
+        "type": "object",
+        "required": [
+          "paxType",
+          "paxID",
+          "nationality",
+          "title",
+          "firstName",
+          "lastName",
+          "dob"
+        ],
+        "properties": {
+          "paxType": {
+            "type": "string"
+          },
+          "paxID": {
+            "type": "string"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "dob": {
+            "type": "string"
+          },
+          "freeCheckinBaggage": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "baggageRoute",
+                "baggageWeight",
+                "baggageUnit"
+              ],
+              "properties": {
+                "baggageRoute": {
+                  "type": "string"
+                },
+                "baggageWeight": {
+                  "type": "string"
+                },
+                "baggageUnit": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaxCount": {
+        "type": "object",
+        "required": [
+          "ADT",
+          "CHD",
+          "INF"
+        ],
+        "properties": {
+          "ADT": {
+            "type": "number",
+            "description": "a number greater than or equal to 1",
+            "title": "greaterThanOrEqualTo(1)",
+            "minimum": 1
+          },
+          "CHD": {
+            "type": "number",
+            "description": "a non-negative number",
+            "title": "greaterThanOrEqualTo(0)",
+            "minimum": 0
+          },
+          "INF": {
+            "type": "number",
+            "description": "a non-negative number",
+            "title": "greaterThanOrEqualTo(0)",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false,
+        "description": "Passenger count for each passenger type",
+        "title": "Pax count",
+        "examples": [
+          {
+            "ADT": 1,
+            "CHD": 0,
+            "INF": 0
+          }
+        ],
+        "default": {
+          "ADT": 1,
+          "CHD": 0,
+          "INF": 0
+        }
+      },
+      "ProcessTime": {
+        "type": "object",
+        "required": [
+          "request",
+          "response",
+          "process",
+          "unit"
+        ],
+        "properties": {
+          "request": {
+            "type": "number"
+          },
+          "response": {
+            "type": "number"
+          },
+          "process": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RPCResult": {
+        "type": "object",
+        "required": [
+          "result"
+        ],
+        "properties": {
+          "result": {
+            "type": "object",
+            "required": [
+              "time",
+              "status"
+            ],
+            "properties": {
+              "time": {
+                "type": "object",
+                "required": [
+                  "request",
+                  "response",
+                  "process",
+                  "unit"
+                ],
+                "properties": {
+                  "request": {
+                    "type": "number"
+                  },
+                  "response": {
+                    "type": "number"
+                  },
+                  "process": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "OK",
+                  "ERROR"
+                ]
+              },
+              "errors": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "Remark": {
+        "type": "string",
+        "description": "Remark",
+        "title": "Remark",
+        "examples": [
+          "Early Check In",
+          "Late Check Out"
+        ]
+      },
+      "RemarkList": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "description": "Remark",
+          "title": "Remark",
+          "examples": [
+            "Early Check In",
+            "Late Check Out"
+          ]
+        },
+        "description": "Remark list",
+        "title": "Remark list",
+        "examples": [
+          [
+            "Early Check In",
+            "Late Check Out"
+          ]
+        ]
+      },
+      "ResultErrors": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "ResultStatus": {
+        "type": "string",
+        "enum": [
+          "OK",
+          "ERROR"
+        ]
+      },
+      "RoomGuest": {
+        "type": "object",
+        "required": [
+          "roomNumber",
+          "type",
+          "title",
+          "firstName",
+          "lastName"
+        ],
+        "properties": {
+          "roomNumber": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ADT",
+              "CHD"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoomGuestData": {
+        "type": "object",
+        "required": [
+          "roomHolder",
+          "roomGuestList"
+        ],
+        "properties": {
+          "roomHolder": {
+            "type": "object",
+            "required": [
+              "firstName",
+              "lastName"
+            ],
+            "properties": {
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "roomGuestList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "roomNumber",
+                "type",
+                "title",
+                "firstName",
+                "lastName"
+              ],
+              "properties": {
+                "roomNumber": {
+                  "type": "number"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "ADT",
+                    "CHD"
+                  ]
+                },
+                "title": {
+                  "type": "string"
+                },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoomHolder": {
+        "type": "object",
+        "required": [
+          "firstName",
+          "lastName"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoomSelected": {
+        "type": "object",
+        "required": [
+          "agentCode",
+          "hotelID",
+          "roomIDS"
+        ],
+        "properties": {
+          "agentCode": {
+            "type": "string",
+            "description": "Agent code",
+            "title": "Agent code",
+            "examples": [
+              "124959"
+            ]
+          },
+          "hotelID": {
+            "type": "string",
+            "description": "Hotel ID",
+            "title": "Hotel ID",
+            "examples": [
+              "ID10018745"
+            ]
+          },
+          "roomIDS": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "roomNumber",
+                "roomPriceKey"
+              ],
+              "properties": {
+                "roomNumber": {
+                  "type": "number"
+                },
+                "roomPriceKey": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "Schedule": {
+        "type": "object",
+        "required": [
+          "origin",
+          "destination",
+          "departureDate"
+        ],
+        "properties": {
+          "origin": {
+            "type": "string",
+            "description": "Station code",
+            "title": "Station code",
+            "examples": [
+              "HLP"
+            ]
+          },
+          "destination": {
+            "type": "string",
+            "description": "Station code",
+            "title": "Station code",
+            "examples": [
+              "HLP"
+            ]
+          },
+          "departureDate": {
+            "type": "string",
+            "description": "Date in YYYY-MM-DD format",
+            "title": "Date YYYY-MM-DD",
+            "examples": [
+              "2025-02-19"
+            ]
+          },
+          "returnDate": {
+            "type": "string",
+            "description": "Date in YYYY-MM-DD format",
+            "title": "Date YYYY-MM-DD",
+            "examples": [
+              "2025-02-19"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleFareDetail": {
+        "type": "object",
+        "required": [
+          "journeyIDS",
+          "segmentIDS",
+          "agentCode",
+          "journeySegmentFares",
+          "isCombinedJourneys"
+        ],
+        "properties": {
+          "journeyIDS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Journey ID",
+              "title": "Journey ID",
+              "examples": [
+                "QG194~HLP~DPS"
+              ]
+            }
+          },
+          "segmentIDS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Segment ID",
+              "title": "Segment ID",
+              "examples": [
+                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+              ]
+            }
+          },
+          "agentCode": {
+            "type": "string",
+            "description": "Agent code",
+            "title": "Agent code",
+            "examples": [
+              "124959"
+            ]
+          },
+          "journeySegmentFares": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "segmentFares",
+                "journeyID"
+              ],
+              "properties": {
+                "segmentFares": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "fareGroupCode",
+                      "fareCode",
+                      "fareBasisCode",
+                      "segmentID"
+                    ],
+                    "properties": {
+                      "fareGroupCode": {
+                        "type": "string",
+                        "enum": [
+                          "E",
+                          "PE",
+                          "B",
+                          "F",
+                          "PF"
+                        ],
+                        "description": "Fare group code",
+                        "title": "Fare group code",
+                        "examples": [
+                          "E",
+                          "PE",
+                          "B",
+                          "F",
+                          "PF"
+                        ]
+                      },
+                      "fareCode": {
+                        "type": "string"
+                      },
+                      "fareBasisCode": {
+                        "type": "string"
+                      },
+                      "segmentID": {
+                        "type": "string",
+                        "description": "Segment ID",
+                        "title": "Segment ID",
+                        "examples": [
+                          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                        ]
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "journeyID": {
+                  "type": "string",
+                  "description": "Journey ID",
+                  "title": "Journey ID",
+                  "examples": [
+                    "QG194~HLP~DPS"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "isCombinedJourneys": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleFareDetailResult": {
+        "type": "object",
+        "required": [
+          "journeyIDS",
+          "segmentIDS",
+          "agentCode",
+          "supplairCode",
+          "fareDetails",
+          "fareSummary"
+        ],
+        "properties": {
+          "journeyIDS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Journey ID",
+              "title": "Journey ID",
+              "examples": [
+                "QG194~HLP~DPS"
+              ]
+            }
+          },
+          "segmentIDS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Segment ID",
+              "title": "Segment ID",
+              "examples": [
+                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+              ]
+            }
+          },
+          "agentCode": {
+            "type": "string",
+            "description": "Agent code",
+            "title": "Agent code",
+            "examples": [
+              "124959"
+            ]
+          },
+          "supplairCode": {
+            "type": "string"
+          },
+          "fareDetails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "paxType",
+                "price"
+              ],
+              "properties": {
+                "paxType": {
+                  "type": "string",
+                  "enum": [
+                    "ADT",
+                    "CHD"
+                  ]
+                },
+                "price": {
+                  "type": "object",
+                  "required": [
+                    "baseFare",
+                    "totalTax",
+                    "taxs"
+                  ],
+                  "properties": {
+                    "baseFare": {
+                      "type": "number"
+                    },
+                    "totalTax": {
+                      "type": "number"
+                    },
+                    "taxs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "taxCode",
+                          "taxFare"
+                        ],
+                        "properties": {
+                          "taxCode": {
+                            "type": "string"
+                          },
+                          "taxFare": {
+                            "type": "number"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "agentIssuedFee": {
+                      "type": "number"
+                    },
+                    "agentSellingFare": {
+                      "type": "number"
+                    },
+                    "agentServiceFee": {
+                      "type": "number"
+                    },
+                    "agentServiceFeePPN": {
+                      "type": "number"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "fareSummary": {
+            "type": "object",
+            "required": [
+              "totalBaseFare",
+              "totalTax",
+              "totalFare"
+            ],
+            "properties": {
+              "totalBaseFare": {
+                "type": "number"
+              },
+              "totalTax": {
+                "type": "number"
+              },
+              "totalFare": {
+                "type": "number"
+              },
+              "agentIssuedFee": {
+                "type": "number"
+              },
+              "agentSellingFare": {
+                "type": "number"
+              },
+              "agentServiceFee": {
+                "type": "number"
+              },
+              "agentServiceFeePPN": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          },
+          "segmentSSRS": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "segmentID",
+                "ssrs"
+              ],
+              "properties": {
+                "segmentID": {
+                  "type": "string",
+                  "description": "Segment ID",
+                  "title": "Segment ID",
+                  "examples": [
+                    "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                  ]
+                },
+                "ssrs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "ssrType",
+                      "ssrCode",
+                      "ssrText",
+                      "ssrPrice",
+                      "ssrRoute",
+                      "ssrWeight",
+                      "ssrUnit"
+                    ],
+                    "properties": {
+                      "ssrType": {
+                        "type": "string"
+                      },
+                      "ssrCode": {
+                        "type": "string"
+                      },
+                      "ssrText": {
+                        "type": "string"
+                      },
+                      "ssrPrice": {
+                        "type": "number"
+                      },
+                      "ssrRoute": {
+                        "type": "string"
+                      },
+                      "ssrWeight": {
+                        "type": "string"
+                      },
+                      "ssrUnit": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleFareDetailResults": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "journeyIDS",
+            "segmentIDS",
+            "agentCode",
+            "supplairCode",
+            "fareDetails",
+            "fareSummary"
+          ],
+          "properties": {
+            "journeyIDS": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Journey ID",
+                "title": "Journey ID",
+                "examples": [
+                  "QG194~HLP~DPS"
+                ]
+              }
+            },
+            "segmentIDS": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Segment ID",
+                "title": "Segment ID",
+                "examples": [
+                  "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                ]
+              }
+            },
+            "agentCode": {
+              "type": "string",
+              "description": "Agent code",
+              "title": "Agent code",
+              "examples": [
+                "124959"
+              ]
+            },
+            "supplairCode": {
+              "type": "string"
+            },
+            "fareDetails": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "paxType",
+                  "price"
+                ],
+                "properties": {
+                  "paxType": {
+                    "type": "string",
+                    "enum": [
+                      "ADT",
+                      "CHD"
+                    ]
+                  },
+                  "price": {
+                    "type": "object",
+                    "required": [
+                      "baseFare",
+                      "totalTax",
+                      "taxs"
+                    ],
+                    "properties": {
+                      "baseFare": {
+                        "type": "number"
+                      },
+                      "totalTax": {
+                        "type": "number"
+                      },
+                      "taxs": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "taxCode",
+                            "taxFare"
+                          ],
+                          "properties": {
+                            "taxCode": {
+                              "type": "string"
+                            },
+                            "taxFare": {
+                              "type": "number"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      },
+                      "agentIssuedFee": {
+                        "type": "number"
+                      },
+                      "agentSellingFare": {
+                        "type": "number"
+                      },
+                      "agentServiceFee": {
+                        "type": "number"
+                      },
+                      "agentServiceFeePPN": {
+                        "type": "number"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "fareSummary": {
+              "type": "object",
+              "required": [
+                "totalBaseFare",
+                "totalTax",
+                "totalFare"
+              ],
+              "properties": {
+                "totalBaseFare": {
+                  "type": "number"
+                },
+                "totalTax": {
+                  "type": "number"
+                },
+                "totalFare": {
+                  "type": "number"
+                },
+                "agentIssuedFee": {
+                  "type": "number"
+                },
+                "agentSellingFare": {
+                  "type": "number"
+                },
+                "agentServiceFee": {
+                  "type": "number"
+                },
+                "agentServiceFeePPN": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false
+            },
+            "segmentSSRS": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "segmentID",
+                  "ssrs"
+                ],
+                "properties": {
+                  "segmentID": {
+                    "type": "string",
+                    "description": "Segment ID",
+                    "title": "Segment ID",
+                    "examples": [
+                      "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                    ]
+                  },
+                  "ssrs": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "ssrType",
+                        "ssrCode",
+                        "ssrText",
+                        "ssrPrice",
+                        "ssrRoute",
+                        "ssrWeight",
+                        "ssrUnit"
+                      ],
+                      "properties": {
+                        "ssrType": {
+                          "type": "string"
+                        },
+                        "ssrCode": {
+                          "type": "string"
+                        },
+                        "ssrText": {
+                          "type": "string"
+                        },
+                        "ssrPrice": {
+                          "type": "number"
+                        },
+                        "ssrRoute": {
+                          "type": "string"
+                        },
+                        "ssrWeight": {
+                          "type": "string"
+                        },
+                        "ssrUnit": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "ScheduleFareDetails": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "journeyIDS",
+            "segmentIDS",
+            "agentCode",
+            "journeySegmentFares",
+            "isCombinedJourneys"
+          ],
+          "properties": {
+            "journeyIDS": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Journey ID",
+                "title": "Journey ID",
+                "examples": [
+                  "QG194~HLP~DPS"
+                ]
+              }
+            },
+            "segmentIDS": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Segment ID",
+                "title": "Segment ID",
+                "examples": [
+                  "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                ]
+              }
+            },
+            "agentCode": {
+              "type": "string",
+              "description": "Agent code",
+              "title": "Agent code",
+              "examples": [
+                "124959"
+              ]
+            },
+            "journeySegmentFares": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "segmentFares",
+                  "journeyID"
+                ],
+                "properties": {
+                  "segmentFares": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "fareGroupCode",
+                        "fareCode",
+                        "fareBasisCode",
+                        "segmentID"
+                      ],
+                      "properties": {
+                        "fareGroupCode": {
+                          "type": "string",
+                          "enum": [
+                            "E",
+                            "PE",
+                            "B",
+                            "F",
+                            "PF"
+                          ],
+                          "description": "Fare group code",
+                          "title": "Fare group code",
+                          "examples": [
+                            "E",
+                            "PE",
+                            "B",
+                            "F",
+                            "PF"
+                          ]
+                        },
+                        "fareCode": {
+                          "type": "string"
+                        },
+                        "fareBasisCode": {
+                          "type": "string"
+                        },
+                        "segmentID": {
+                          "type": "string",
+                          "description": "Segment ID",
+                          "title": "Segment ID",
+                          "examples": [
+                            "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "journeyID": {
+                    "type": "string",
+                    "description": "Journey ID",
+                    "title": "Journey ID",
+                    "examples": [
+                      "QG194~HLP~DPS"
+                    ]
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "isCombinedJourneys": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "ScheduleFareInfo": {
+        "type": "object",
+        "required": [
+          "totalPaxs",
+          "segments"
+        ],
+        "properties": {
+          "totalPaxs": {
+            "type": "object",
+            "required": [
+              "ADT",
+              "CHD",
+              "INF"
+            ],
+            "properties": {
+              "ADT": {
+                "type": "number",
+                "description": "a number greater than or equal to 1",
+                "title": "greaterThanOrEqualTo(1)",
+                "minimum": 1
+              },
+              "CHD": {
+                "type": "number",
+                "description": "a non-negative number",
+                "title": "greaterThanOrEqualTo(0)",
+                "minimum": 0
+              },
+              "INF": {
+                "type": "number",
+                "description": "a non-negative number",
+                "title": "greaterThanOrEqualTo(0)",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false,
+            "description": "Passenger count for each passenger type",
+            "title": "Pax count",
+            "examples": [
+              {
+                "ADT": 1,
+                "CHD": 0,
+                "INF": 0
+              }
+            ],
+            "default": {
+              "ADT": 1,
+              "CHD": 0,
+              "INF": 0
+            }
+          },
+          "segments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "segmentID",
+                "operatingCarrierInfo",
+                "marketingCarrierInfo",
+                "originCode",
+                "destinationCode",
+                "departureDateTime",
+                "arrivalDateTime"
+              ],
+              "properties": {
+                "segmentID": {
+                  "type": "string",
+                  "description": "Segment ID",
+                  "title": "Segment ID",
+                  "examples": [
+                    "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                  ]
+                },
+                "operatingCarrierInfo": {
+                  "type": "object",
+                  "required": [
+                    "carrierCode",
+                    "flightNumber"
+                  ],
+                  "properties": {
+                    "carrierCode": {
+                      "type": "string",
+                      "description": "Carrier code",
+                      "title": "Carrier code",
+                      "examples": [
+                        "QG"
+                      ]
+                    },
+                    "flightNumber": {
+                      "type": "string",
+                      "description": "Flight number",
+                      "title": "Flight number",
+                      "examples": [
+                        "194"
+                      ]
+                    },
+                    "opSuffix": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marketingCarrierInfo": {
+                  "type": "object",
+                  "required": [
+                    "carrierCode",
+                    "flightNumber"
+                  ],
+                  "properties": {
+                    "carrierCode": {
+                      "type": "string",
+                      "description": "Carrier code",
+                      "title": "Carrier code",
+                      "examples": [
+                        "QG"
+                      ]
+                    },
+                    "flightNumber": {
+                      "type": "string",
+                      "description": "Flight number",
+                      "title": "Flight number",
+                      "examples": [
+                        "194"
+                      ]
+                    },
+                    "opSuffix": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "originCode": {
+                  "type": "string",
+                  "description": "Station code",
+                  "title": "Station code",
+                  "examples": [
+                    "HLP"
+                  ]
+                },
+                "destinationCode": {
+                  "type": "string",
+                  "description": "Station code",
+                  "title": "Station code",
+                  "examples": [
+                    "HLP"
+                  ]
+                },
+                "departureDateTime": {
+                  "type": "string",
+                  "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+                  "title": "Date and time YYYY-MM-DDTHH:mm",
+                  "examples": [
+                    "2025-02-19T16:55"
+                  ]
+                },
+                "arrivalDateTime": {
+                  "type": "string",
+                  "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+                  "title": "Date and time YYYY-MM-DDTHH:mm",
+                  "examples": [
+                    "2025-02-19T16:55"
+                  ]
+                },
+                "arrivalTz": {
+                  "type": "number"
+                },
+                "departureTz": {
+                  "type": "number"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleFareInfoParams": {
+        "type": "object",
+        "required": [
+          "totalPaxs"
+        ],
+        "properties": {
+          "totalPaxs": {
+            "type": "object",
+            "required": [
+              "ADT",
+              "CHD",
+              "INF"
+            ],
+            "properties": {
+              "ADT": {
+                "type": "number",
+                "description": "a number greater than or equal to 1",
+                "title": "greaterThanOrEqualTo(1)",
+                "minimum": 1
+              },
+              "CHD": {
+                "type": "number",
+                "description": "a non-negative number",
+                "title": "greaterThanOrEqualTo(0)",
+                "minimum": 0
+              },
+              "INF": {
+                "type": "number",
+                "description": "a non-negative number",
+                "title": "greaterThanOrEqualTo(0)",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false,
+            "description": "Passenger count for each passenger type",
+            "title": "Pax count",
+            "examples": [
+              {
+                "ADT": 1,
+                "CHD": 0,
+                "INF": 0
+              }
+            ],
+            "default": {
+              "ADT": 1,
+              "CHD": 0,
+              "INF": 0
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleInfo": {
+        "type": "object",
+        "required": [
+          "journeys",
+          "segments",
+          "legs"
+        ],
+        "properties": {
+          "journeys": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "journeyID",
+                "origin",
+                "destination",
+                "segmentIDS"
+              ],
+              "properties": {
+                "journeyID": {
+                  "type": "string",
+                  "description": "Journey ID",
+                  "title": "Journey ID",
+                  "examples": [
+                    "QG194~HLP~DPS"
+                  ]
+                },
+                "origin": {
+                  "type": "string",
+                  "description": "Station code",
+                  "title": "Station code",
+                  "examples": [
+                    "HLP"
+                  ]
+                },
+                "destination": {
+                  "type": "string",
+                  "description": "Station code",
+                  "title": "Station code",
+                  "examples": [
+                    "HLP"
+                  ]
+                },
+                "segmentIDS": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Segment ID",
+                    "title": "Segment ID",
+                    "examples": [
+                      "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                    ]
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "segments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "segmentID",
+                "origin",
+                "destination",
+                "arrivalDateTime",
+                "departureDateTime",
+                "stopOver",
+                "operatingCarrierInfo",
+                "marketingCarrierInfo",
+                "legIDS"
+              ],
+              "properties": {
+                "segmentID": {
+                  "type": "string",
+                  "description": "Segment ID",
+                  "title": "Segment ID",
+                  "examples": [
+                    "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                  ]
+                },
+                "origin": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "tz"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "Station code",
+                      "title": "Station code",
+                      "examples": [
+                        "HLP"
+                      ]
+                    },
+                    "tz": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "?"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "destination": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "tz"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "Station code",
+                      "title": "Station code",
+                      "examples": [
+                        "HLP"
+                      ]
+                    },
+                    "tz": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "?"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "arrivalDateTime": {
+                  "type": "string",
+                  "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+                  "title": "Date and time YYYY-MM-DDTHH:mm",
+                  "examples": [
+                    "2025-02-19T16:55"
+                  ]
+                },
+                "departureDateTime": {
+                  "type": "string",
+                  "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+                  "title": "Date and time YYYY-MM-DDTHH:mm",
+                  "examples": [
+                    "2025-02-19T16:55"
+                  ]
+                },
+                "stopOver": {
+                  "type": "number"
+                },
+                "operatingCarrierInfo": {
+                  "type": "object",
+                  "required": [
+                    "carrierCode",
+                    "flightNumber"
+                  ],
+                  "properties": {
+                    "carrierCode": {
+                      "type": "string",
+                      "description": "Carrier code",
+                      "title": "Carrier code",
+                      "examples": [
+                        "QG"
+                      ]
+                    },
+                    "flightNumber": {
+                      "type": "string",
+                      "description": "Flight number",
+                      "title": "Flight number",
+                      "examples": [
+                        "194"
+                      ]
+                    },
+                    "opSuffix": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "marketingCarrierInfo": {
+                  "type": "object",
+                  "required": [
+                    "carrierCode",
+                    "flightNumber"
+                  ],
+                  "properties": {
+                    "carrierCode": {
+                      "type": "string",
+                      "description": "Carrier code",
+                      "title": "Carrier code",
+                      "examples": [
+                        "QG"
+                      ]
+                    },
+                    "flightNumber": {
+                      "type": "string",
+                      "description": "Flight number",
+                      "title": "Flight number",
+                      "examples": [
+                        "194"
+                      ]
+                    },
+                    "opSuffix": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "legIDS": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Leg ID",
+                    "title": "Leg ID",
+                    "examples": [
+                      "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                    ]
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "legs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "legID",
+                "origin",
+                "destination",
+                "departureDateTime",
+                "arrivalDateTime"
+              ],
+              "properties": {
+                "legID": {
+                  "type": "string",
+                  "description": "Leg ID",
+                  "title": "Leg ID",
+                  "examples": [
+                    "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                  ]
+                },
+                "origin": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "tz"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "Station code",
+                      "title": "Station code",
+                      "examples": [
+                        "HLP"
+                      ]
+                    },
+                    "tz": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "?"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "destination": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "tz"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "Station code",
+                      "title": "Station code",
+                      "examples": [
+                        "HLP"
+                      ]
+                    },
+                    "tz": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "?"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "departureDateTime": {
+                  "type": "string",
+                  "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+                  "title": "Date and time YYYY-MM-DDTHH:mm",
+                  "examples": [
+                    "2025-02-19T16:55"
+                  ]
+                },
+                "arrivalDateTime": {
+                  "type": "string",
+                  "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+                  "title": "Date and time YYYY-MM-DDTHH:mm",
+                  "examples": [
+                    "2025-02-19T16:55"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleResult": {
+        "type": "object",
+        "required": [
+          "journeyType",
+          "journeyIDS",
+          "segmentIDS",
+          "journeySegmentFares"
+        ],
+        "properties": {
+          "journeyType": {
+            "type": "string",
+            "enum": [
+              "OW",
+              "RT"
+            ]
+          },
+          "journeyIDS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Journey ID",
+              "title": "Journey ID",
+              "examples": [
+                "QG194~HLP~DPS"
+              ]
+            }
+          },
+          "segmentIDS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Segment ID",
+              "title": "Segment ID",
+              "examples": [
+                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+              ]
+            }
+          },
+          "currencyCode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "journeySegmentFares": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "journeyID",
+                "segmentFares"
+              ],
+              "properties": {
+                "journeyID": {
+                  "type": "string",
+                  "description": "Journey ID",
+                  "title": "Journey ID",
+                  "examples": [
+                    "QG194~HLP~DPS"
+                  ]
+                },
+                "segmentFares": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "segmentID",
+                      "fares"
+                    ],
+                    "properties": {
+                      "segmentID": {
+                        "type": "string",
+                        "description": "Segment ID",
+                        "title": "Segment ID",
+                        "examples": [
+                          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                        ]
+                      },
+                      "fares": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "fareCode",
+                            "fareBasisCode",
+                            "fareGroupCode",
+                            "seatAvailable",
+                            "baggageFree",
+                            "canBuyAdditionalBaggage",
+                            "currencyCode",
+                            "agentOffersFare"
+                          ],
+                          "properties": {
+                            "fareCode": {
+                              "type": "string"
+                            },
+                            "fareBasisCode": {
+                              "type": "string"
+                            },
+                            "fareGroupCode": {
+                              "type": "string"
+                            },
+                            "seatAvailable": {
+                              "type": "number"
+                            },
+                            "baggageFree": {
+                              "type": "object",
+                              "required": [
+                                "weight",
+                                "unit"
+                              ],
+                              "properties": {
+                                "weight": {
+                                  "type": "string"
+                                },
+                                "unit": {
+                                  "type": "string"
+                                }
+                              },
+                              "additionalProperties": false
+                            },
+                            "canBuyAdditionalBaggage": {
+                              "type": "boolean"
+                            },
+                            "currencyCode": {
+                              "type": "string"
+                            },
+                            "agentOffersFare": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "agentCode",
+                                  "supplairCode",
+                                  "offers"
+                                ],
+                                "properties": {
+                                  "agentCode": {
+                                    "type": "string",
+                                    "description": "Agent code",
+                                    "title": "Agent code",
+                                    "examples": [
+                                      "124959"
+                                    ]
+                                  },
+                                  "supplairCode": {
+                                    "type": "string"
+                                  },
+                                  "isSupportNKRI": {
+                                    "type": "boolean"
+                                  },
+                                  "offers": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "required": [
+                                        "paxType",
+                                        "totalFare",
+                                        "agentSellingFare",
+                                        "baseFare",
+                                        "agentServiceFee",
+                                        "agentServiceFeePPN",
+                                        "totalTax"
+                                      ],
+                                      "properties": {
+                                        "paxType": {
+                                          "type": "string"
+                                        },
+                                        "totalFare": {
+                                          "type": "number"
+                                        },
+                                        "agentSellingFare": {
+                                          "type": "number"
+                                        },
+                                        "baseFare": {
+                                          "type": "number"
+                                        },
+                                        "agentServiceFee": {
+                                          "type": "number"
+                                        },
+                                        "agentServiceFeePPN": {
+                                          "type": "number"
+                                        },
+                                        "totalTax": {
+                                          "type": "number"
+                                        },
+                                        "agentIssuedFee": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "additionalProperties": false
+                                    }
+                                  }
+                                },
+                                "additionalProperties": false
+                              }
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleResults": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "journeyType",
+            "journeyIDS",
+            "segmentIDS",
+            "journeySegmentFares"
+          ],
+          "properties": {
+            "journeyType": {
+              "type": "string",
+              "enum": [
+                "OW",
+                "RT"
+              ]
+            },
+            "journeyIDS": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Journey ID",
+                "title": "Journey ID",
+                "examples": [
+                  "QG194~HLP~DPS"
+                ]
+              }
+            },
+            "segmentIDS": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Segment ID",
+                "title": "Segment ID",
+                "examples": [
+                  "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                ]
+              }
+            },
+            "currencyCode": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "journeySegmentFares": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "journeyID",
+                  "segmentFares"
+                ],
+                "properties": {
+                  "journeyID": {
+                    "type": "string",
+                    "description": "Journey ID",
+                    "title": "Journey ID",
+                    "examples": [
+                      "QG194~HLP~DPS"
+                    ]
+                  },
+                  "segmentFares": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "segmentID",
+                        "fares"
+                      ],
+                      "properties": {
+                        "segmentID": {
+                          "type": "string",
+                          "description": "Segment ID",
+                          "title": "Segment ID",
+                          "examples": [
+                            "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+                          ]
+                        },
+                        "fares": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "fareCode",
+                              "fareBasisCode",
+                              "fareGroupCode",
+                              "seatAvailable",
+                              "baggageFree",
+                              "canBuyAdditionalBaggage",
+                              "currencyCode",
+                              "agentOffersFare"
+                            ],
+                            "properties": {
+                              "fareCode": {
+                                "type": "string"
+                              },
+                              "fareBasisCode": {
+                                "type": "string"
+                              },
+                              "fareGroupCode": {
+                                "type": "string"
+                              },
+                              "seatAvailable": {
+                                "type": "number"
+                              },
+                              "baggageFree": {
+                                "type": "object",
+                                "required": [
+                                  "weight",
+                                  "unit"
+                                ],
+                                "properties": {
+                                  "weight": {
+                                    "type": "string"
+                                  },
+                                  "unit": {
+                                    "type": "string"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "canBuyAdditionalBaggage": {
+                                "type": "boolean"
+                              },
+                              "currencyCode": {
+                                "type": "string"
+                              },
+                              "agentOffersFare": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "required": [
+                                    "agentCode",
+                                    "supplairCode",
+                                    "offers"
+                                  ],
+                                  "properties": {
+                                    "agentCode": {
+                                      "type": "string",
+                                      "description": "Agent code",
+                                      "title": "Agent code",
+                                      "examples": [
+                                        "124959"
+                                      ]
+                                    },
+                                    "supplairCode": {
+                                      "type": "string"
+                                    },
+                                    "isSupportNKRI": {
+                                      "type": "boolean"
+                                    },
+                                    "offers": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "required": [
+                                          "paxType",
+                                          "totalFare",
+                                          "agentSellingFare",
+                                          "baseFare",
+                                          "agentServiceFee",
+                                          "agentServiceFeePPN",
+                                          "totalTax"
+                                        ],
+                                        "properties": {
+                                          "paxType": {
+                                            "type": "string"
+                                          },
+                                          "totalFare": {
+                                            "type": "number"
+                                          },
+                                          "agentSellingFare": {
+                                            "type": "number"
+                                          },
+                                          "baseFare": {
+                                            "type": "number"
+                                          },
+                                          "agentServiceFee": {
+                                            "type": "number"
+                                          },
+                                          "agentServiceFeePPN": {
+                                            "type": "number"
+                                          },
+                                          "totalTax": {
+                                            "type": "number"
+                                          },
+                                          "agentIssuedFee": {
+                                            "type": "number"
+                                          }
+                                        },
+                                        "additionalProperties": false
+                                      }
+                                    }
+                                  },
+                                  "additionalProperties": false
+                                }
+                              }
+                            },
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "Schedules": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "origin",
+            "destination",
+            "departureDate"
+          ],
+          "properties": {
+            "origin": {
+              "type": "string",
+              "description": "Station code",
+              "title": "Station code",
+              "examples": [
+                "HLP"
+              ]
+            },
+            "destination": {
+              "type": "string",
+              "description": "Station code",
+              "title": "Station code",
+              "examples": [
+                "HLP"
+              ]
+            },
+            "departureDate": {
+              "type": "string",
+              "description": "Date in YYYY-MM-DD format",
+              "title": "Date YYYY-MM-DD",
+              "examples": [
+                "2025-02-19"
+              ]
+            },
+            "returnDate": {
+              "type": "string",
+              "description": "Date in YYYY-MM-DD format",
+              "title": "Date YYYY-MM-DD",
+              "examples": [
+                "2025-02-19"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "description": "List of schedules",
+        "title": "Schedules",
+        "examples": [
+          [
+            {
+              "origin": "HLP",
+              "destination": "DPS",
+              "departureDate": "2024-06-27",
+              "returnDate": "2024-06-28"
+            }
+          ]
+        ]
+      },
+      "SearchKey": {
+        "type": "string",
+        "description": "Search key",
+        "title": "Search key",
+        "examples": [
+          "2025-02-19+3+2+ID+2.2+0.0+0.0+-+MGH.D.DESTINATION.ID-ESR+true"
+        ]
+      },
+      "Segment": {
+        "type": "object",
+        "required": [
+          "segmentID",
+          "origin",
+          "destination",
+          "arrivalDateTime",
+          "departureDateTime",
+          "stopOver",
+          "operatingCarrierInfo",
+          "marketingCarrierInfo",
+          "legIDS"
+        ],
+        "properties": {
+          "segmentID": {
+            "type": "string",
+            "description": "Segment ID",
+            "title": "Segment ID",
+            "examples": [
+              "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+            ]
+          },
+          "origin": {
+            "type": "object",
+            "required": [
+              "code",
+              "tz"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Station code",
+                "title": "Station code",
+                "examples": [
+                  "HLP"
+                ]
+              },
+              "tz": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "?"
+                    ]
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "destination": {
+            "type": "object",
+            "required": [
+              "code",
+              "tz"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Station code",
+                "title": "Station code",
+                "examples": [
+                  "HLP"
+                ]
+              },
+              "tz": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "?"
+                    ]
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "arrivalDateTime": {
+            "type": "string",
+            "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+            "title": "Date and time YYYY-MM-DDTHH:mm",
+            "examples": [
+              "2025-02-19T16:55"
+            ]
+          },
+          "departureDateTime": {
+            "type": "string",
+            "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+            "title": "Date and time YYYY-MM-DDTHH:mm",
+            "examples": [
+              "2025-02-19T16:55"
+            ]
+          },
+          "stopOver": {
+            "type": "number"
+          },
+          "operatingCarrierInfo": {
+            "type": "object",
+            "required": [
+              "carrierCode",
+              "flightNumber"
+            ],
+            "properties": {
+              "carrierCode": {
+                "type": "string",
+                "description": "Carrier code",
+                "title": "Carrier code",
+                "examples": [
+                  "QG"
+                ]
+              },
+              "flightNumber": {
+                "type": "string",
+                "description": "Flight number",
+                "title": "Flight number",
+                "examples": [
+                  "194"
+                ]
+              },
+              "opSuffix": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "marketingCarrierInfo": {
+            "type": "object",
+            "required": [
+              "carrierCode",
+              "flightNumber"
+            ],
+            "properties": {
+              "carrierCode": {
+                "type": "string",
+                "description": "Carrier code",
+                "title": "Carrier code",
+                "examples": [
+                  "QG"
+                ]
+              },
+              "flightNumber": {
+                "type": "string",
+                "description": "Flight number",
+                "title": "Flight number",
+                "examples": [
+                  "194"
+                ]
+              },
+              "opSuffix": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "legIDS": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Leg ID",
+              "title": "Leg ID",
+              "examples": [
+                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+              ]
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "SegmentFare": {
+        "type": "object",
+        "required": [
+          "segmentID",
+          "fares"
+        ],
+        "properties": {
+          "segmentID": {
+            "type": "string",
+            "description": "Segment ID",
+            "title": "Segment ID",
+            "examples": [
+              "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+            ]
+          },
+          "fares": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "fareCode",
+                "fareBasisCode",
+                "fareGroupCode",
+                "seatAvailable",
+                "baggageFree",
+                "canBuyAdditionalBaggage",
+                "currencyCode",
+                "agentOffersFare"
+              ],
+              "properties": {
+                "fareCode": {
+                  "type": "string"
+                },
+                "fareBasisCode": {
+                  "type": "string"
+                },
+                "fareGroupCode": {
+                  "type": "string"
+                },
+                "seatAvailable": {
+                  "type": "number"
+                },
+                "baggageFree": {
+                  "type": "object",
+                  "required": [
+                    "weight",
+                    "unit"
+                  ],
+                  "properties": {
+                    "weight": {
+                      "type": "string"
+                    },
+                    "unit": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "canBuyAdditionalBaggage": {
+                  "type": "boolean"
+                },
+                "currencyCode": {
+                  "type": "string"
+                },
+                "agentOffersFare": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "agentCode",
+                      "supplairCode",
+                      "offers"
+                    ],
+                    "properties": {
+                      "agentCode": {
+                        "type": "string",
+                        "description": "Agent code",
+                        "title": "Agent code",
+                        "examples": [
+                          "124959"
+                        ]
+                      },
+                      "supplairCode": {
+                        "type": "string"
+                      },
+                      "isSupportNKRI": {
+                        "type": "boolean"
+                      },
+                      "offers": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "paxType",
+                            "totalFare",
+                            "agentSellingFare",
+                            "baseFare",
+                            "agentServiceFee",
+                            "agentServiceFeePPN",
+                            "totalTax"
+                          ],
+                          "properties": {
+                            "paxType": {
+                              "type": "string"
+                            },
+                            "totalFare": {
+                              "type": "number"
+                            },
+                            "agentSellingFare": {
+                              "type": "number"
+                            },
+                            "baseFare": {
+                              "type": "number"
+                            },
+                            "agentServiceFee": {
+                              "type": "number"
+                            },
+                            "agentServiceFeePPN": {
+                              "type": "number"
+                            },
+                            "totalTax": {
+                              "type": "number"
+                            },
+                            "agentIssuedFee": {
+                              "type": "number"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "SegmentID": {
+        "type": "string",
+        "description": "Segment ID",
+        "title": "Segment ID",
+        "examples": [
+          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+        ]
+      },
+      "SegmentResult": {
+        "type": "object",
+        "required": [
+          "segmentID",
+          "operatingCarrierInfo",
+          "marketingCarrierInfo",
+          "originCode",
+          "destinationCode",
+          "departureDateTime",
+          "arrivalDateTime"
+        ],
+        "properties": {
+          "segmentID": {
+            "type": "string",
+            "description": "Segment ID",
+            "title": "Segment ID",
+            "examples": [
+              "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
+            ]
+          },
+          "operatingCarrierInfo": {
+            "type": "object",
+            "required": [
+              "carrierCode",
+              "flightNumber"
+            ],
+            "properties": {
+              "carrierCode": {
+                "type": "string",
+                "description": "Carrier code",
+                "title": "Carrier code",
+                "examples": [
+                  "QG"
+                ]
+              },
+              "flightNumber": {
+                "type": "string",
+                "description": "Flight number",
+                "title": "Flight number",
+                "examples": [
+                  "194"
+                ]
+              },
+              "opSuffix": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "marketingCarrierInfo": {
+            "type": "object",
+            "required": [
+              "carrierCode",
+              "flightNumber"
+            ],
+            "properties": {
+              "carrierCode": {
+                "type": "string",
+                "description": "Carrier code",
+                "title": "Carrier code",
+                "examples": [
+                  "QG"
+                ]
+              },
+              "flightNumber": {
+                "type": "string",
+                "description": "Flight number",
+                "title": "Flight number",
+                "examples": [
+                  "194"
+                ]
+              },
+              "opSuffix": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "originCode": {
+            "type": "string",
+            "description": "Station code",
+            "title": "Station code",
+            "examples": [
+              "HLP"
+            ]
+          },
+          "destinationCode": {
+            "type": "string",
+            "description": "Station code",
+            "title": "Station code",
+            "examples": [
+              "HLP"
+            ]
+          },
+          "departureDateTime": {
+            "type": "string",
+            "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+            "title": "Date and time YYYY-MM-DDTHH:mm",
+            "examples": [
+              "2025-02-19T16:55"
+            ]
+          },
+          "arrivalDateTime": {
+            "type": "string",
+            "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
+            "title": "Date and time YYYY-MM-DDTHH:mm",
+            "examples": [
+              "2025-02-19T16:55"
+            ]
+          },
+          "arrivalTz": {
+            "type": "number"
+          },
+          "departureTz": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Signature": {
+        "type": "string",
+        "description": "Api credentials computed signature `md5(username + password + pre-shared-key)`",
+        "title": "Signature",
+        "examples": [
+          "926a161c6419512d711089538c80ac70"
+        ]
+      },
+      "Station": {
+        "type": "object",
+        "required": [
+          "code",
+          "tz"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Station code",
+            "title": "Station code",
+            "examples": [
+              "HLP"
+            ]
+          },
+          "tz": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "?"
+                ]
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "StationCode": {
+        "type": "string",
+        "description": "Station code",
+        "title": "Station code",
+        "examples": [
+          "HLP"
+        ]
+      },
+      "Term": {
+        "type": "string",
+        "description": "Search term",
+        "title": "Search term",
+        "examples": [
+          "bandung"
+        ]
+      },
+      "TotalAdults": {
+        "type": "number",
+        "description": "Total adults",
+        "title": "Total adults",
+        "examples": [
+          1
+        ]
+      },
+      "TotalChilds": {
+        "type": "number",
+        "description": "Total childs",
+        "title": "Total childs",
+        "examples": [
+          0
+        ]
+      },
+      "TotalRooms": {
+        "type": "number",
+        "description": "Total rooms",
+        "title": "Total rooms",
+        "examples": [
+          1
+        ]
+      },
+      "UserName": {
+        "type": "string",
+        "description": "Api credentials username",
+        "title": "Username",
+        "examples": [
+          "api-001"
+        ]
       }
     }
   }
