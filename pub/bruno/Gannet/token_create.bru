@@ -1,0 +1,24 @@
+meta {
+  name: token_create
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:9000/api
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": 2,
+    "method": "token:create",
+    "params": {
+      "username": "API-DEMO",
+      "password": "jag6eitaiS",
+      "signature": "f36fb02a861d11a6d77e32cf3f802306"
+    }
+  }
+  
+}

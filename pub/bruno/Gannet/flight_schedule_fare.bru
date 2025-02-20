@@ -1,0 +1,54 @@
+meta {
+  name: flight_schedule_fare
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:9000/api
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": 2,
+    "method": "flight:schedule:fare",
+    "params": {
+      "info": {
+        "totalPaxs": {
+          "CHD": 0,
+          "INF": 0,
+          "ADT": 4
+        }
+      },
+      "scheduleFareDetail": [
+        {
+          "segmentIDS": [
+            "ID~6864~~CGK~BTH~2024-06-27T09:25~2024-06-27T11:05"
+          ],
+          "journeyIDS": [
+            "ID6864~CGK~BTH"
+          ],
+          "agentCode": "124959",
+          "journeySegmentFares": [
+            {
+              "segmentFares": [
+                {
+                  "fareGroupCode": "E",
+                  "fareCode": "S",
+                  "fareBasisCode": "SIDOW",
+                  "segmentID": "ID~6864~~CGK~BTH~2024-06-27T09:25~2024-06-27T11:05"
+                }
+              ],
+              "journeyID": "ID6864~CGK~BTH"
+            }
+          ],
+          "isCombinedJourneys": false
+        }
+      ]
+    },
+    "token": "",
+    "id": "1718957455650-5630"
+  }
+}

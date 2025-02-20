@@ -1,0 +1,24 @@
+meta {
+  name: flight_issue
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:9000/api
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": 2,
+    "method": "flight:issue",
+    "params": {
+      "__token": "",
+      "bookingID": "LAW~IWSVZM~1411637"
+    },
+    "token": "",
+    "id": "1718960183324-7528"
+  }
+}

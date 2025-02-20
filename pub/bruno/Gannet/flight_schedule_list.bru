@@ -1,0 +1,38 @@
+meta {
+  name: flight_schedule_list
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:9000/api
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": 2,
+    "method": "flight:schedule:list",
+    "params": {
+      "carriers": [
+        "QG"
+      ],
+      "paxCount": {
+        "CHD": 0,
+        "INF": 0,
+        "ADT": 4
+      },
+      "schedules": [
+        {
+          "returnDate": null,
+          "origin": "HLP",
+          "departureDate": "2024-06-27",
+          "destination": "DPS"
+        }
+      ]
+    },
+    "token": "",
+    "id": "1718972983403-4406"
+  }
+}

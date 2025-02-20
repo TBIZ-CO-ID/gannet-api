@@ -1,0 +1,24 @@
+meta {
+  name: flight_cancel
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:9000/api
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": 2,
+    "method": "flight:cancel",
+    "params": {
+      "__token": "",
+      "bookingID": "CLN~OM6VJE~1642734"
+    },
+    "token": "",
+    "id": "1732600860731-6236"
+  }
+}

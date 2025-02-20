@@ -1,0 +1,94 @@
+meta {
+  name: flight_book
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:9000/api
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": 2,
+    "method": "flight:book",
+    "params": {
+      "info": {
+        "contactInfo": {
+          "email": "bonkbonk941@gmail.com",
+          "firstName": "Yongki",
+          "title": "MR",
+          "lastName": "Herwinda",
+          "phoneNumber": "085218811041"
+        },
+        "paxs": [
+          {
+            "paxType": "ADT",
+            "paxID": "PAX1",
+            "nationality": "ID",
+            "firstName": "Yongki",
+            "title": "MR",
+            "dob": "1978-02-01",
+            "lastName": "Herwinda"
+          },
+          {
+            "paxType": "ADT",
+            "paxID": "PAX2",
+            "nationality": "ID",
+            "firstName": "Misbahudin",
+            "title": "MR",
+            "dob": "1976-06-13",
+            "lastName": "Misbahudin"
+          },
+          {
+            "paxType": "ADT",
+            "paxID": "PAX3",
+            "nationality": "ID",
+            "firstName": "Muchtar",
+            "title": "MR",
+            "dob": "1969-08-08",
+            "lastName": "Muchtar"
+          },
+          {
+            "paxType": "ADT",
+            "paxID": "PAX4",
+            "nationality": "ID",
+            "firstName": "Hendrik",
+            "title": "MR",
+            "dob": "1975-09-29",
+            "lastName": "Sutisna"
+          }
+        ]
+      },
+      "scheduleFareDetail": [
+        {
+          "segmentIDS": [
+            "QG~943~~BTH~CGK~2024-06-29T12:35~2024-06-29T14:20"
+          ],
+          "journeyIDS": [
+            "QG943~BTH~CGK"
+          ],
+          "agentCode": "124959",
+          "journeySegmentFares": [
+            {
+              "segmentFares": [
+                {
+                  "fareGroupCode": "E",
+                  "fareCode": "D",
+                  "fareBasisCode": "D",
+                  "segmentID": "QG~943~~BTH~CGK~2024-06-29T12:35~2024-06-29T14:20"
+                }
+              ],
+              "journeyID": "QG943~BTH~CGK"
+            }
+          ],
+          "isCombinedJourneys": false
+        }
+      ]
+    },
+    "token": "",
+    "id": "1718957778996-9052"
+  }
+}
