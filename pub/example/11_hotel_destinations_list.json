@@ -1,0 +1,82 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "hotel:destinations:list",
+    "params": {
+      "term": "malang"
+    },
+    "token": "{{TOKEN}}",
+    "id": "HL_1740106640361"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "HL_1740106640361",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740109834983,
+          "response": 1740109835489,
+          "process": 506,
+          "unit": "Milisecond"
+        },
+        "status": "OK"
+      },
+      "destinations": [
+        {
+          "destinationName": "Marangu",
+          "destinationText": "Marangu, Tanzania",
+          "destinationKey": "6c210ba5b81e930e89ef38dd9c436165aabaf23bd757c8109160f4b7ad55e1b74ef721f5b6f151bd52fee0a01c013c74",
+          "countryCode": "TZ"
+        },
+        {
+          "destinationName": "Malaga",
+          "destinationText": "Malaga, Spain",
+          "destinationKey": "3708b7ddf9343296fd3e2a038e70214cbf9c4fef40483a690e240f26aac43dd5ce03b43918eb98fe7a4e20d24ce9fce4",
+          "countryCode": "ES"
+        },
+        {
+          "destinationName": "Malanda",
+          "destinationText": "Malanda, Australia",
+          "destinationKey": "5e54598f40dd3cfd1a26412257417af7f13913b4bda8ec73b9095cf4edff3bc4f3227248fd2b80ceb8acbfbfb62f8704",
+          "countryCode": "AU"
+        },
+        {
+          "destinationName": "Malang",
+          "destinationText": "Malang, Indonesia",
+          "destinationKey": "b9d3955b3426a53719122b2760a083ccfec042e9c515c883b2d68df2d30573c118240f5b693a225071a73fb5f89d0290",
+          "countryCode": "ID"
+        },
+        {
+          "destinationName": "Marang",
+          "destinationText": "Marang, Malaysia",
+          "destinationKey": "95da15be36d5d4ac6b458e8744318c842da81073dedb0739a46df087795f7534e40b6673b03f510543dea854902272b4",
+          "countryCode": "MY"
+        },
+        {
+          "destinationName": "Matangi Island",
+          "destinationText": "Matangi Island, Fiji",
+          "destinationKey": "3e3a0d6e82183eae1c9e45d62cdcf6dfbb8c608f79e857102d73ac8837c3164f3b6aa53f88c9e1a6b41f31678c2aace4",
+          "countryCode": "FJ"
+        },
+        {
+          "destinationName": "Malung",
+          "destinationText": "Malung, Sweden",
+          "destinationKey": "9bd7d5014b07ed25e180c14efa67e2e2cc0547f9fd88fe4a55bf83a546d8d5694d9c3857c2719af4774e28048746955a",
+          "countryCode": "SE"
+        },
+        {
+          "destinationName": "Malargue",
+          "destinationText": "Malargue, Argentina",
+          "destinationKey": "617f165f38822f51fe9f64726e39ec12d03ba6226e35fb158c0d94d9499e16614f9c5ecfb813b2c25fb697c5c37ab30d",
+          "countryCode": "AR"
+        },
+        {
+          "destinationName": "Montes De Malaga",
+          "destinationText": "Montes De Malaga, Spain",
+          "destinationKey": "c9342026a81782116cdf9ded32167de4cd3d0b8f44a16db702cb9051b93158f223c0a8664119484df50f63a316a1dc05",
+          "countryCode": "ES"
+        }
+      ]
+    }
+  }
+}

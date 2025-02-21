@@ -1,0 +1,123 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "hotel:fetch:detail",
+    "params": {
+      "id": "756b62c71f83799009f4130af63d17c86aef95be58951b9e8b51c728ba32a122"
+    },
+    "token": "{{TOKEN}}",
+    "id": "HL_1740106640361"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "HL_1740106640361",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740110114281,
+          "response": 1740110115071,
+          "process": 790,
+          "unit": "Milisecond"
+        },
+        "status": "OK"
+      },
+      "hotelInformation": {
+        "description": "Hotel Tugu Malang is located at Jalan Tugu No 3 in East Java. It features an outdoor pool, spa and 6 dining options. Wi-Fi and parking, both of which are available for free",
+        "address": "Jl. Tugu No. 3 Malang city Malang Indonesia",
+        "fax": "",
+        "destinationName": "Malang",
+        "attractionList": [],
+        "websiteUrl": "www.tuguhotels.com",
+        "name": "Hotel Tugu Malang",
+        "roomFacilityList": [
+          "Bathrobe",
+          "Bathtub",
+          "Cable Tv",
+          "Desk",
+          "Hair Dryer",
+          "In Room Safe",
+          "Minibar",
+          "Shower",
+          "Television"
+        ],
+        "typeOfRate": "AG",
+        "longitude": 112.632912,
+        "star": 5,
+        "countryName": "Indonesia",
+        "checkoutInfo": "12:00:00",
+        "amenityList": [],
+        "supplierCode": "MGH",
+        "pictureUrls": [
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/6fc6022d-22fd-41c8-a05d-21a592e9263d.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/550efbee-e0b5-4790-8712-22e8ffad0800.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/5e8c28a8-5167-43ea-b9d7-275984b852fd.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/35a09b8b-72b0-4c1f-b974-c8c44446c30a.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/5bbe289f-bcf1-4fb6-ae87-50f381870387.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/20698138-3f35-494b-90d8-7c2a18daf613.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/43c791e7-15f3-416e-aba7-62aafe014b12.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/2ed92b1a-2be8-415f-a678-73700e0da45b.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/3e9d4ab2-613c-4cc8-9583-12d599b2a416.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/b2498ddd-f87b-4d53-90b1-1df0cf4935b5.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/c4969dfe-c33d-4a42-b3f7-2c2b2a8fadcc.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/9f620c48-b180-4235-bab9-8cae3c3677b9.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/173d336b-1eaf-4457-b43f-14aacf4b46ad.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/c3d4ea1e-5011-4e99-9244-ed1b50e05160.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/0063de03-ce70-47f1-b0f9-d5b53bad30b5.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/fb45eb7b-659b-4fb4-8f83-d7f274f1da49.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/7cbab634-a6d7-402b-8671-3ce24ebc520b.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/68282684-ee9d-4ac4-9545-ce39801e674a.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/54a5f40b-602b-4508-bf6c-2139d7c3dc49.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/ef773850-669e-4aad-a9cc-d2e0e64862ad.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/73622712-31a4-469b-9c98-633d71ed626e.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/53e41f92-7e2f-442d-9b49-46adb14991b6.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/7df78a1a-fa4d-40f3-bc7c-ce1d100297f9.jpg",
+          "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/a619073d-df10-43ef-aa32-895cc47f4161.jpg"
+        ],
+        "id": "756b62c71f83799009f4130af63d17c86aef95be58951b9e8b51c728ba32a122",
+        "latitude": -7.977163,
+        "locationList": [],
+        "checkinInfo": "14:00:00",
+        "phoneNumber": "+62 341 363891",
+        "countryCode": "ID",
+        "facilityList": [
+          "Internet",
+          "Parking",
+          "Pets: No.",
+          "Language spokens: Indonesian.",
+          "Business Center",
+          "Meeting Facilities",
+          "Coffee Shop",
+          "Restaurant",
+          "Room Service",
+          "Safety Deposit Box",
+          "Wifi Free",
+          "Safe Stay - Chain Standard",
+          "Vaccinated",
+          "Air Conditioning",
+          "Non Smoking Room",
+          "A La Carte Breakfast",
+          "A La Carte Dinner",
+          "A La Carte Lunch",
+          "Bar",
+          "Breakfast",
+          "Breakfast And Dinner",
+          "Breakfast Surcharge",
+          "Buffet Lunch",
+          "Gluten Free Meals",
+          "Winery",
+          "Atm Or Banking",
+          "Grocery",
+          "Supermarket",
+          "Bellboy Service",
+          "Concierge",
+          "Early Check In",
+          "Front Desk",
+          "Cycling Or Mountain Biking",
+          "Library",
+          "Spa",
+          "Airport Transfer Surcharge"
+        ]
+      }
+    }
+  }
+}

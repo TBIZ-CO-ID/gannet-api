@@ -1,0 +1,179 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "hotel:book",
+    "params": {
+      "roomSelectedData": [
+        {
+          "hotelID": "756b62c71f83799009f4130af63d17c86aef95be58951b9e8b51c728ba32a122",
+          "roomIDS": [
+            {
+              "roomID": "2025-04-01+1+1+ID+1+0+0++MGH.D.CITY.ID-MLG+false/Superior Deluxe|Superior Deluxe|RO|Flexi|false|1|1|0|0.0|0.0|false|ID",
+              "roomNumber": 1
+            }
+          ],
+          "agentCode": "TBIZ"
+        }
+      ],
+      "roomGuestData": {
+        "roomGuestList": [
+          {
+            "roomNumber": 1,
+            "type": "ADT",
+            "title": "MR",
+            "firstName": "Muhammad",
+            "lastName": "Ridho"
+          }
+        ],
+        "roomHolder": {
+          "email": "reedho@gmail.com",
+          "phone": "08569027811",
+          "firstName": "Muhammad",
+          "lastName": "Ridho"
+        }
+      },
+      "clientReference": "TBIZ_1740106640362",
+      "remarkList": [
+        "Early check in"
+      ]
+    },
+    "token": "{{TOKEN}}",
+    "id": "HL_1740106640362"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "HL_1740106640362",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740110403019,
+          "response": 1740110421766,
+          "process": 18747,
+          "unit": "Milisecond"
+        },
+        "status": "OK"
+      },
+      "hotelBookingResponses": [
+        {
+          "agentCode": "TBIZ",
+          "bookingID": "QILIN~MGH~YYS590CY~~AGID0759692502099476",
+          "supplierInformation": {
+            "supplierCode": "MGH",
+            "typeOfRate": "AG",
+            "creationDate": null,
+            "creationUser": null,
+            "currencyCode": null,
+            "pendingAmount": null,
+            "invoiceCompany": null,
+            "modificationPolicies": null,
+            "supplierTripId": "YYS590CYTBIZ_1740106",
+            "supplierUpstreamVoucherCode": "VAGHB2502537583",
+            "supplierUpstreamRef": "HB2502537583",
+            "supplierUpstreamConfirmationCode": "VAGHB2502537583",
+            "supplierConfirmationCode": "AGID0759692502099476"
+          },
+          "vendorInformation": {
+            "vendorCode": "QILIN",
+            "locatorCode": "YYS590CY",
+            "toSupplierRef": "YYS590CYTBIZ_1740106",
+            "fromClientRef": "TBIZ_1740106640362",
+            "bookedAt": "2025-02-21T04:00:21+00:00",
+            "voucheredAt": null,
+            "cancelledAt": null,
+            "bookingStatus": "CONFIRMED",
+            "voucherStatus": null,
+            "cancelStatus": null
+          },
+          "hotelInformation": {
+            "id": "ID10003334",
+            "name": "Hotel Tugu Malang",
+            "address": "Jl. Tugu No. 3 Malang city Malang Indonesia",
+            "description": "Hotel Tugu Malang, part of Tugu Hotels, Resorts & Restaurants Indonesia, is located right at the heart of the old city centre, facing “Jan Pieterszoon Coen Plein“ the main old town square which after the independence era of Indonesia, around 1946, became one of the first independence memorial monuments that were built in Indonesia, now complimented with a huge lotus pond. A destination on its own, Hotel Tugu Malang is the most essential way in experiencing the beautiful richness of the history of Java, with a lot of open spaces, offering 49 beautiful guest rooms equipped with modern amenities. All rooms have access to fresh air circulation afforded by wide windows in each room, where our guests are able to enjoy the cool breeze of Malang City.\n\nEnjoy   the   101   dining   experiences available at the famous Melati Restaurant & SaigonSan Restaurant and Rofftop Terrace. At Tugu Malang, every meal transports guests back to different periods of Indonesia.  Every dining room features not only different food concepts, but themes, rituals of service   and atmospheres which   are unique from one   another.   \nMelati Restaurant is famous for its original Indonesian homecooking recipes, authentic Chinese Peranakan menu, as well as a vast menu of tender, juicy steaks, ranging from old Dutch Colonial recipes of batter-fried steaks to gourmet French-style grilled wagyu steaks. \n\nSaigonSan serves classical & innovative modern Thai & Vietnamese cuisine, with SaigonSan rated as the #1 restaurant out of 635 restaurants in Malang according to leading review site at TripAdvisor.\n\nHotel Tugu Malang also has been named Top 20 Best Hotels in Asia by Conde Nast Traveler Readers’ Choice Awards 2019, as one of only two hotels from Indonesia listed in the category. The awards signify the essence of Hotel Tugu Malang – leading Indonesian luxury hospitality presented through unique services and cultural experiences, with a mission to bring back to life the beautiful art, culture, and history of Indonesia to world. Staying at Tugu Malang is a cultural journey that cannot be replicated in any other hotel.",
+            "star": 5,
+            "checkInDate": "2025-04-01",
+            "checkInInfo": "",
+            "checkOutDate": "2025-04-02",
+            "checkOutInfo": "",
+            "countryCode": "ID",
+            "countryName": "Indonesia",
+            "destinationName": "Malang",
+            "longitude": 112.632912,
+            "latitude": -7.977163,
+            "pictureUrl": "https://images.mgbedbank.com/PROD/MGDocuments/ID10003334/Photos/6fc6022d-22fd-41c8-a05d-21a592e9263d.jpg",
+            "norms": []
+          },
+          "hotelRoomInformation": [
+            {
+              "roomIndex": 1,
+              "roomID": "2025-04-01+1+1+ID+1+0+0++MGH.D.CITY.ID-MLG+false/Superior Deluxe|Superior Deluxe|RO|Flexi|false|1|1|0|0.0|0.0|false|ID",
+              "roomName": "Superior Deluxe",
+              "roomBoardInclusion": "Room Only",
+              "roomSupplementList": [],
+              "roomPrice": {
+                "currencyCode": "IDR",
+                "totalPrice": 1499188.97,
+                "supplierNTA": 1427799.02,
+                "agentServiceFee": 0,
+                "agentServiceFeePPN": 0,
+                "agentSellingFare": 1499188.97
+              },
+              "roomNote": null,
+              "numberOfRooms": 1,
+              "numberOfAdults": 1,
+              "numberOfChildrens": 0,
+              "numberOfInfants": 0,
+              "roomCancellationPolicyList": {
+                "isCancellable": true,
+                "lastCancellationDeadline": "2025-03-27T12:00:00+00:00",
+                "textualPolicyList": [],
+                "noShowCharges": [],
+                "defaultPolicy": "",
+                "autoCancellationText": "",
+                "roomCancellationCharges": [
+                  {
+                    "fromDate": "2025-03-27T12:00:00+00:00",
+                    "toDate": "2025-03-30T12:00:00+00:00",
+                    "chargeType": "Percentage",
+                    "currencyCode": "IDR",
+                    "chargeAmount": 100
+                  }
+                ]
+              }
+            }
+          ],
+          "hotelRoomGuestData": {
+            "roomHolder": {
+              "firstName": "Muhammad",
+              "lastName": "Ridho",
+              "email": "reedho@gmail.com",
+              "phone": "08569027811"
+            },
+            "roomGuestList": [
+              {
+                "roomNumber": 1,
+                "type": "ADT",
+                "title": "MR",
+                "firstName": "Muhammad",
+                "lastName": "Ridho"
+              }
+            ]
+          },
+          "roomCombinationType": "FixedRoomCombination",
+          "roomIndexCombinationList": [
+            {
+              "numberOfRooms": 1,
+              "roomNumber": 1,
+              "roomGroup": 1,
+              "roomIndexSequence": [
+                1
+              ]
+            }
+          ],
+          "remarkList": [
+            "Early check in"
+          ]
+        }
+      ]
+    }
+  }
+}

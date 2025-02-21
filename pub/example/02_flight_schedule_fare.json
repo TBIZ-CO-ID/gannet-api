@@ -1,0 +1,157 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "flight:schedule:fare",
+    "params": {
+      "info": {
+        "totalPaxs": {
+          "ADT": 1,
+          "CHD": 0,
+          "INF": 0
+        }
+      },
+      "scheduleFareDetail": [
+        {
+          "journeyIDS": [
+            "QG194~HLP~DPS"
+          ],
+          "segmentIDS": [
+            "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+          ],
+          "agentCode": "TBIZ",
+          "journeySegmentFares": [
+            {
+              "journeyID": "QG194~HLP~DPS",
+              "segmentFares": [
+                {
+                  "fareCode": "A",
+                  "fareGroupCode": "E",
+                  "fareBasisCode": "A",
+                  "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+                }
+              ]
+            }
+          ],
+          "isCombinedJourneys": false
+        }
+      ]
+    },
+    "token": "{{TOKEN}}",
+    "id": "FSF-QG-HLP-DPS-2024-06-27-1740014329213"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "FSF-QG-HLP-DPS-2024-06-27-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740102729601,
+          "response": 1740102729701,
+          "process": 100,
+          "unit": "Milisecond"
+        },
+        "status": "OK"
+      },
+      "info": {
+        "totalPaxs": {
+          "CHD": 0,
+          "INF": 0,
+          "ADT": 1
+        },
+        "segments": [
+          {
+            "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55",
+            "operatingCarrierInfo": {
+              "carrierCode": "QG",
+              "flightNumber": "194",
+              "opSuffix": ""
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "QG",
+              "flightNumber": "194"
+            },
+            "originCode": "HLP",
+            "destinationCode": "DPS",
+            "departureDateTime": "2025-04-01T17:05",
+            "arrivalDateTime": "2025-04-01T19:55"
+          }
+        ],
+        "journeys": [
+          {
+            "journeyID": "QG194~HLP~DPS",
+            "originCode": "HLP",
+            "destinationCode": "DPS",
+            "segmentIDS": [
+              "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+            ]
+          }
+        ]
+      },
+      "scheduleFareDetail": [
+        {
+          "journeyIDS": [
+            "QG194~HLP~DPS"
+          ],
+          "segmentIDS": [
+            "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+          ],
+          "agentCode": "TBIZ",
+          "supplairCode": "PGS",
+          "fareDetails": [
+            {
+              "paxType": "ADT",
+              "price": {
+                "baseFare": 1201000,
+                "taxs": [
+                  {
+                    "taxCode": "SC",
+                    "taxFare": 120100
+                  },
+                  {
+                    "taxCode": "IWJR",
+                    "taxFare": 5000
+                  },
+                  {
+                    "taxCode": "PSC",
+                    "taxFare": 81100
+                  },
+                  {
+                    "taxCode": "VAT",
+                    "taxFare": 132110
+                  },
+                  {
+                    "taxCode": "VS",
+                    "taxFare": 13211
+                  }
+                ],
+                "totalTax": 351521,
+                "totalPublishFare": 1552521,
+                "agentServiceFee": 0,
+                "agentServiceFeePPN": 0,
+                "agentIssuedFee": 0,
+                "agentSellingFare": 1552521
+              },
+              "fareComponent": [
+                {
+                  "fareGroupCode": "E",
+                  "fareCode": "A",
+                  "fareBasisCode": "A",
+                  "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+                }
+              ]
+            }
+          ],
+          "fareSummary": {
+            "totalBaseFare": 1201000,
+            "totalTax": 351521,
+            "totalFare": 1552521,
+            "agentServiceFee": 0,
+            "agentServiceFeePPN": 0,
+            "agentIssuedFee": 0,
+            "agentSellingFare": 1552521
+          }
+        }
+      ]
+    }
+  }
+}
