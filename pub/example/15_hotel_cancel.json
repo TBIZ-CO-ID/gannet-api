@@ -1,0 +1,143 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "hotel:cancel",
+    "params": {
+      "agentCode": "TBIZ",
+      "bookingID": "QILIN~MGH~YKU590CA~~AGID0759692502099304",
+      "remark": "Canceled by reymond viandi"
+    },
+    "token": "{{TOKEN}}",
+    "id": "HL_1740106640361"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "HL_1740106640361",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740109431552,
+          "response": 1740109433568,
+          "process": 2016,
+          "unit": "Milisecond"
+        },
+        "status": "OK"
+      },
+      "hotelCancelResponse": {
+        "agentCode": "TBIZ",
+        "bookingID": "QILIN~MGH~YKU590CA~~AGID0759692502099304",
+        "supplierInformation": {
+          "supplierCode": "MGH",
+          "typeOfRate": "AG",
+          "creationDate": null,
+          "creationUser": null,
+          "currencyCode": null,
+          "pendingAmount": null,
+          "invoiceCompany": null,
+          "modificationPolicies": null,
+          "supplierTripId": "YKU590CATBIZ_1740106",
+          "supplierUpstreamVoucherCode": "VAGHB2502537401",
+          "supplierUpstreamRef": "HB2502537401",
+          "supplierUpstreamConfirmationCode": "VAGHB2502537401",
+          "supplierConfirmationCode": "AGID0759692502099304"
+        },
+        "vendorInformation": {
+          "vendorCode": "QILIN",
+          "locatorCode": "YKU590CA",
+          "toSupplierRef": "YKU590CATBIZ_1740106",
+          "fromClientRef": "TBIZ_1740106640361",
+          "bookedAt": "2025-02-21T03:38:45+00:00",
+          "voucheredAt": null,
+          "cancelledAt": "2025-02-21T03:43:53+00:00",
+          "bookingStatus": "CONFIRMED",
+          "voucherStatus": null,
+          "cancelStatus": "CANCELLED"
+        },
+        "hotelInformation": {
+          "id": "ID10002664",
+          "name": "Grant Hotel Subang",
+          "address": "Jalan Jendral Achmad Yani No. 6 Kota Subang Subang Indonesia",
+          "description": "About Grant Hotel Subang\n\nFor you, travelers who wish to travel comfortably on a budget, Grant Hotel Subang is the perfect place to stay that provides decent facilities as well as great services.\n\nWhether you are planning an event or other special occasions, Grant Hotel Subang is a great choice for you with a large and well-equipped function room to suit your requirements.\n\nWhen staying at a hotel, the design and architecture are two important factors that can spoil your eyes. With its unique setting, Grant Hotel Subang provides a pleasant accommodation for your stay.\n\nFrom business event to corporate gathering, Grant Hotel Subang provides complete services and facilities that you and your colleagues need.\n\nHave fun with various entertaining facilities for you and the whole family at Grant Hotel Subang, a wonderful accommodation for your family holiday.\n\nIf you plan to have a long-term stay, staying at Grant Hotel Subang is the right choice for you. Providing wide range of facilities and great service quality, this accommodation certainly makes you feel at home.\n\nWhile traveling with friends can be a lot of fun, traveling solo has its own perks. As for the accommodation, Grant Hotel Subang is suitable for you who value privacy during your stay.\n\nSplendid service together with wide range of facilities provided will make you complain for nothing during your stay at Grant Hotel Subang.\n\n24-hours front desk is available to serve you, from check-in to check-out, or any assistance you need. Should you desire more, do not hesitate to ask the front desk, we are always ready to accommodate you.\n\nSavor your favorite dishes with special cuisines from Grant Hotel Subang exclusively for you.\n\nWiFi is available within public areas of the property to help you to stay connected with family and friends.\n\nGrant Hotel Subang is a hotel with great comfort and excellent service according to most hotel's guests.\n\nWith all facilities offered, Grant Hotel Subang is the right place to stay.",
+          "star": 3,
+          "checkInDate": "2025-04-01",
+          "checkInInfo": "",
+          "checkOutDate": "2025-04-02",
+          "checkOutInfo": "",
+          "countryCode": "ID",
+          "countryName": "Indonesia",
+          "destinationName": "Subang",
+          "longitude": 107.75919,
+          "latitude": -6.569363,
+          "pictureUrl": "https://images.mgbedbank.com/PROD/MGDocuments/ID10002664/Photos/81e51cfd-ac33-4964-b3af-d4b20f7c4455.jpeg",
+          "norms": []
+        },
+        "hotelRoomInformation": [
+          {
+            "roomIndex": 1,
+            "roomID": "2025-04-01+1+1+ID+1+0+0++MGH.D.CITY.ID-SBG+false/Superior Double Bed|Superior Double Bed|BDBF|Flexi|false|1|1|0|0.0|0.0|false|ID",
+            "roomName": "Superior Double Bed",
+            "roomBoardInclusion": "Breakfast",
+            "roomSupplementList": null,
+            "roomPrice": {
+              "currencyCode": "IDR",
+              "totalPrice": 321411.6,
+              "supplierNTA": 306106.29,
+              "agentServiceFee": 0,
+              "agentServiceFeePPN": 0,
+              "agentSellingFare": 321411.6
+            },
+            "roomNote": null,
+            "numberOfRooms": 1,
+            "numberOfAdults": 1,
+            "numberOfChildrens": 0,
+            "numberOfInfants": 0,
+            "roomCancellationPolicyList": {
+              "isCancellable": true,
+              "lastCancellationDeadline": "2025-03-30T12:00:00+00:00",
+              "textualPolicyList": [],
+              "noShowCharges": [],
+              "defaultPolicy": "",
+              "autoCancellationText": "",
+              "roomCancellationCharges": [
+                {
+                  "fromDate": "2025-03-30T12:00:00+00:00",
+                  "toDate": "2025-03-30T12:00:00+00:00",
+                  "chargeType": "Percentage",
+                  "currencyCode": "IDR",
+                  "chargeAmount": 100
+                }
+              ]
+            }
+          }
+        ],
+        "hotelRoomGuestData": {
+          "roomHolder": {
+            "firstName": "REYMOND",
+            "lastName": "VIANDI",
+            "email": "reymond@altomatik.com",
+            "phone": "0818918495"
+          },
+          "roomGuestList": [
+            {
+              "roomNumber": 1,
+              "type": "ADT",
+              "title": "MR",
+              "firstName": "REYMOND",
+              "lastName": "VIANDI"
+            }
+          ]
+        },
+        "roomCombinationType": "FixedRoomCombination",
+        "roomIndexCombinationList": [
+          {
+            "numberOfRooms": 1,
+            "roomNumber": 1,
+            "roomGroup": 1,
+            "roomIndexSequence": [1]
+          }
+        ],
+        "remarkList": ["No Smoking"]
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "token:create",
+    "params": {
+      "username": "{{USERNAME}}",
+      "password": "{{PASSWORD}}",
+      "signature": "{{SIGNATURE}}"
+    }
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740103274863,
+          "response": 1740103274863,
+          "process": 0,
+          "unit": "Milisecond"
+        },
+        "status": "OK"
+      },
+      "token": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..LHX1kiIayQnqP94Eg8uFhA.NXbCs-hElKrwJQSqZU_LK1PZU3_Ty5BJZ3RKtnGkDvfmRdI32Mc4wMzH2XzNiNtADicq8c4lBN-z0JCKH12CectEi8wlwVazIeRzYyrzmziWct91fi08R7ketiNP5bYMDhI5-Fsjod8au9YxkuLZhw.mNMNZUFiZJS-OP9fyvMCRw"
+    }
+  }
+}

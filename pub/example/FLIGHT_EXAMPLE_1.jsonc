@@ -1,0 +1,2818 @@
+[
+  // token:create
+  {
+    "jsonrpc": "2.0",
+    "method": "token:create",
+    "params": {
+      "username": "{{USERNAME}}",
+      "password": "{{PASSWORD}}",
+      "signature": "{{SIGNATURE}}",
+    },
+  },
+  {
+    "jsonrpc": "2.0",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740105306437,
+          "response": 1740105306437,
+          "process": 0,
+          "unit": "Milisecond",
+        },
+        "status": "OK",
+      },
+      "token": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..Z1kpxEesHD8xjygw1hHJZA.46YglxcEgNFKwp7yiIzgskSt_rTygQRpkQGYzCZiueO6g15Ww7R-xM2DPwENCu0HgCAfM-x9LQHVIDY8pNFmI_H_tJJ6nt6Yw3GQE3OxPQRTQjRR2y95Ytw2v5ULjMak9e816Qbt0QDEXr46oXkV8Q.lnvR1YLB_iz-L0UFoI0xNw",
+    },
+  },
+
+  // flight:schedule:list
+  {
+    "jsonrpc": "2.0",
+    "method": "flight:schedule:list",
+    "params": {
+      "carriers": ["GA"],
+      "paxCount": {
+        "ADT": 1,
+        "CHD": 0,
+        "INF": 0,
+      },
+      "schedules": [
+        {
+          "origin": "CGK",
+          "destination": "DPS",
+          "departureDate": "2025-04-01",
+          "returnDate": null,
+        },
+      ],
+    },
+    "token": "{{TOKEN}}",
+    "id": "FSL-GA-CGK-DPS-2025-04-01-1740014329213",
+  },
+  {
+    "jsonrpc": "2.0",
+    "id": "FSL-GA-CGK-DPS-2025-04-01-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740105359622,
+          "response": 1740105361323,
+          "process": 1701,
+          "unit": "Milisecond",
+        },
+        "status": "OK",
+      },
+      "info": {
+        "journeys": [
+          {
+            "journeyID": "GA204~CGK~YIA^GA252~YIA~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": [
+              "GA~204~~CGK~YIA~2025-04-01T07:55~2025-04-01T09:15",
+              "GA~252~~YIA~DPS~2025-04-01T13:40~2025-04-01T16:10",
+            ],
+          },
+          {
+            "journeyID": "GA304~CGK~SUB^GA342~SUB~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": [
+              "GA~304~~CGK~SUB~2025-04-01T06:50~2025-04-01T08:25",
+              "GA~342~~SUB~DPS~2025-04-01T09:20~2025-04-01T11:20",
+            ],
+          },
+          {
+            "journeyID": "GA426~CGK~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": ["GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"],
+          },
+          {
+            "journeyID": "GA402~CGK~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": ["GA~402~~CGK~DPS~2025-04-01T07:05~2025-04-01T10:10"],
+          },
+          {
+            "journeyID": "GA420~CGK~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": ["GA~420~~CGK~DPS~2025-04-01T17:00~2025-04-01T19:55"],
+          },
+          {
+            "journeyID": "GA414~CGK~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": ["GA~414~~CGK~DPS~2025-04-01T15:30~2025-04-01T18:25"],
+          },
+          {
+            "journeyID": "GA408~CGK~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": ["GA~408~~CGK~DPS~2025-04-01T11:40~2025-04-01T14:40"],
+          },
+          {
+            "journeyID": "GA208~CGK~YIA^GA252~YIA~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": [
+              "GA~208~~CGK~YIA~2025-04-01T11:30~2025-04-01T12:50",
+              "GA~252~~YIA~DPS~2025-04-01T13:40~2025-04-01T16:10",
+            ],
+          },
+          {
+            "journeyID": "GA324~CGK~SUB^GA342~SUB~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": [
+              "GA~324~~CGK~SUB~2025-04-01T19:30~2025-04-01T21:05",
+              "GA~342~~SUB~DPS~2025-04-02T09:20~2025-04-02T11:20",
+            ],
+          },
+          {
+            "journeyID": "GA410~CGK~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": ["GA~410~~CGK~DPS~2025-04-01T14:30~2025-04-01T17:25"],
+          },
+          {
+            "journeyID": "GA422~CGK~DPS",
+            "origin": "CGK",
+            "destination": "DPS",
+            "segmentIDS": ["GA~422~~CGK~DPS~2025-04-01T13:30~2025-04-01T16:30"],
+          },
+        ],
+        "segments": [
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "208",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "208",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T12:50",
+            "departureDateTime": "2025-04-01T11:30",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~208~~CGK~YIA~2025-04-01T11:30~2025-04-01T12:50",
+            "destination": {
+              "code": "YIA",
+              "tz": 7,
+            },
+            "legIDS": ["CGK~YIA~2025-04-01T11:30~2025-04-01T12:50"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "342",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "342",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T11:20",
+            "departureDateTime": "2025-04-01T09:20",
+            "origin": {
+              "code": "SUB",
+              "tz": 7,
+            },
+            "segmentID": "GA~342~~SUB~DPS~2025-04-01T09:20~2025-04-01T11:20",
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "legIDS": ["SUB~DPS~2025-04-01T09:20~2025-04-01T11:20"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "422",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "422",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T16:30",
+            "departureDateTime": "2025-04-01T13:30",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~422~~CGK~DPS~2025-04-01T13:30~2025-04-01T16:30",
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "legIDS": ["CGK~DPS~2025-04-01T13:30~2025-04-01T16:30"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "304",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "304",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T08:25",
+            "departureDateTime": "2025-04-01T06:50",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~304~~CGK~SUB~2025-04-01T06:50~2025-04-01T08:25",
+            "destination": {
+              "code": "SUB",
+              "tz": 7,
+            },
+            "legIDS": ["CGK~SUB~2025-04-01T06:50~2025-04-01T08:25"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "342",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "342",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-02T11:20",
+            "departureDateTime": "2025-04-02T09:20",
+            "origin": {
+              "code": "SUB",
+              "tz": 7,
+            },
+            "segmentID": "GA~342~~SUB~DPS~2025-04-02T09:20~2025-04-02T11:20",
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "legIDS": ["SUB~DPS~2025-04-02T09:20~2025-04-02T11:20"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "426",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "426",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T21:25",
+            "departureDateTime": "2025-04-01T18:25",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "legIDS": ["CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "204",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "204",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T09:15",
+            "departureDateTime": "2025-04-01T07:55",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~204~~CGK~YIA~2025-04-01T07:55~2025-04-01T09:15",
+            "destination": {
+              "code": "YIA",
+              "tz": 7,
+            },
+            "legIDS": ["CGK~YIA~2025-04-01T07:55~2025-04-01T09:15"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "410",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "410",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T17:25",
+            "departureDateTime": "2025-04-01T14:30",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~410~~CGK~DPS~2025-04-01T14:30~2025-04-01T17:25",
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "legIDS": ["CGK~DPS~2025-04-01T14:30~2025-04-01T17:25"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "420",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "420",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T19:55",
+            "departureDateTime": "2025-04-01T17:00",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~420~~CGK~DPS~2025-04-01T17:00~2025-04-01T19:55",
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "legIDS": ["CGK~DPS~2025-04-01T17:00~2025-04-01T19:55"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "408",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "408",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T14:40",
+            "departureDateTime": "2025-04-01T11:40",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~408~~CGK~DPS~2025-04-01T11:40~2025-04-01T14:40",
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "legIDS": ["CGK~DPS~2025-04-01T11:40~2025-04-01T14:40"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "324",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "324",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T21:05",
+            "departureDateTime": "2025-04-01T19:30",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~324~~CGK~SUB~2025-04-01T19:30~2025-04-01T21:05",
+            "destination": {
+              "code": "SUB",
+              "tz": 7,
+            },
+            "legIDS": ["CGK~SUB~2025-04-01T19:30~2025-04-01T21:05"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "252",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "252",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T16:10",
+            "departureDateTime": "2025-04-01T13:40",
+            "origin": {
+              "code": "YIA",
+              "tz": 7,
+            },
+            "segmentID": "GA~252~~YIA~DPS~2025-04-01T13:40~2025-04-01T16:10",
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "legIDS": ["YIA~DPS~2025-04-01T13:40~2025-04-01T16:10"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "414",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "414",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T18:25",
+            "departureDateTime": "2025-04-01T15:30",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~414~~CGK~DPS~2025-04-01T15:30~2025-04-01T18:25",
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "legIDS": ["CGK~DPS~2025-04-01T15:30~2025-04-01T18:25"],
+          },
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "402",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "402",
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T10:10",
+            "departureDateTime": "2025-04-01T07:05",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "segmentID": "GA~402~~CGK~DPS~2025-04-01T07:05~2025-04-01T10:10",
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "legIDS": ["CGK~DPS~2025-04-01T07:05~2025-04-01T10:10"],
+          },
+        ],
+        "legs": [
+          {
+            "legID": "CGK~DPS~2025-04-01T15:30~2025-04-01T18:25",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "departureDateTime": "2025-04-01T15:30",
+            "arrivalDateTime": "2025-04-01T18:25",
+          },
+          {
+            "legID": "CGK~SUB~2025-04-01T06:50~2025-04-01T08:25",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "SUB",
+              "tz": 7,
+            },
+            "departureDateTime": "2025-04-01T06:50",
+            "arrivalDateTime": "2025-04-01T08:25",
+          },
+          {
+            "legID": "CGK~YIA~2025-04-01T11:30~2025-04-01T12:50",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "YIA",
+              "tz": 7,
+            },
+            "departureDateTime": "2025-04-01T11:30",
+            "arrivalDateTime": "2025-04-01T12:50",
+          },
+          {
+            "legID": "SUB~DPS~2025-04-02T09:20~2025-04-02T11:20",
+            "origin": {
+              "code": "SUB",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "departureDateTime": "2025-04-02T09:20",
+            "arrivalDateTime": "2025-04-02T11:20",
+          },
+          {
+            "legID": "CGK~DPS~2025-04-01T14:30~2025-04-01T17:25",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "departureDateTime": "2025-04-01T14:30",
+            "arrivalDateTime": "2025-04-01T17:25",
+          },
+          {
+            "legID": "CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "departureDateTime": "2025-04-01T18:25",
+            "arrivalDateTime": "2025-04-01T21:25",
+          },
+          {
+            "legID": "CGK~DPS~2025-04-01T11:40~2025-04-01T14:40",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "departureDateTime": "2025-04-01T11:40",
+            "arrivalDateTime": "2025-04-01T14:40",
+          },
+          {
+            "legID": "CGK~YIA~2025-04-01T07:55~2025-04-01T09:15",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "YIA",
+              "tz": 7,
+            },
+            "departureDateTime": "2025-04-01T07:55",
+            "arrivalDateTime": "2025-04-01T09:15",
+          },
+          {
+            "legID": "CGK~DPS~2025-04-01T07:05~2025-04-01T10:10",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "departureDateTime": "2025-04-01T07:05",
+            "arrivalDateTime": "2025-04-01T10:10",
+          },
+          {
+            "legID": "CGK~DPS~2025-04-01T17:00~2025-04-01T19:55",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "departureDateTime": "2025-04-01T17:00",
+            "arrivalDateTime": "2025-04-01T19:55",
+          },
+          {
+            "legID": "CGK~SUB~2025-04-01T19:30~2025-04-01T21:05",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "SUB",
+              "tz": 7,
+            },
+            "departureDateTime": "2025-04-01T19:30",
+            "arrivalDateTime": "2025-04-01T21:05",
+          },
+          {
+            "legID": "CGK~DPS~2025-04-01T13:30~2025-04-01T16:30",
+            "origin": {
+              "code": "CGK",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "departureDateTime": "2025-04-01T13:30",
+            "arrivalDateTime": "2025-04-01T16:30",
+          },
+          {
+            "legID": "YIA~DPS~2025-04-01T13:40~2025-04-01T16:10",
+            "origin": {
+              "code": "YIA",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "departureDateTime": "2025-04-01T13:40",
+            "arrivalDateTime": "2025-04-01T16:10",
+          },
+          {
+            "legID": "SUB~DPS~2025-04-01T09:20~2025-04-01T11:20",
+            "origin": {
+              "code": "SUB",
+              "tz": 7,
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8,
+            },
+            "departureDateTime": "2025-04-01T09:20",
+            "arrivalDateTime": "2025-04-01T11:20",
+          },
+        ],
+      },
+      "schedules": [
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA204~CGK~YIA^GA252~YIA~DPS"],
+          "segmentIDS": [
+            "GA~204~~CGK~YIA~2025-04-01T07:55~2025-04-01T09:15",
+            "GA~252~~YIA~DPS~2025-04-01T13:40~2025-04-01T16:10",
+          ],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA204~CGK~YIA^GA252~YIA~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~204~~CGK~YIA~2025-04-01T07:55~2025-04-01T09:15",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 8,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 5243000,
+                              "totalTax": 973220,
+                              "totalFare": 6216220,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 6216220,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "C",
+                      "fareBasisCode": "C",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 2,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 4023000,
+                              "totalTax": 839020,
+                              "totalFare": 4862020,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 4862020,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 848000,
+                              "totalTax": 489720,
+                              "totalFare": 1337720,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1337720,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  "segmentID": "GA~252~~YIA~DPS~2025-04-01T13:40~2025-04-01T16:10",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 8,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 5099000,
+                              "totalTax": 560900,
+                              "totalFare": 5659900,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 5659900,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "C",
+                      "fareBasisCode": "C",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 2,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 4333000,
+                              "totalTax": 476700,
+                              "totalFare": 4809700,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 4809700,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1113000,
+                              "totalTax": 122500,
+                              "totalFare": 1235500,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1235500,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA304~CGK~SUB^GA342~SUB~DPS"],
+          "segmentIDS": [
+            "GA~304~~CGK~SUB~2025-04-01T06:50~2025-04-01T08:25",
+            "GA~342~~SUB~DPS~2025-04-01T09:20~2025-04-01T11:20",
+          ],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA304~CGK~SUB^GA342~SUB~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~304~~CGK~SUB~2025-04-01T06:50~2025-04-01T08:25",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 5,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 5940000,
+                              "totalTax": 1032520,
+                              "totalFare": 6972520,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 6972520,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "C",
+                      "fareBasisCode": "C",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 3,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 5400000,
+                              "totalTax": 973120,
+                              "totalFare": 6373120,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 6373120,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 3,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1167000,
+                              "totalTax": 507520,
+                              "totalFare": 1674520,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1674520,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  "segmentID": "GA~342~~SUB~DPS~2025-04-01T09:20~2025-04-01T11:20",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 5,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 4469000,
+                              "totalTax": 491600,
+                              "totalFare": 4960600,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 4960600,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "C",
+                      "fareBasisCode": "C",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 3,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 3740000,
+                              "totalTax": 411400,
+                              "totalFare": 4151400,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 4151400,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 3,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 638000,
+                              "totalTax": 70200,
+                              "totalFare": 708200,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 708200,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA426~CGK~DPS"],
+          "segmentIDS": ["GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA426~CGK~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 6,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 9852000,
+                              "totalTax": 2472620,
+                              "totalFare": 12324620,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 12324620,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1431000,
+                              "totalTax": 490020,
+                              "totalFare": 1921020,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1921020,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA402~CGK~DPS"],
+          "segmentIDS": ["GA~402~~CGK~DPS~2025-04-01T07:05~2025-04-01T10:10"],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA402~CGK~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~402~~CGK~DPS~2025-04-01T07:05~2025-04-01T10:10",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 9852000,
+                              "totalTax": 2472620,
+                              "totalFare": 12324620,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 12324620,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1431000,
+                              "totalTax": 490020,
+                              "totalFare": 1921020,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1921020,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA420~CGK~DPS"],
+          "segmentIDS": ["GA~420~~CGK~DPS~2025-04-01T17:00~2025-04-01T19:55"],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA420~CGK~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~420~~CGK~DPS~2025-04-01T17:00~2025-04-01T19:55",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 9852000,
+                              "totalTax": 2472620,
+                              "totalFare": 12324620,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 12324620,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1431000,
+                              "totalTax": 490020,
+                              "totalFare": 1921020,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1921020,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA414~CGK~DPS"],
+          "segmentIDS": ["GA~414~~CGK~DPS~2025-04-01T15:30~2025-04-01T18:25"],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA414~CGK~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~414~~CGK~DPS~2025-04-01T15:30~2025-04-01T18:25",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 9852000,
+                              "totalTax": 2472620,
+                              "totalFare": 12324620,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 12324620,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1431000,
+                              "totalTax": 490020,
+                              "totalFare": 1921020,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1921020,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA408~CGK~DPS"],
+          "segmentIDS": ["GA~408~~CGK~DPS~2025-04-01T11:40~2025-04-01T14:40"],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA408~CGK~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~408~~CGK~DPS~2025-04-01T11:40~2025-04-01T14:40",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 7,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 9852000,
+                              "totalTax": 2472620,
+                              "totalFare": 12324620,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 12324620,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA208~CGK~YIA^GA252~YIA~DPS"],
+          "segmentIDS": [
+            "GA~208~~CGK~YIA~2025-04-01T11:30~2025-04-01T12:50",
+            "GA~252~~YIA~DPS~2025-04-01T13:40~2025-04-01T16:10",
+          ],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA208~CGK~YIA^GA252~YIA~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~208~~CGK~YIA~2025-04-01T11:30~2025-04-01T12:50",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 4,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 5243000,
+                              "totalTax": 973220,
+                              "totalFare": 6216220,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 6216220,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "C",
+                      "fareBasisCode": "C",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 2,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 4023000,
+                              "totalTax": 839020,
+                              "totalFare": 4862020,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 4862020,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 1,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 848000,
+                              "totalTax": 489720,
+                              "totalFare": 1337720,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1337720,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  "segmentID": "GA~252~~YIA~DPS~2025-04-01T13:40~2025-04-01T16:10",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 4,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 5099000,
+                              "totalTax": 560900,
+                              "totalFare": 5659900,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 5659900,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "C",
+                      "fareBasisCode": "C",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 2,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 4333000,
+                              "totalTax": 476700,
+                              "totalFare": 4809700,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 4809700,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 1,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1113000,
+                              "totalTax": 122500,
+                              "totalFare": 1235500,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1235500,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA324~CGK~SUB^GA342~SUB~DPS"],
+          "segmentIDS": [
+            "GA~324~~CGK~SUB~2025-04-01T19:30~2025-04-01T21:05",
+            "GA~342~~SUB~DPS~2025-04-02T09:20~2025-04-02T11:20",
+          ],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA324~CGK~SUB^GA342~SUB~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~324~~CGK~SUB~2025-04-01T19:30~2025-04-01T21:05",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 5940000,
+                              "totalTax": 1032520,
+                              "totalFare": 6972520,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 6972520,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "C",
+                      "fareBasisCode": "C",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 3,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 5400000,
+                              "totalTax": 973120,
+                              "totalFare": 6373120,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 6373120,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "D",
+                      "fareBasisCode": "D",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 2,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 4050000,
+                              "totalTax": 824620,
+                              "totalFare": 4874620,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 4874620,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1167000,
+                              "totalTax": 507520,
+                              "totalFare": 1674520,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1674520,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  "segmentID": "GA~342~~SUB~DPS~2025-04-02T09:20~2025-04-02T11:20",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 4469000,
+                              "totalTax": 491600,
+                              "totalFare": 4960600,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 4960600,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "C",
+                      "fareBasisCode": "C",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 3,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 3740000,
+                              "totalTax": 411400,
+                              "totalFare": 4151400,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 4151400,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "D",
+                      "fareBasisCode": "D",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 2,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 3424000,
+                              "totalTax": 376700,
+                              "totalFare": 3800700,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 3800700,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 638000,
+                              "totalTax": 70200,
+                              "totalFare": 708200,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 708200,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA410~CGK~DPS"],
+          "segmentIDS": ["GA~410~~CGK~DPS~2025-04-01T14:30~2025-04-01T17:25"],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA410~CGK~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~410~~CGK~DPS~2025-04-01T14:30~2025-04-01T17:25",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 9852000,
+                              "totalTax": 2472620,
+                              "totalFare": 12324620,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 12324620,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1431000,
+                              "totalTax": 490020,
+                              "totalFare": 1921020,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1921020,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          "journeyType": "OW",
+          "journeyIDS": ["GA422~CGK~DPS"],
+          "segmentIDS": ["GA~422~~CGK~DPS~2025-04-01T13:30~2025-04-01T16:30"],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA422~CGK~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "GA~422~~CGK~DPS~2025-04-01T13:30~2025-04-01T16:30",
+                  "fares": [
+                    {
+                      "fareCode": "J",
+                      "fareBasisCode": "J",
+                      "fareGroupCode": "B",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "30",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 9852000,
+                              "totalTax": 2472620,
+                              "totalFare": 12324620,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 12324620,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "Y",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "20",
+                        "unit": "KG",
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": true,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1431000,
+                              "totalTax": 490020,
+                              "totalFare": 1921020,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1921020,
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  },
+
+  // flight:schedule:fare
+  {
+    "jsonrpc": "2.0",
+    "method": "flight:schedule:fare",
+    "params": {
+      "info": {
+        "totalPaxs": {
+          "ADT": 1,
+          "CHD": 0,
+          "INF": 0,
+        },
+      },
+      "scheduleFareDetail": [
+        {
+          "journeyIDS": ["GA426~CGK~DPS"],
+          "segmentIDS": ["GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"],
+          "agentCode": "TBIZ",
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA426~CGK~DPS",
+              "segmentFares": [
+                {
+                  "fareCode": "Y",
+                  "fareGroupCode": "E",
+                  "fareBasisCode": "Y",
+                  "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+                },
+              ],
+              "isCombinedJourneys": false,
+            },
+          ],
+        },
+      ],
+    },
+    "token": "{{TOKEN}}",
+    "id": "FSF-GA-CGK-DPS-2025-04-01-1740014329213",
+  },
+  {
+    "jsonrpc": "2.0",
+    "id": "FSF-GA-CGK-DPS-2025-04-01-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740105573955,
+          "response": 1740105573986,
+          "process": 31,
+          "unit": "Milisecond",
+        },
+        "status": "OK",
+      },
+      "info": {
+        "totalPaxs": {
+          "CHD": 0,
+          "INF": 0,
+          "ADT": 1,
+        },
+        "segments": [
+          {
+            "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+            "operatingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "426",
+              "opSuffix": "",
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "GA",
+              "flightNumber": "426",
+            },
+            "originCode": "CGK",
+            "destinationCode": "DPS",
+            "departureDateTime": "2025-04-01T18:25",
+            "arrivalDateTime": "2025-04-01T21:25",
+          },
+        ],
+        "journeys": [
+          {
+            "journeyID": "GA426~CGK~DPS",
+            "originCode": "CGK",
+            "destinationCode": "DPS",
+            "segmentIDS": ["GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"],
+          },
+        ],
+      },
+      "scheduleFareDetail": [
+        {
+          "journeyIDS": ["GA426~CGK~DPS"],
+          "segmentIDS": ["GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"],
+          "agentCode": "TBIZ",
+          "supplairCode": "PGS",
+          "fareDetails": [
+            {
+              "paxType": "ADT",
+              "price": {
+                "baseFare": 1431000,
+                "taxs": [
+                  {
+                    "taxCode": "YQAC",
+                    "taxFare": 143100,
+                    "currencyCode": "IDR",
+                  },
+                  {
+                    "taxCode": "D5CB",
+                    "taxFare": 168720,
+                    "currencyCode": "IDR",
+                  },
+                  {
+                    "taxCode": "IDLO",
+                    "taxFare": 173200,
+                    "currencyCode": "IDR",
+                  },
+                  {
+                    "taxCode": "P4AS",
+                    "taxFare": 5000,
+                    "currencyCode": "IDR",
+                  },
+                ],
+                "totalTax": 490020,
+                "totalPublishFare": 1921020,
+                "agentServiceFee": 0,
+                "agentServiceFeePPN": 0,
+                "agentIssuedFee": 0,
+                "agentSellingFare": 1921020,
+              },
+              "fareComponent": [
+                {
+                  "fareGroupCode": "E",
+                  "fareCode": "Y",
+                  "fareBasisCode": "Y",
+                  "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+                },
+              ],
+            },
+          ],
+          "fareSummary": {
+            "totalBaseFare": 1431000,
+            "totalTax": 490020,
+            "totalFare": 1921020,
+            "agentServiceFee": 0,
+            "agentServiceFeePPN": 0,
+            "agentIssuedFee": 0,
+            "agentSellingFare": 1921020,
+          },
+        },
+      ],
+    },
+  },
+
+  // flight:book
+  {
+    "jsonrpc": "2.0",
+    "method": "flight:book",
+    "params": {
+      "info": {
+        "contactInfo": {
+          "email": "reedho@gmail.com",
+          "title": "MR",
+          "firstName": "Muhammad",
+          "lastName": "Ridho",
+          "phoneNumber": "08569027811",
+        },
+        "paxs": [
+          {
+            "paxType": "ADT",
+            "paxID": "PAX1",
+            "nationality": "ID",
+            "title": "MR",
+            "firstName": "Muhammad",
+            "lastName": "Ridho",
+            "dob": "1978-02-01",
+          },
+        ],
+      },
+      "scheduleFareDetail": [
+        {
+          "journeyIDS": ["GA426~CGK~DPS"],
+          "segmentIDS": ["GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"],
+          "agentCode": "TBIZ",
+          "journeySegmentFares": [
+            {
+              "journeyID": "GA426~CGK~DPS",
+              "segmentFares": [
+                {
+                  "fareCode": "Y",
+                  "fareGroupCode": "E",
+                  "fareBasisCode": "Y",
+                  "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+                },
+              ],
+              "isCombinedJourneys": false,
+            },
+          ],
+        },
+      ],
+    },
+    "token": "{{TOKEN}}",
+    "id": "FBK-GA-CGK-DPS-2025-04-01-1740014329213",
+  },
+  {
+    "jsonrpc": "2.0",
+    "id": "FBK-GA-CGK-DPS-2025-04-01-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740105662289,
+          "response": 1740105678327,
+          "process": 16038,
+          "unit": "Milisecond",
+        },
+        "status": "OK",
+      },
+      "pnrs": [
+        {
+          "supplairCode": "PGS",
+          "agentCode": "TBIZ",
+          "info": {
+            "contactInfo": {
+              "email": "reedho@gmail.com",
+              "firstName": "Muhammad",
+              "title": "MR",
+              "lastName": "Ridho",
+              "phoneNumber": "08569027811",
+            },
+            "paxs": [
+              {
+                "paxType": "ADT",
+                "paxID": "PAX1",
+                "nationality": "ID",
+                "firstName": "Muhammad",
+                "title": "MR",
+                "dob": "1978-02-01",
+                "lastName": "Ridho",
+                "freeCheckinBaggage": [
+                  {
+                    "baggageRoute": "CGK-DPS",
+                    "baggageWeight": "20",
+                    "baggageUnit": "KG",
+                  },
+                ],
+              },
+            ],
+            "journeys": [
+              {
+                "journeyID": "GA426~CGK~DPS",
+                "originCode": "CGK",
+                "destinationCode": "DPS",
+                "segmentIDS": [
+                  "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+                ],
+              },
+            ],
+            "segments": [
+              {
+                "originCode": "CGK",
+                "operatingCarrierInfo": {
+                  "carrierCode": "GA",
+                  "flightNumber": "426",
+                  "opSuffix": "",
+                },
+                "destinationCode": "DPS",
+                "marketingCarrierInfo": {
+                  "carrierCode": "GA",
+                  "flightNumber": "426",
+                },
+                "arrivalDateTime": "2025-04-01T21:25",
+                "departureDateTime": "2025-04-01T18:25",
+                "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+                "arrivalTz": 8,
+                "departureTz": 7,
+              },
+            ],
+          },
+          "bookingSummary": {
+            "agentIssuedFee": 0,
+            "totalFare": 1921020,
+            "NTSA": 1878090,
+            "totalPrepaidBaggage": 0,
+            "totalBaseFare": 1431000,
+            "wholesalerFee": 0,
+            "agentSellingFare": 1921020,
+            "totalNTA": 1878090,
+            "agentServiceFee": 0,
+            "agentServiceFeePPN": 0,
+            "totalTax": 490020,
+          },
+          "bookingTimeLimit": "2025-02-22T02:41",
+          "bookingDateTime": "2025-02-21T02:41",
+          "scheduleFareDetail": [
+            {
+              "journeyIDS": ["GA426~CGK~DPS"],
+              "segmentIDS": [
+                "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+              ],
+              "fareDetails": [
+                {
+                  "paxType": "ADT",
+                  "price": {
+                    "baseFare": 1431000,
+                    "taxs": [
+                      {
+                        "taxCode": "YQAC",
+                        "taxFare": 143100,
+                      },
+                      {
+                        "taxCode": "D5CB",
+                        "taxFare": 168720,
+                      },
+                      {
+                        "taxCode": "IDLO",
+                        "taxFare": 173200,
+                      },
+                      {
+                        "taxCode": "P4AS",
+                        "taxFare": 5000,
+                      },
+                    ],
+                    "totalTax": 490020,
+                    "totalPublishFare": 1921020,
+                    "agentServiceFee": 0,
+                    "agentServiceFeePPN": 0,
+                    "agentIssuedFee": 0,
+                    "agentSellingFare": 1921020,
+                  },
+                  "fareComponent": [
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "YOW",
+                      "fareGroupCode": "E",
+                      "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+                    },
+                  ],
+                  "paxRefID": "PAX1",
+                },
+              ],
+              "fareSummary": {
+                "totalBaseFare": 1431000,
+                "totalTax": 490020,
+                "totalPrepaidBaggage": 0,
+                "totalFare": 1921020,
+                "agentServiceFee": 0,
+                "agentServiceFeePPN": 0,
+                "agentIssuedFee": 0,
+                "agentSellingFare": 1921020,
+              },
+            },
+          ],
+          "bookingID": "ARD~6BTZC3~1757762",
+          "bookingStatus": "BOOKED",
+          "bookingCode": "6BTZC3",
+        },
+      ],
+    },
+  },
+
+  // flight:issue
+  {
+    "jsonrpc": "2.0",
+    "method": "flight:issue",
+    "params": {
+      "bookingID": "ARD~6BTZC3~1757762",
+    },
+    "token": "{{TOKEN}}",
+    "id": "FIS-GA-CGK-DPS-2025-04-01-1740014329213",
+  },
+  {
+    "jsonrpc": "2.0",
+    "id": "FIS-GA-CGK-DPS-2025-04-01-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740105758624,
+          "response": 1740105758631,
+          "process": 7,
+          "unit": "Milisecond",
+        },
+        "status": "ERROR",
+        "errors": ["Action issue not allowed!"],
+      },
+    },
+  },
+
+  // flight:cancel
+  {
+    "jsonrpc": "2.0",
+    "method": "flight:cancel",
+    "params": {
+      "bookingID": "ARD~6BTZC3~1757762",
+    },
+    "token": "{{TOKEN}}",
+    "id": "FCX-GA-CGK-DPS-2025-04-01-1740014329213",
+  },
+  {
+    "jsonrpc": "2.0",
+    "id": "FCX-GA-CGK-DPS-2025-04-01-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740105844898,
+          "response": 1740105848274,
+          "process": 3376,
+          "unit": "Milisecond",
+        },
+        "status": "OK",
+      },
+      "pnrs": [
+        {
+          "supplairCode": "PGS",
+          "agentCode": "TBIZ",
+          "info": {
+            "contactInfo": {
+              "email": "reedho@gmail.com",
+              "firstName": "Muhammad",
+              "title": "MR",
+              "lastName": "Ridho",
+              "phoneNumber": "08569027811",
+            },
+            "paxs": [
+              {
+                "paxType": "ADT",
+                "paxID": "PAX1",
+                "nationality": "ID",
+                "firstName": "Muhammad",
+                "title": "MR",
+                "dob": "1978-02-01",
+                "lastName": "Ridho",
+                "freeCheckinBaggage": [
+                  {
+                    "baggageRoute": "CGK-DPS",
+                    "baggageWeight": "20",
+                    "baggageUnit": "KG",
+                  },
+                ],
+              },
+            ],
+            "journeys": [
+              {
+                "journeyID": "GA426~CGK~DPS",
+                "originCode": "CGK",
+                "destinationCode": "DPS",
+                "segmentIDS": [
+                  "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+                ],
+              },
+            ],
+            "segments": [
+              {
+                "originCode": "CGK",
+                "operatingCarrierInfo": {
+                  "carrierCode": "GA",
+                  "flightNumber": "426",
+                  "opSuffix": "",
+                },
+                "destinationCode": "DPS",
+                "marketingCarrierInfo": {
+                  "carrierCode": "GA",
+                  "flightNumber": "426",
+                },
+                "arrivalDateTime": "2025-04-01T21:25",
+                "departureDateTime": "2025-04-01T18:25",
+                "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+                "arrivalTz": 8,
+                "departureTz": 7,
+              },
+            ],
+          },
+          "bookingSummary": {
+            "agentIssuedFee": 0,
+            "totalFare": 1921020,
+            "NTSA": 1878090,
+            "totalPrepaidBaggage": 0,
+            "totalBaseFare": 1431000,
+            "wholesalerFee": 0,
+            "agentSellingFare": 1921020,
+            "totalNTA": 1878090,
+            "agentServiceFee": 0,
+            "agentServiceFeePPN": 0,
+            "totalTax": 490020,
+          },
+          "bookingTimeLimit": "2025-02-22T02:41",
+          "bookingDateTime": "2025-02-21T02:41",
+          "scheduleFareDetail": [
+            {
+              "journeyIDS": ["GA426~CGK~DPS"],
+              "segmentIDS": [
+                "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+              ],
+              "fareDetails": [
+                {
+                  "paxType": "ADT",
+                  "price": {
+                    "baseFare": 1431000,
+                    "taxs": [
+                      {
+                        "taxCode": "YQAC",
+                        "taxFare": 143100,
+                      },
+                      {
+                        "taxCode": "D5CB",
+                        "taxFare": 168720,
+                      },
+                      {
+                        "taxCode": "IDLO",
+                        "taxFare": 173200,
+                      },
+                      {
+                        "taxCode": "P4AS",
+                        "taxFare": 5000,
+                      },
+                    ],
+                    "totalTax": 490020,
+                    "totalPublishFare": 1921020,
+                    "agentServiceFee": 0,
+                    "agentServiceFeePPN": 0,
+                    "agentIssuedFee": 0,
+                    "agentSellingFare": 1921020,
+                  },
+                  "fareComponent": [
+                    {
+                      "fareCode": "Y",
+                      "fareBasisCode": "YOW",
+                      "fareGroupCode": "E",
+                      "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25",
+                    },
+                  ],
+                  "paxRefID": "PAX1",
+                },
+              ],
+              "fareSummary": {
+                "totalBaseFare": 1431000,
+                "totalTax": 490020,
+                "totalPrepaidBaggage": 0,
+                "totalFare": 1921020,
+                "agentServiceFee": 0,
+                "agentServiceFeePPN": 0,
+                "agentIssuedFee": 0,
+                "agentSellingFare": 1921020,
+              },
+            },
+          ],
+          "bookingID": "ARD~6BTZC3~1757762",
+          "bookingStatus": "CANCELLED",
+          "bookingCode": "6BTZC3",
+        },
+      ],
+    },
+  },
+
+  // flight:sync
+  {
+    "jsonrpc": "2.0",
+    "method": "flight:sync",
+    "params": {
+      "bookingID": "CLN~XCQ7JF~1757600",
+    },
+    "token": "{{TOKEN}}",
+    "id": "FSY-QG-HLP-DPS-2024-06-27-1740014329213",
+  },
+  {
+    "jsonrpc": "2.0",
+    "id": "FSY-QG-HLP-DPS-2024-06-27-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740105965610,
+          "response": 1740105966254,
+          "process": 644,
+          "unit": "Milisecond",
+        },
+        "status": "OK",
+      },
+      "pnrs": [
+        {
+          "supplairCode": "PGS",
+          "agentCode": "TBIZ",
+          "info": {
+            "contactInfo": {
+              "email": "admintravel@gmail.com",
+              "firstName": "ADMIN",
+              "title": "MR",
+              "lastName": "TRAVEL",
+              "phoneNumber": "08569027811",
+            },
+            "paxs": [
+              {
+                "paxType": "ADT",
+                "paxID": "ADTMUHAMMADRIDHO",
+                "title": "MR",
+                "firstName": "MUHAMMAD",
+                "lastName": "RIDHO",
+                "nationality": "ID",
+                "dob": "1978-02-01",
+              },
+            ],
+            "journeys": [
+              {
+                "journeyID": "QG194~HLP~DPS",
+                "originCode": "HLP",
+                "destinationCode": "DPS",
+                "segmentIDS": [
+                  "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55",
+                ],
+              },
+            ],
+            "segments": [
+              {
+                "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55",
+                "originCode": "HLP",
+                "destinationCode": "DPS",
+                "departureDateTime": "2025-04-01T17:05",
+                "arrivalDateTime": "2025-04-01T19:55",
+                "marketingCarrierInfo": {
+                  "carrierCode": "QG",
+                  "flightNumber": "194",
+                },
+                "operatingCarrierInfo": {
+                  "carrierCode": "QG",
+                  "flightNumber": "194",
+                  "opSuffix": "",
+                },
+              },
+            ],
+          },
+          "bookingSummary": {
+            "agentIssuedFee": 0,
+            "totalFare": 1552521,
+            "NTSA": 1517212,
+            "totalPrepaidBaggage": 0,
+            "totalBaseFare": 1201000,
+            "wholesalerFee": 0,
+            "agentSellingFare": 1552521,
+            "totalNTA": 1517212,
+            "agentServiceFee": 0,
+            "agentServiceFeePPN": 0,
+            "totalTax": 351521,
+          },
+          "bookingTimeLimit": "2025-02-23T01:53",
+          "bookingDateTime": "2025-02-21T01:53",
+          "scheduleFareDetail": [
+            {
+              "journeyIDS": ["QG194~HLP~DPS"],
+              "segmentIDS": [
+                "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55",
+              ],
+              "fareDetails": [
+                {
+                  "paxType": "ADT",
+                  "price": {
+                    "baseFare": 1201000,
+                    "taxs": [
+                      {
+                        "taxCode": "SC",
+                        "taxFare": 120100,
+                      },
+                      {
+                        "taxCode": "IWJR",
+                        "taxFare": 5000,
+                      },
+                      {
+                        "taxCode": "PSC",
+                        "taxFare": 81100,
+                      },
+                      {
+                        "taxCode": "VAT",
+                        "taxFare": 132110,
+                      },
+                      {
+                        "taxCode": "VS",
+                        "taxFare": 13211,
+                      },
+                    ],
+                    "totalTax": 351521,
+                    "totalPublishFare": 1552521,
+                    "agentServiceFee": 0,
+                    "agentServiceFeePPN": 0,
+                    "agentIssuedFee": 0,
+                    "agentSellingFare": 1552521,
+                  },
+                  "fareComponent": [
+                    {
+                      "fareCode": "A/A",
+                      "fareBasisCode": "A/A",
+                      "fareGroupCode": "E",
+                      "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55",
+                    },
+                  ],
+                  "paxRefID": "ADTMUHAMMADRIDHO",
+                },
+              ],
+              "fareSummary": {
+                "totalBaseFare": 1201000,
+                "totalTax": 351521,
+                "totalPrepaidBaggage": 0,
+                "totalFare": 1552521,
+                "agentServiceFee": 0,
+                "agentServiceFeePPN": 0,
+                "agentIssuedFee": 0,
+                "agentSellingFare": 1552521,
+              },
+            },
+          ],
+          "bookingID": "CLN~XCQ7JF~1757600",
+          "bookingStatus": "BOOKED",
+          "bookingCode": "XCQ7JF",
+        },
+      ],
+    },
+  },
+]

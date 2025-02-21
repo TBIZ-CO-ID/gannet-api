@@ -1,0 +1,29 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "flight:issue",
+    "params": {
+      "bookingID": "CLN~XCQ7JF~1757600"
+    },
+    "token": "{{TOKEN}}",
+    "id": "FIS-QG-HLP-DPS-2024-06-27-1740014329213"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "FIS-QG-HLP-DPS-2024-06-27-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740103740299,
+          "response": 1740103740316,
+          "process": 17,
+          "unit": "Milisecond"
+        },
+        "status": "ERROR",
+        "errors": [
+          "Internal Server Error"
+        ]
+      }
+    }
+  }
+}

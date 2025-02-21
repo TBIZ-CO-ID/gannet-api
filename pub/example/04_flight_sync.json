@@ -1,0 +1,163 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "flight:sync",
+    "params": {
+      "bookingID": "CLN~XCQ7JF~1757600"
+    },
+    "token": "{{TOKEN}}",
+    "id": "FSY-QG-HLP-DPS-2024-06-27-1740014329213"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "FSY-QG-HLP-DPS-2024-06-27-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740103540287,
+          "response": 1740103540667,
+          "process": 380,
+          "unit": "Milisecond"
+        },
+        "status": "OK"
+      },
+      "pnrs": [
+        {
+          "supplairCode": "PGS",
+          "agentCode": "TBIZ",
+          "info": {
+            "contactInfo": {
+              "email": "admintravel@gmail.com",
+              "firstName": "ADMIN",
+              "title": "MR",
+              "lastName": "TRAVEL",
+              "phoneNumber": "08569027811"
+            },
+            "paxs": [
+              {
+                "paxType": "ADT",
+                "paxID": "ADTMUHAMMADRIDHO",
+                "title": "MR",
+                "firstName": "MUHAMMAD",
+                "lastName": "RIDHO",
+                "nationality": "ID",
+                "dob": "1978-02-01"
+              }
+            ],
+            "journeys": [
+              {
+                "journeyID": "QG194~HLP~DPS",
+                "originCode": "HLP",
+                "destinationCode": "DPS",
+                "segmentIDS": [
+                  "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55",
+                "originCode": "HLP",
+                "destinationCode": "DPS",
+                "departureDateTime": "2025-04-01T17:05",
+                "arrivalDateTime": "2025-04-01T19:55",
+                "marketingCarrierInfo": {
+                  "carrierCode": "QG",
+                  "flightNumber": "194"
+                },
+                "operatingCarrierInfo": {
+                  "carrierCode": "QG",
+                  "flightNumber": "194",
+                  "opSuffix": ""
+                }
+              }
+            ]
+          },
+          "bookingSummary": {
+            "agentIssuedFee": 0,
+            "totalFare": 1552521,
+            "NTSA": 1517212,
+            "totalPrepaidBaggage": 0,
+            "totalBaseFare": 1201000,
+            "wholesalerFee": 0,
+            "agentSellingFare": 1552521,
+            "totalNTA": 1517212,
+            "agentServiceFee": 0,
+            "agentServiceFeePPN": 0,
+            "totalTax": 351521
+          },
+          "bookingTimeLimit": "2025-02-23T01:53",
+          "bookingDateTime": "2025-02-21T01:53",
+          "scheduleFareDetail": [
+            {
+              "journeyIDS": [
+                "QG194~HLP~DPS"
+              ],
+              "segmentIDS": [
+                "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+              ],
+              "fareDetails": [
+                {
+                  "paxType": "ADT",
+                  "price": {
+                    "baseFare": 1201000,
+                    "taxs": [
+                      {
+                        "taxCode": "SC",
+                        "taxFare": 120100
+                      },
+                      {
+                        "taxCode": "IWJR",
+                        "taxFare": 5000
+                      },
+                      {
+                        "taxCode": "PSC",
+                        "taxFare": 81100
+                      },
+                      {
+                        "taxCode": "VAT",
+                        "taxFare": 132110
+                      },
+                      {
+                        "taxCode": "VS",
+                        "taxFare": 13211
+                      }
+                    ],
+                    "totalTax": 351521,
+                    "totalPublishFare": 1552521,
+                    "agentServiceFee": 0,
+                    "agentServiceFeePPN": 0,
+                    "agentIssuedFee": 0,
+                    "agentSellingFare": 1552521
+                  },
+                  "fareComponent": [
+                    {
+                      "fareCode": "A/A",
+                      "fareBasisCode": "A/A",
+                      "fareGroupCode": "E",
+                      "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+                    }
+                  ],
+                  "paxRefID": "ADTMUHAMMADRIDHO"
+                }
+              ],
+              "fareSummary": {
+                "totalBaseFare": 1201000,
+                "totalTax": 351521,
+                "totalPrepaidBaggage": 0,
+                "totalFare": 1552521,
+                "agentServiceFee": 0,
+                "agentServiceFeePPN": 0,
+                "agentIssuedFee": 0,
+                "agentSellingFare": 1552521
+              }
+            }
+          ],
+          "bookingID": "CLN~XCQ7JF~1757600",
+          "bookingStatus": "BOOKED",
+          "bookingCode": "XCQ7JF"
+        }
+      ]
+    }
+  }
+}

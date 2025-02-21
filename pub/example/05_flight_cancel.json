@@ -1,0 +1,29 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "flight:cancel",
+    "params": {
+      "bookingID": "CLN~XCQ7JF~1757600"
+    },
+    "token": "{{TOKEN}}",
+    "id": "FIS-QG-HLP-DPS-2024-06-27-1740014329213"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "FIS-QG-HLP-DPS-2024-06-27-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740103534392,
+          "response": 1740103535288,
+          "process": 896,
+          "unit": "Milisecond"
+        },
+        "status": "ERROR",
+        "errors": [
+          "Ticketing failed: Client received SOAP Fault from server: One or more errors occurred. Please see the server log to find more detail regarding exact cause of the failure."
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "flight:schedule:list",
+    "params": {
+      "carriers": [
+        "QG"
+      ],
+      "paxCount": {
+        "ADT": 1,
+        "CHD": 0,
+        "INF": 0
+      },
+      "schedules": [
+        {
+          "origin": "HLP",
+          "destination": "DPS",
+          "departureDate": "2025-04-01",
+          "returnDate": null
+        }
+      ]
+    },
+    "token": "{{TOKEN}}",
+    "id": "FSL-QG-HLP-DPS-2024-06-27-1740014329213"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "FSL-QG-HLP-DPS-2024-06-27-1740014329213",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1740100920299,
+          "response": 1740100920910,
+          "process": 611,
+          "unit": "Milisecond"
+        },
+        "status": "OK"
+      },
+      "info": {
+        "journeys": [
+          {
+            "journeyID": "QG194~HLP~DPS",
+            "origin": "HLP",
+            "destination": "DPS",
+            "segmentIDS": [
+              "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+            ]
+          }
+        ],
+        "segments": [
+          {
+            "operatingCarrierInfo": {
+              "carrierCode": "QG",
+              "flightNumber": "194",
+              "opSuffix": ""
+            },
+            "marketingCarrierInfo": {
+              "carrierCode": "QG",
+              "flightNumber": "194"
+            },
+            "stopOver": 0,
+            "arrivalDateTime": "2025-04-01T19:55",
+            "departureDateTime": "2025-04-01T17:05",
+            "origin": {
+              "code": "HLP",
+              "tz": 7
+            },
+            "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55",
+            "destination": {
+              "code": "DPS",
+              "tz": 8
+            },
+            "legIDS": [
+              "HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+            ]
+          }
+        ],
+        "legs": [
+          {
+            "legID": "HLP~DPS~2025-04-01T17:05~2025-04-01T19:55",
+            "origin": {
+              "code": "HLP",
+              "tz": 7
+            },
+            "destination": {
+              "code": "DPS",
+              "tz": 8
+            },
+            "departureDateTime": "2025-04-01T17:05",
+            "arrivalDateTime": "2025-04-01T19:55"
+          }
+        ]
+      },
+      "schedules": [
+        {
+          "journeyType": "OW",
+          "journeyIDS": [
+            "QG194~HLP~DPS"
+          ],
+          "segmentIDS": [
+            "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+          ],
+          "currencyCode": null,
+          "journeySegmentFares": [
+            {
+              "journeyID": "QG194~HLP~DPS",
+              "segmentFares": [
+                {
+                  "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55",
+                  "fares": [
+                    {
+                      "fareCode": "A",
+                      "fareBasisCode": "A",
+                      "fareGroupCode": "E",
+                      "seatAvailable": 9,
+                      "baggageFree": {
+                        "weight": "15",
+                        "unit": "KG"
+                      },
+                      "canBuyAdditionalBaggage": false,
+                      "currencyCode": "IDR",
+                      "agentOffersFare": [
+                        {
+                          "agentCode": "TBIZ",
+                          "supplairCode": "PGS",
+                          "isSupportNKRI": false,
+                          "offers": [
+                            {
+                              "paxType": "ADT",
+                              "baseFare": 1201000,
+                              "totalTax": 351521,
+                              "totalFare": 1552521,
+                              "agentServiceFee": 0,
+                              "agentServiceFeePPN": 0,
+                              "agentIssuedFee": 0,
+                              "agentSellingFare": 1552521
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
