@@ -5,20 +5,19 @@ meta {
 }
 
 post {
-  url: http://localhost:9000/api
+  url: {{JSONRPC_URL}}
   body: json
   auth: none
 }
 
 body:json {
   {
-    "jsonrpc": 2,
+    "jsonrpc": "2.0",
     "method": "flight:cancel",
     "params": {
-      "__token": "",
-      "bookingID": "CLN~OM6VJE~1642734"
+      "bookingID": "ARD~6BTZC3~1757762"
     },
-    "token": "",
-    "id": "1732600860731-6236"
+    "token": "{{TOKEN}}",
+    "id": "FCX-GA-CGK-DPS-2025-04-01-1740014329213"
   }
 }

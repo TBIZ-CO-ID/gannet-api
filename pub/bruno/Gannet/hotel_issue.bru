@@ -1,0 +1,25 @@
+meta {
+  name: hotel_issue
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{JSONRPC_URL}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": "2.0",
+    "method": "hotel:issue",
+    "params": {
+      "agentCode": "TBIZ",
+      "bookingID": "QILIN~MGH~YYS590CY~~AGID0759692502099476",
+      "remark": "Issued by reymond Ridho"
+    },
+    "token": "{{TOKEN}}",
+    "id": "HL_1740106640361"
+  }
+}

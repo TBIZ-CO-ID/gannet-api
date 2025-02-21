@@ -1,0 +1,55 @@
+meta {
+  name: hotel_book
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{JSONRPC_URL}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": "2.0",
+    "method": "hotel:book",
+    "params": {
+      "roomSelectedData": [
+        {
+          "hotelID": "756b62c71f83799009f4130af63d17c86aef95be58951b9e8b51c728ba32a122",
+          "roomIDS": [
+            {
+              "roomID": "2025-04-01+1+1+ID+1+0+0++MGH.D.CITY.ID-MLG+false/Superior Deluxe|Superior Deluxe|RO|Flexi|false|1|1|0|0.0|0.0|false|ID",
+              "roomNumber": 1
+            }
+          ],
+          "agentCode": "TBIZ"
+        }
+      ],
+      "roomGuestData": {
+        "roomGuestList": [
+          {
+            "roomNumber": 1,
+            "type": "ADT",
+            "title": "MR",
+            "firstName": "Muhammad",
+            "lastName": "Ridho"
+          }
+        ],
+        "roomHolder": {
+          "email": "reedho@gmail.com",
+          "phone": "08569027811",
+          "firstName": "Muhammad",
+          "lastName": "Ridho"
+        }
+      },
+      "clientReference": "TBIZ_1740106640362",
+      "remarkList": [
+        "Early check in"
+      ]
+    },
+    "token": "{{TOKEN}}",
+    "id": "HL_1740106640362"
+  }
+}

@@ -5,50 +5,50 @@ meta {
 }
 
 post {
-  url: http://localhost:9000/api
+  url: {{JSONRPC_URL}}
   body: json
   auth: none
 }
 
 body:json {
   {
-    "jsonrpc": 2,
+    "jsonrpc": "2.0",
     "method": "flight:schedule:fare",
     "params": {
       "info": {
         "totalPaxs": {
+          "ADT": 1,
           "CHD": 0,
-          "INF": 0,
-          "ADT": 4
+          "INF": 0
         }
       },
       "scheduleFareDetail": [
         {
-          "segmentIDS": [
-            "ID~6864~~CGK~BTH~2024-06-27T09:25~2024-06-27T11:05"
-          ],
           "journeyIDS": [
-            "ID6864~CGK~BTH"
+            "GA426~CGK~DPS"
           ],
-          "agentCode": "124959",
+          "segmentIDS": [
+            "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"
+          ],
+          "agentCode": "TBIZ",
           "journeySegmentFares": [
             {
+              "journeyID": "GA426~CGK~DPS",
               "segmentFares": [
                 {
+                  "fareCode": "Y",
                   "fareGroupCode": "E",
-                  "fareCode": "S",
-                  "fareBasisCode": "SIDOW",
-                  "segmentID": "ID~6864~~CGK~BTH~2024-06-27T09:25~2024-06-27T11:05"
+                  "fareBasisCode": "Y",
+                  "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"
                 }
               ],
-              "journeyID": "ID6864~CGK~BTH"
+              "isCombinedJourneys": false
             }
-          ],
-          "isCombinedJourneys": false
+          ]
         }
       ]
     },
-    "token": "",
-    "id": "1718957455650-5630"
+    "token": "{{TOKEN}}",
+    "id": "FSF-GA-CGK-DPS-2025-04-01-1740014329213"
   }
 }
