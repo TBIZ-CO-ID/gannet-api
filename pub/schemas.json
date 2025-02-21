@@ -2,29 +2,17 @@
   "AgentCode": {
     "type": "string",
     "description": "Agent code",
-    "title": "Agent code",
-    "examples": [
-      "124959"
-    ]
+    "title": "Agent code"
   },
   "AgentCodes": {
     "type": "array",
     "items": {
       "type": "string",
       "description": "Agent code",
-      "title": "Agent code",
-      "examples": [
-        "124959"
-      ]
+      "title": "Agent code"
     },
     "description": "List of agent codes",
-    "title": "Agent codes",
-    "examples": [
-      [
-        "124959",
-        "124960"
-      ]
-    ]
+    "title": "Agent codes"
   },
   "AgentOffers": {
     "type": "object",
@@ -37,10 +25,7 @@
       "agentCode": {
         "type": "string",
         "description": "Agent code",
-        "title": "Agent code",
-        "examples": [
-          "124959"
-        ]
+        "title": "Agent code"
       },
       "supplairCode": {
         "type": "string"
@@ -96,10 +81,7 @@
   "BookingCode": {
     "type": "string",
     "description": "Booking code",
-    "title": "Booking code",
-    "examples": [
-      "IWSVZM"
-    ]
+    "title": "Booking code"
   },
   "BookingFareSummary": {
     "type": "object",
@@ -152,10 +134,7 @@
   "BookingID": {
     "type": "string",
     "description": "Booking ID",
-    "title": "Booking ID",
-    "examples": [
-      "LAW~IWSVZM~1411637"
-    ]
+    "title": "Booking ID"
   },
   "BookingJourney": {
     "type": "object",
@@ -169,36 +148,24 @@
       "journeyID": {
         "type": "string",
         "description": "Journey ID",
-        "title": "Journey ID",
-        "examples": [
-          "QG194~HLP~DPS"
-        ]
+        "title": "Journey ID"
       },
       "originCode": {
         "type": "string",
         "description": "Station code",
-        "title": "Station code",
-        "examples": [
-          "HLP"
-        ]
+        "title": "Station code"
       },
       "destinationCode": {
         "type": "string",
         "description": "Station code",
-        "title": "Station code",
-        "examples": [
-          "HLP"
-        ]
+        "title": "Station code"
       },
       "segmentIDS": {
         "type": "array",
         "items": {
           "type": "string",
           "description": "Segment ID",
-          "title": "Segment ID",
-          "examples": [
-            "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-          ]
+          "title": "Segment ID"
         }
       }
     },
@@ -225,10 +192,7 @@
       "agentCode": {
         "type": "string",
         "description": "Agent code",
-        "title": "Agent code",
-        "examples": [
-          "124959"
-        ]
+        "title": "Agent code"
       },
       "info": {
         "type": "object",
@@ -343,36 +307,24 @@
                 "journeyID": {
                   "type": "string",
                   "description": "Journey ID",
-                  "title": "Journey ID",
-                  "examples": [
-                    "QG194~HLP~DPS"
-                  ]
+                  "title": "Journey ID"
                 },
                 "originCode": {
                   "type": "string",
                   "description": "Station code",
-                  "title": "Station code",
-                  "examples": [
-                    "HLP"
-                  ]
+                  "title": "Station code"
                 },
                 "destinationCode": {
                   "type": "string",
                   "description": "Station code",
-                  "title": "Station code",
-                  "examples": [
-                    "HLP"
-                  ]
+                  "title": "Station code"
                 },
                 "segmentIDS": {
                   "type": "array",
                   "items": {
                     "type": "string",
                     "description": "Segment ID",
-                    "title": "Segment ID",
-                    "examples": [
-                      "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                    ]
+                    "title": "Segment ID"
                   }
                 }
               },
@@ -396,10 +348,7 @@
                 "segmentID": {
                   "type": "string",
                   "description": "Segment ID",
-                  "title": "Segment ID",
-                  "examples": [
-                    "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                  ]
+                  "title": "Segment ID"
                 },
                 "operatingCarrierInfo": {
                   "type": "object",
@@ -411,18 +360,12 @@
                     "carrierCode": {
                       "type": "string",
                       "description": "Carrier code",
-                      "title": "Carrier code",
-                      "examples": [
-                        "QG"
-                      ]
+                      "title": "Carrier code"
                     },
                     "flightNumber": {
                       "type": "string",
                       "description": "Flight number",
-                      "title": "Flight number",
-                      "examples": [
-                        "194"
-                      ]
+                      "title": "Flight number"
                     },
                     "opSuffix": {
                       "type": "string"
@@ -440,18 +383,12 @@
                     "carrierCode": {
                       "type": "string",
                       "description": "Carrier code",
-                      "title": "Carrier code",
-                      "examples": [
-                        "QG"
-                      ]
+                      "title": "Carrier code"
                     },
                     "flightNumber": {
                       "type": "string",
                       "description": "Flight number",
-                      "title": "Flight number",
-                      "examples": [
-                        "194"
-                      ]
+                      "title": "Flight number"
                     },
                     "opSuffix": {
                       "type": "string"
@@ -462,34 +399,22 @@
                 "originCode": {
                   "type": "string",
                   "description": "Station code",
-                  "title": "Station code",
-                  "examples": [
-                    "HLP"
-                  ]
+                  "title": "Station code"
                 },
                 "destinationCode": {
                   "type": "string",
                   "description": "Station code",
-                  "title": "Station code",
-                  "examples": [
-                    "HLP"
-                  ]
+                  "title": "Station code"
                 },
                 "departureDateTime": {
                   "type": "string",
                   "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-                  "title": "Date and time YYYY-MM-DDTHH:mm",
-                  "examples": [
-                    "2025-02-19T16:55"
-                  ]
+                  "title": "Date and time YYYY-MM-DDTHH:mm"
                 },
                 "arrivalDateTime": {
                   "type": "string",
                   "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-                  "title": "Date and time YYYY-MM-DDTHH:mm",
-                  "examples": [
-                    "2025-02-19T16:55"
-                  ]
+                  "title": "Date and time YYYY-MM-DDTHH:mm"
                 },
                 "arrivalTz": {
                   "type": "number"
@@ -555,18 +480,12 @@
       "bookingTimeLimit": {
         "type": "string",
         "description": "Date and time in YYYY-MM-DDTHH:mm at UTC timezone",
-        "title": "Date and time YYYY-MM-DDTHH:mm",
-        "examples": [
-          "2025-02-19T16:55"
-        ]
+        "title": "Date and time YYYY-MM-DDTHH:mm"
       },
       "bookingDateTime": {
         "type": "string",
         "description": "Date and time in YYYY-MM-DDTHH:mm at UTC timezone",
-        "title": "Date and time YYYY-MM-DDTHH:mm",
-        "examples": [
-          "2025-02-19T16:55"
-        ]
+        "title": "Date and time YYYY-MM-DDTHH:mm"
       },
       "scheduleFareDetail": {
         "type": "array",
@@ -585,10 +504,7 @@
               "items": {
                 "type": "string",
                 "description": "Journey ID",
-                "title": "Journey ID",
-                "examples": [
-                  "QG194~HLP~DPS"
-                ]
+                "title": "Journey ID"
               }
             },
             "segmentIDS": {
@@ -596,19 +512,13 @@
               "items": {
                 "type": "string",
                 "description": "Segment ID",
-                "title": "Segment ID",
-                "examples": [
-                  "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                ]
+                "title": "Segment ID"
               }
             },
             "agentCode": {
               "type": "string",
               "description": "Agent code",
-              "title": "Agent code",
-              "examples": [
-                "124959"
-              ]
+              "title": "Agent code"
             },
             "journeySegmentFares": {
               "type": "array",
@@ -640,14 +550,7 @@
                             "PF"
                           ],
                           "description": "Fare group code",
-                          "title": "Fare group code",
-                          "examples": [
-                            "E",
-                            "PE",
-                            "B",
-                            "F",
-                            "PF"
-                          ]
+                          "title": "Fare group code"
                         },
                         "fareCode": {
                           "type": "string"
@@ -658,10 +561,7 @@
                         "segmentID": {
                           "type": "string",
                           "description": "Segment ID",
-                          "title": "Segment ID",
-                          "examples": [
-                            "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                          ]
+                          "title": "Segment ID"
                         }
                       },
                       "additionalProperties": false
@@ -670,10 +570,7 @@
                   "journeyID": {
                     "type": "string",
                     "description": "Journey ID",
-                    "title": "Journey ID",
-                    "examples": [
-                      "QG194~HLP~DPS"
-                    ]
+                    "title": "Journey ID"
                   }
                 },
                 "additionalProperties": false
@@ -689,10 +586,7 @@
       "bookingID": {
         "type": "string",
         "description": "Booking ID",
-        "title": "Booking ID",
-        "examples": [
-          "LAW~IWSVZM~1411637"
-        ]
+        "title": "Booking ID"
       },
       "bookingStatus": {
         "type": "string",
@@ -705,10 +599,7 @@
       "bookingCode": {
         "type": "string",
         "description": "Booking code",
-        "title": "Booking code",
-        "examples": [
-          "IWSVZM"
-        ]
+        "title": "Booking code"
       }
     },
     "additionalProperties": false
@@ -736,10 +627,7 @@
         "agentCode": {
           "type": "string",
           "description": "Agent code",
-          "title": "Agent code",
-          "examples": [
-            "124959"
-          ]
+          "title": "Agent code"
         },
         "info": {
           "type": "object",
@@ -854,36 +742,24 @@
                   "journeyID": {
                     "type": "string",
                     "description": "Journey ID",
-                    "title": "Journey ID",
-                    "examples": [
-                      "QG194~HLP~DPS"
-                    ]
+                    "title": "Journey ID"
                   },
                   "originCode": {
                     "type": "string",
                     "description": "Station code",
-                    "title": "Station code",
-                    "examples": [
-                      "HLP"
-                    ]
+                    "title": "Station code"
                   },
                   "destinationCode": {
                     "type": "string",
                     "description": "Station code",
-                    "title": "Station code",
-                    "examples": [
-                      "HLP"
-                    ]
+                    "title": "Station code"
                   },
                   "segmentIDS": {
                     "type": "array",
                     "items": {
                       "type": "string",
                       "description": "Segment ID",
-                      "title": "Segment ID",
-                      "examples": [
-                        "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                      ]
+                      "title": "Segment ID"
                     }
                   }
                 },
@@ -907,10 +783,7 @@
                   "segmentID": {
                     "type": "string",
                     "description": "Segment ID",
-                    "title": "Segment ID",
-                    "examples": [
-                      "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                    ]
+                    "title": "Segment ID"
                   },
                   "operatingCarrierInfo": {
                     "type": "object",
@@ -922,18 +795,12 @@
                       "carrierCode": {
                         "type": "string",
                         "description": "Carrier code",
-                        "title": "Carrier code",
-                        "examples": [
-                          "QG"
-                        ]
+                        "title": "Carrier code"
                       },
                       "flightNumber": {
                         "type": "string",
                         "description": "Flight number",
-                        "title": "Flight number",
-                        "examples": [
-                          "194"
-                        ]
+                        "title": "Flight number"
                       },
                       "opSuffix": {
                         "type": "string"
@@ -951,18 +818,12 @@
                       "carrierCode": {
                         "type": "string",
                         "description": "Carrier code",
-                        "title": "Carrier code",
-                        "examples": [
-                          "QG"
-                        ]
+                        "title": "Carrier code"
                       },
                       "flightNumber": {
                         "type": "string",
                         "description": "Flight number",
-                        "title": "Flight number",
-                        "examples": [
-                          "194"
-                        ]
+                        "title": "Flight number"
                       },
                       "opSuffix": {
                         "type": "string"
@@ -973,34 +834,22 @@
                   "originCode": {
                     "type": "string",
                     "description": "Station code",
-                    "title": "Station code",
-                    "examples": [
-                      "HLP"
-                    ]
+                    "title": "Station code"
                   },
                   "destinationCode": {
                     "type": "string",
                     "description": "Station code",
-                    "title": "Station code",
-                    "examples": [
-                      "HLP"
-                    ]
+                    "title": "Station code"
                   },
                   "departureDateTime": {
                     "type": "string",
                     "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-                    "title": "Date and time YYYY-MM-DDTHH:mm",
-                    "examples": [
-                      "2025-02-19T16:55"
-                    ]
+                    "title": "Date and time YYYY-MM-DDTHH:mm"
                   },
                   "arrivalDateTime": {
                     "type": "string",
                     "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-                    "title": "Date and time YYYY-MM-DDTHH:mm",
-                    "examples": [
-                      "2025-02-19T16:55"
-                    ]
+                    "title": "Date and time YYYY-MM-DDTHH:mm"
                   },
                   "arrivalTz": {
                     "type": "number"
@@ -1066,18 +915,12 @@
         "bookingTimeLimit": {
           "type": "string",
           "description": "Date and time in YYYY-MM-DDTHH:mm at UTC timezone",
-          "title": "Date and time YYYY-MM-DDTHH:mm",
-          "examples": [
-            "2025-02-19T16:55"
-          ]
+          "title": "Date and time YYYY-MM-DDTHH:mm"
         },
         "bookingDateTime": {
           "type": "string",
           "description": "Date and time in YYYY-MM-DDTHH:mm at UTC timezone",
-          "title": "Date and time YYYY-MM-DDTHH:mm",
-          "examples": [
-            "2025-02-19T16:55"
-          ]
+          "title": "Date and time YYYY-MM-DDTHH:mm"
         },
         "scheduleFareDetail": {
           "type": "array",
@@ -1096,10 +939,7 @@
                 "items": {
                   "type": "string",
                   "description": "Journey ID",
-                  "title": "Journey ID",
-                  "examples": [
-                    "QG194~HLP~DPS"
-                  ]
+                  "title": "Journey ID"
                 }
               },
               "segmentIDS": {
@@ -1107,19 +947,13 @@
                 "items": {
                   "type": "string",
                   "description": "Segment ID",
-                  "title": "Segment ID",
-                  "examples": [
-                    "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                  ]
+                  "title": "Segment ID"
                 }
               },
               "agentCode": {
                 "type": "string",
                 "description": "Agent code",
-                "title": "Agent code",
-                "examples": [
-                  "124959"
-                ]
+                "title": "Agent code"
               },
               "journeySegmentFares": {
                 "type": "array",
@@ -1151,14 +985,7 @@
                               "PF"
                             ],
                             "description": "Fare group code",
-                            "title": "Fare group code",
-                            "examples": [
-                              "E",
-                              "PE",
-                              "B",
-                              "F",
-                              "PF"
-                            ]
+                            "title": "Fare group code"
                           },
                           "fareCode": {
                             "type": "string"
@@ -1169,10 +996,7 @@
                           "segmentID": {
                             "type": "string",
                             "description": "Segment ID",
-                            "title": "Segment ID",
-                            "examples": [
-                              "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                            ]
+                            "title": "Segment ID"
                           }
                         },
                         "additionalProperties": false
@@ -1181,10 +1005,7 @@
                     "journeyID": {
                       "type": "string",
                       "description": "Journey ID",
-                      "title": "Journey ID",
-                      "examples": [
-                        "QG194~HLP~DPS"
-                      ]
+                      "title": "Journey ID"
                     }
                   },
                   "additionalProperties": false
@@ -1200,10 +1021,7 @@
         "bookingID": {
           "type": "string",
           "description": "Booking ID",
-          "title": "Booking ID",
-          "examples": [
-            "LAW~IWSVZM~1411637"
-          ]
+          "title": "Booking ID"
         },
         "bookingStatus": {
           "type": "string",
@@ -1216,10 +1034,7 @@
         "bookingCode": {
           "type": "string",
           "description": "Booking code",
-          "title": "Booking code",
-          "examples": [
-            "IWSVZM"
-          ]
+          "title": "Booking code"
         }
       },
       "additionalProperties": false
@@ -1236,18 +1051,12 @@
   "Carrier": {
     "type": "string",
     "description": "Carrier code.\nAvailable codes are QG, GA, ...",
-    "title": "Carrier code",
-    "examples": [
-      "QG"
-    ]
+    "title": "Carrier code"
   },
   "CarrierCode": {
     "type": "string",
     "description": "Carrier code",
-    "title": "Carrier code",
-    "examples": [
-      "QG"
-    ]
+    "title": "Carrier code"
   },
   "CarrierInfo": {
     "type": "object",
@@ -1259,18 +1068,12 @@
       "carrierCode": {
         "type": "string",
         "description": "Carrier code",
-        "title": "Carrier code",
-        "examples": [
-          "QG"
-        ]
+        "title": "Carrier code"
       },
       "flightNumber": {
         "type": "string",
         "description": "Flight number",
-        "title": "Flight number",
-        "examples": [
-          "194"
-        ]
+        "title": "Flight number"
       },
       "opSuffix": {
         "type": "string"
@@ -1283,19 +1086,10 @@
     "items": {
       "type": "string",
       "description": "Carrier code.\nAvailable codes are QG, GA, ...",
-      "title": "Carrier code",
-      "examples": [
-        "QG"
-      ]
+      "title": "Carrier code"
     },
     "description": "List of carrier codes",
-    "title": "Carriers",
-    "examples": [
-      [
-        "QG",
-        "GA"
-      ]
-    ]
+    "title": "Carriers"
   },
   "ChildrenAges": {
     "type": "array",
@@ -1303,21 +1097,12 @@
       "type": "number"
     },
     "description": "Children ages",
-    "title": "Children ages",
-    "examples": [
-      [
-        1,
-        2
-      ]
-    ]
+    "title": "Children ages"
   },
   "ClientReference": {
     "type": "string",
     "description": "Client reference",
-    "title": "Client reference",
-    "examples": [
-      "H-20250219-10018745-1"
-    ]
+    "title": "Client reference"
   },
   "ContactInfo": {
     "type": "object",
@@ -1350,34 +1135,22 @@
   "DateTimeLocal": {
     "type": "string",
     "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-    "title": "Date and time YYYY-MM-DDTHH:mm",
-    "examples": [
-      "2025-02-19T16:55"
-    ]
+    "title": "Date and time YYYY-MM-DDTHH:mm"
   },
   "DateTimeUTC": {
     "type": "string",
     "description": "Date and time in YYYY-MM-DDTHH:mm at UTC timezone",
-    "title": "Date and time YYYY-MM-DDTHH:mm",
-    "examples": [
-      "2025-02-19T16:55"
-    ]
+    "title": "Date and time YYYY-MM-DDTHH:mm"
   },
   "DateYMD": {
     "type": "string",
     "description": "Date in YYYY-MM-DD format",
-    "title": "Date YYYY-MM-DD",
-    "examples": [
-      "2025-02-19"
-    ]
+    "title": "Date YYYY-MM-DD"
   },
   "DestinationKey": {
     "type": "string",
     "description": "Destination key",
-    "title": "Destination key",
-    "examples": [
-      ""
-    ]
+    "title": "Destination key"
   },
   "Fare": {
     "type": "object",
@@ -1439,10 +1212,7 @@
             "agentCode": {
               "type": "string",
               "description": "Agent code",
-              "title": "Agent code",
-              "examples": [
-                "124959"
-              ]
+              "title": "Agent code"
             },
             "supplairCode": {
               "type": "string"
@@ -1574,14 +1344,7 @@
       "PF"
     ],
     "description": "Fare group code",
-    "title": "Fare group code",
-    "examples": [
-      "E",
-      "PE",
-      "B",
-      "F",
-      "PF"
-    ]
+    "title": "Fare group code"
   },
   "FareSSR": {
     "type": "object",
@@ -1629,10 +1392,7 @@
       "segmentID": {
         "type": "string",
         "description": "Segment ID",
-        "title": "Segment ID",
-        "examples": [
-          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-        ]
+        "title": "Segment ID"
       },
       "ssrs": {
         "type": "array",
@@ -1827,18 +1587,12 @@
   "FlightNumber": {
     "type": "string",
     "description": "Flight number",
-    "title": "Flight number",
-    "examples": [
-      "194"
-    ]
+    "title": "Flight number"
   },
   "HotelID": {
     "type": "string",
     "description": "Hotel ID",
-    "title": "Hotel ID",
-    "examples": [
-      "ID10018745"
-    ]
+    "title": "Hotel ID"
   },
   "Journey": {
     "type": "object",
@@ -1852,36 +1606,24 @@
       "journeyID": {
         "type": "string",
         "description": "Journey ID",
-        "title": "Journey ID",
-        "examples": [
-          "QG194~HLP~DPS"
-        ]
+        "title": "Journey ID"
       },
       "origin": {
         "type": "string",
         "description": "Station code",
-        "title": "Station code",
-        "examples": [
-          "HLP"
-        ]
+        "title": "Station code"
       },
       "destination": {
         "type": "string",
         "description": "Station code",
-        "title": "Station code",
-        "examples": [
-          "HLP"
-        ]
+        "title": "Station code"
       },
       "segmentIDS": {
         "type": "array",
         "items": {
           "type": "string",
           "description": "Segment ID",
-          "title": "Segment ID",
-          "examples": [
-            "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-          ]
+          "title": "Segment ID"
         }
       }
     },
@@ -1890,10 +1632,7 @@
   "JourneyID": {
     "type": "string",
     "description": "Journey ID",
-    "title": "Journey ID",
-    "examples": [
-      "QG194~HLP~DPS"
-    ]
+    "title": "Journey ID"
   },
   "JourneySegmentFare": {
     "type": "object",
@@ -1905,10 +1644,7 @@
       "journeyID": {
         "type": "string",
         "description": "Journey ID",
-        "title": "Journey ID",
-        "examples": [
-          "QG194~HLP~DPS"
-        ]
+        "title": "Journey ID"
       },
       "segmentFares": {
         "type": "array",
@@ -1922,10 +1658,7 @@
             "segmentID": {
               "type": "string",
               "description": "Segment ID",
-              "title": "Segment ID",
-              "examples": [
-                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-              ]
+              "title": "Segment ID"
             },
             "fares": {
               "type": "array",
@@ -1989,10 +1722,7 @@
                         "agentCode": {
                           "type": "string",
                           "description": "Agent code",
-                          "title": "Agent code",
-                          "examples": [
-                            "124959"
-                          ]
+                          "title": "Agent code"
                         },
                         "supplairCode": {
                           "type": "string"
@@ -2077,10 +1807,7 @@
       "legID": {
         "type": "string",
         "description": "Leg ID",
-        "title": "Leg ID",
-        "examples": [
-          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-        ]
+        "title": "Leg ID"
       },
       "origin": {
         "type": "object",
@@ -2092,10 +1819,7 @@
           "code": {
             "type": "string",
             "description": "Station code",
-            "title": "Station code",
-            "examples": [
-              "HLP"
-            ]
+            "title": "Station code"
           },
           "tz": {
             "anyOf": [
@@ -2123,10 +1847,7 @@
           "code": {
             "type": "string",
             "description": "Station code",
-            "title": "Station code",
-            "examples": [
-              "HLP"
-            ]
+            "title": "Station code"
           },
           "tz": {
             "anyOf": [
@@ -2147,18 +1868,12 @@
       "departureDateTime": {
         "type": "string",
         "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-        "title": "Date and time YYYY-MM-DDTHH:mm",
-        "examples": [
-          "2025-02-19T16:55"
-        ]
+        "title": "Date and time YYYY-MM-DDTHH:mm"
       },
       "arrivalDateTime": {
         "type": "string",
         "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-        "title": "Date and time YYYY-MM-DDTHH:mm",
-        "examples": [
-          "2025-02-19T16:55"
-        ]
+        "title": "Date and time YYYY-MM-DDTHH:mm"
       }
     },
     "additionalProperties": false
@@ -2166,10 +1881,7 @@
   "LegID": {
     "type": "string",
     "description": "Leg ID",
-    "title": "Leg ID",
-    "examples": [
-      "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-    ]
+    "title": "Leg ID"
   },
   "Offer": {
     "type": "object",
@@ -2213,10 +1925,7 @@
   "Password": {
     "type": "string",
     "description": "Api credentials password",
-    "title": "Password",
-    "examples": [
-      "password"
-    ]
+    "title": "Password"
   },
   "Pax": {
     "type": "object",
@@ -2307,13 +2016,6 @@
     "additionalProperties": false,
     "description": "Passenger count for each passenger type",
     "title": "Pax count",
-    "examples": [
-      {
-        "ADT": 1,
-        "CHD": 0,
-        "INF": 0
-      }
-    ],
     "default": {
       "ADT": 1,
       "CHD": 0,
@@ -2403,31 +2105,17 @@
   "Remark": {
     "type": "string",
     "description": "Remark",
-    "title": "Remark",
-    "examples": [
-      "Early Check In",
-      "Late Check Out"
-    ]
+    "title": "Remark"
   },
   "RemarkList": {
     "type": "array",
     "items": {
       "type": "string",
       "description": "Remark",
-      "title": "Remark",
-      "examples": [
-        "Early Check In",
-        "Late Check Out"
-      ]
+      "title": "Remark"
     },
     "description": "Remark list",
-    "title": "Remark list",
-    "examples": [
-      [
-        "Early Check In",
-        "Late Check Out"
-      ]
-    ]
+    "title": "Remark list"
   },
   "ResultErrors": {
     "type": "array",
@@ -2562,18 +2250,12 @@
       "agentCode": {
         "type": "string",
         "description": "Agent code",
-        "title": "Agent code",
-        "examples": [
-          "124959"
-        ]
+        "title": "Agent code"
       },
       "hotelID": {
         "type": "string",
         "description": "Hotel ID",
-        "title": "Hotel ID",
-        "examples": [
-          "ID10018745"
-        ]
+        "title": "Hotel ID"
       },
       "roomIDS": {
         "type": "array",
@@ -2608,34 +2290,22 @@
       "origin": {
         "type": "string",
         "description": "Station code",
-        "title": "Station code",
-        "examples": [
-          "HLP"
-        ]
+        "title": "Station code"
       },
       "destination": {
         "type": "string",
         "description": "Station code",
-        "title": "Station code",
-        "examples": [
-          "HLP"
-        ]
+        "title": "Station code"
       },
       "departureDate": {
         "type": "string",
         "description": "Date in YYYY-MM-DD format",
-        "title": "Date YYYY-MM-DD",
-        "examples": [
-          "2025-02-19"
-        ]
+        "title": "Date YYYY-MM-DD"
       },
       "returnDate": {
         "type": "string",
         "description": "Date in YYYY-MM-DD format",
-        "title": "Date YYYY-MM-DD",
-        "examples": [
-          "2025-02-19"
-        ]
+        "title": "Date YYYY-MM-DD"
       }
     },
     "additionalProperties": false
@@ -2655,10 +2325,7 @@
         "items": {
           "type": "string",
           "description": "Journey ID",
-          "title": "Journey ID",
-          "examples": [
-            "QG194~HLP~DPS"
-          ]
+          "title": "Journey ID"
         }
       },
       "segmentIDS": {
@@ -2666,19 +2333,13 @@
         "items": {
           "type": "string",
           "description": "Segment ID",
-          "title": "Segment ID",
-          "examples": [
-            "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-          ]
+          "title": "Segment ID"
         }
       },
       "agentCode": {
         "type": "string",
         "description": "Agent code",
-        "title": "Agent code",
-        "examples": [
-          "124959"
-        ]
+        "title": "Agent code"
       },
       "journeySegmentFares": {
         "type": "array",
@@ -2710,14 +2371,7 @@
                       "PF"
                     ],
                     "description": "Fare group code",
-                    "title": "Fare group code",
-                    "examples": [
-                      "E",
-                      "PE",
-                      "B",
-                      "F",
-                      "PF"
-                    ]
+                    "title": "Fare group code"
                   },
                   "fareCode": {
                     "type": "string"
@@ -2728,10 +2382,7 @@
                   "segmentID": {
                     "type": "string",
                     "description": "Segment ID",
-                    "title": "Segment ID",
-                    "examples": [
-                      "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                    ]
+                    "title": "Segment ID"
                   }
                 },
                 "additionalProperties": false
@@ -2740,10 +2391,7 @@
             "journeyID": {
               "type": "string",
               "description": "Journey ID",
-              "title": "Journey ID",
-              "examples": [
-                "QG194~HLP~DPS"
-              ]
+              "title": "Journey ID"
             }
           },
           "additionalProperties": false
@@ -2771,10 +2419,7 @@
         "items": {
           "type": "string",
           "description": "Journey ID",
-          "title": "Journey ID",
-          "examples": [
-            "QG194~HLP~DPS"
-          ]
+          "title": "Journey ID"
         }
       },
       "segmentIDS": {
@@ -2782,19 +2427,13 @@
         "items": {
           "type": "string",
           "description": "Segment ID",
-          "title": "Segment ID",
-          "examples": [
-            "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-          ]
+          "title": "Segment ID"
         }
       },
       "agentCode": {
         "type": "string",
         "description": "Agent code",
-        "title": "Agent code",
-        "examples": [
-          "124959"
-        ]
+        "title": "Agent code"
       },
       "supplairCode": {
         "type": "string"
@@ -2911,10 +2550,7 @@
             "segmentID": {
               "type": "string",
               "description": "Segment ID",
-              "title": "Segment ID",
-              "examples": [
-                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-              ]
+              "title": "Segment ID"
             },
             "ssrs": {
               "type": "array",
@@ -2980,10 +2616,7 @@
           "items": {
             "type": "string",
             "description": "Journey ID",
-            "title": "Journey ID",
-            "examples": [
-              "QG194~HLP~DPS"
-            ]
+            "title": "Journey ID"
           }
         },
         "segmentIDS": {
@@ -2991,19 +2624,13 @@
           "items": {
             "type": "string",
             "description": "Segment ID",
-            "title": "Segment ID",
-            "examples": [
-              "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-            ]
+            "title": "Segment ID"
           }
         },
         "agentCode": {
           "type": "string",
           "description": "Agent code",
-          "title": "Agent code",
-          "examples": [
-            "124959"
-          ]
+          "title": "Agent code"
         },
         "supplairCode": {
           "type": "string"
@@ -3120,10 +2747,7 @@
               "segmentID": {
                 "type": "string",
                 "description": "Segment ID",
-                "title": "Segment ID",
-                "examples": [
-                  "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                ]
+                "title": "Segment ID"
               },
               "ssrs": {
                 "type": "array",
@@ -3189,10 +2813,7 @@
           "items": {
             "type": "string",
             "description": "Journey ID",
-            "title": "Journey ID",
-            "examples": [
-              "QG194~HLP~DPS"
-            ]
+            "title": "Journey ID"
           }
         },
         "segmentIDS": {
@@ -3200,19 +2821,13 @@
           "items": {
             "type": "string",
             "description": "Segment ID",
-            "title": "Segment ID",
-            "examples": [
-              "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-            ]
+            "title": "Segment ID"
           }
         },
         "agentCode": {
           "type": "string",
           "description": "Agent code",
-          "title": "Agent code",
-          "examples": [
-            "124959"
-          ]
+          "title": "Agent code"
         },
         "journeySegmentFares": {
           "type": "array",
@@ -3244,14 +2859,7 @@
                         "PF"
                       ],
                       "description": "Fare group code",
-                      "title": "Fare group code",
-                      "examples": [
-                        "E",
-                        "PE",
-                        "B",
-                        "F",
-                        "PF"
-                      ]
+                      "title": "Fare group code"
                     },
                     "fareCode": {
                       "type": "string"
@@ -3262,10 +2870,7 @@
                     "segmentID": {
                       "type": "string",
                       "description": "Segment ID",
-                      "title": "Segment ID",
-                      "examples": [
-                        "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                      ]
+                      "title": "Segment ID"
                     }
                   },
                   "additionalProperties": false
@@ -3274,10 +2879,7 @@
               "journeyID": {
                 "type": "string",
                 "description": "Journey ID",
-                "title": "Journey ID",
-                "examples": [
-                  "QG194~HLP~DPS"
-                ]
+                "title": "Journey ID"
               }
             },
             "additionalProperties": false
@@ -3327,13 +2929,6 @@
         "additionalProperties": false,
         "description": "Passenger count for each passenger type",
         "title": "Pax count",
-        "examples": [
-          {
-            "ADT": 1,
-            "CHD": 0,
-            "INF": 0
-          }
-        ],
         "default": {
           "ADT": 1,
           "CHD": 0,
@@ -3357,10 +2952,7 @@
             "segmentID": {
               "type": "string",
               "description": "Segment ID",
-              "title": "Segment ID",
-              "examples": [
-                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-              ]
+              "title": "Segment ID"
             },
             "operatingCarrierInfo": {
               "type": "object",
@@ -3372,18 +2964,12 @@
                 "carrierCode": {
                   "type": "string",
                   "description": "Carrier code",
-                  "title": "Carrier code",
-                  "examples": [
-                    "QG"
-                  ]
+                  "title": "Carrier code"
                 },
                 "flightNumber": {
                   "type": "string",
                   "description": "Flight number",
-                  "title": "Flight number",
-                  "examples": [
-                    "194"
-                  ]
+                  "title": "Flight number"
                 },
                 "opSuffix": {
                   "type": "string"
@@ -3401,18 +2987,12 @@
                 "carrierCode": {
                   "type": "string",
                   "description": "Carrier code",
-                  "title": "Carrier code",
-                  "examples": [
-                    "QG"
-                  ]
+                  "title": "Carrier code"
                 },
                 "flightNumber": {
                   "type": "string",
                   "description": "Flight number",
-                  "title": "Flight number",
-                  "examples": [
-                    "194"
-                  ]
+                  "title": "Flight number"
                 },
                 "opSuffix": {
                   "type": "string"
@@ -3423,34 +3003,22 @@
             "originCode": {
               "type": "string",
               "description": "Station code",
-              "title": "Station code",
-              "examples": [
-                "HLP"
-              ]
+              "title": "Station code"
             },
             "destinationCode": {
               "type": "string",
               "description": "Station code",
-              "title": "Station code",
-              "examples": [
-                "HLP"
-              ]
+              "title": "Station code"
             },
             "departureDateTime": {
               "type": "string",
               "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-              "title": "Date and time YYYY-MM-DDTHH:mm",
-              "examples": [
-                "2025-02-19T16:55"
-              ]
+              "title": "Date and time YYYY-MM-DDTHH:mm"
             },
             "arrivalDateTime": {
               "type": "string",
               "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-              "title": "Date and time YYYY-MM-DDTHH:mm",
-              "examples": [
-                "2025-02-19T16:55"
-              ]
+              "title": "Date and time YYYY-MM-DDTHH:mm"
             },
             "arrivalTz": {
               "type": "number"
@@ -3501,13 +3069,6 @@
         "additionalProperties": false,
         "description": "Passenger count for each passenger type",
         "title": "Pax count",
-        "examples": [
-          {
-            "ADT": 1,
-            "CHD": 0,
-            "INF": 0
-          }
-        ],
         "default": {
           "ADT": 1,
           "CHD": 0,
@@ -3539,36 +3100,24 @@
             "journeyID": {
               "type": "string",
               "description": "Journey ID",
-              "title": "Journey ID",
-              "examples": [
-                "QG194~HLP~DPS"
-              ]
+              "title": "Journey ID"
             },
             "origin": {
               "type": "string",
               "description": "Station code",
-              "title": "Station code",
-              "examples": [
-                "HLP"
-              ]
+              "title": "Station code"
             },
             "destination": {
               "type": "string",
               "description": "Station code",
-              "title": "Station code",
-              "examples": [
-                "HLP"
-              ]
+              "title": "Station code"
             },
             "segmentIDS": {
               "type": "array",
               "items": {
                 "type": "string",
                 "description": "Segment ID",
-                "title": "Segment ID",
-                "examples": [
-                  "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                ]
+                "title": "Segment ID"
               }
             }
           },
@@ -3594,10 +3143,7 @@
             "segmentID": {
               "type": "string",
               "description": "Segment ID",
-              "title": "Segment ID",
-              "examples": [
-                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-              ]
+              "title": "Segment ID"
             },
             "origin": {
               "type": "object",
@@ -3609,10 +3155,7 @@
                 "code": {
                   "type": "string",
                   "description": "Station code",
-                  "title": "Station code",
-                  "examples": [
-                    "HLP"
-                  ]
+                  "title": "Station code"
                 },
                 "tz": {
                   "anyOf": [
@@ -3640,10 +3183,7 @@
                 "code": {
                   "type": "string",
                   "description": "Station code",
-                  "title": "Station code",
-                  "examples": [
-                    "HLP"
-                  ]
+                  "title": "Station code"
                 },
                 "tz": {
                   "anyOf": [
@@ -3664,18 +3204,12 @@
             "arrivalDateTime": {
               "type": "string",
               "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-              "title": "Date and time YYYY-MM-DDTHH:mm",
-              "examples": [
-                "2025-02-19T16:55"
-              ]
+              "title": "Date and time YYYY-MM-DDTHH:mm"
             },
             "departureDateTime": {
               "type": "string",
               "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-              "title": "Date and time YYYY-MM-DDTHH:mm",
-              "examples": [
-                "2025-02-19T16:55"
-              ]
+              "title": "Date and time YYYY-MM-DDTHH:mm"
             },
             "stopOver": {
               "type": "number"
@@ -3690,18 +3224,12 @@
                 "carrierCode": {
                   "type": "string",
                   "description": "Carrier code",
-                  "title": "Carrier code",
-                  "examples": [
-                    "QG"
-                  ]
+                  "title": "Carrier code"
                 },
                 "flightNumber": {
                   "type": "string",
                   "description": "Flight number",
-                  "title": "Flight number",
-                  "examples": [
-                    "194"
-                  ]
+                  "title": "Flight number"
                 },
                 "opSuffix": {
                   "type": "string"
@@ -3719,18 +3247,12 @@
                 "carrierCode": {
                   "type": "string",
                   "description": "Carrier code",
-                  "title": "Carrier code",
-                  "examples": [
-                    "QG"
-                  ]
+                  "title": "Carrier code"
                 },
                 "flightNumber": {
                   "type": "string",
                   "description": "Flight number",
-                  "title": "Flight number",
-                  "examples": [
-                    "194"
-                  ]
+                  "title": "Flight number"
                 },
                 "opSuffix": {
                   "type": "string"
@@ -3743,10 +3265,7 @@
               "items": {
                 "type": "string",
                 "description": "Leg ID",
-                "title": "Leg ID",
-                "examples": [
-                  "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                ]
+                "title": "Leg ID"
               }
             }
           },
@@ -3768,10 +3287,7 @@
             "legID": {
               "type": "string",
               "description": "Leg ID",
-              "title": "Leg ID",
-              "examples": [
-                "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-              ]
+              "title": "Leg ID"
             },
             "origin": {
               "type": "object",
@@ -3783,10 +3299,7 @@
                 "code": {
                   "type": "string",
                   "description": "Station code",
-                  "title": "Station code",
-                  "examples": [
-                    "HLP"
-                  ]
+                  "title": "Station code"
                 },
                 "tz": {
                   "anyOf": [
@@ -3814,10 +3327,7 @@
                 "code": {
                   "type": "string",
                   "description": "Station code",
-                  "title": "Station code",
-                  "examples": [
-                    "HLP"
-                  ]
+                  "title": "Station code"
                 },
                 "tz": {
                   "anyOf": [
@@ -3838,18 +3348,12 @@
             "departureDateTime": {
               "type": "string",
               "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-              "title": "Date and time YYYY-MM-DDTHH:mm",
-              "examples": [
-                "2025-02-19T16:55"
-              ]
+              "title": "Date and time YYYY-MM-DDTHH:mm"
             },
             "arrivalDateTime": {
               "type": "string",
               "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-              "title": "Date and time YYYY-MM-DDTHH:mm",
-              "examples": [
-                "2025-02-19T16:55"
-              ]
+              "title": "Date and time YYYY-MM-DDTHH:mm"
             }
           },
           "additionalProperties": false
@@ -3879,10 +3383,7 @@
         "items": {
           "type": "string",
           "description": "Journey ID",
-          "title": "Journey ID",
-          "examples": [
-            "QG194~HLP~DPS"
-          ]
+          "title": "Journey ID"
         }
       },
       "segmentIDS": {
@@ -3890,10 +3391,7 @@
         "items": {
           "type": "string",
           "description": "Segment ID",
-          "title": "Segment ID",
-          "examples": [
-            "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-          ]
+          "title": "Segment ID"
         }
       },
       "currencyCode": {
@@ -3918,10 +3416,7 @@
             "journeyID": {
               "type": "string",
               "description": "Journey ID",
-              "title": "Journey ID",
-              "examples": [
-                "QG194~HLP~DPS"
-              ]
+              "title": "Journey ID"
             },
             "segmentFares": {
               "type": "array",
@@ -3935,10 +3430,7 @@
                   "segmentID": {
                     "type": "string",
                     "description": "Segment ID",
-                    "title": "Segment ID",
-                    "examples": [
-                      "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                    ]
+                    "title": "Segment ID"
                   },
                   "fares": {
                     "type": "array",
@@ -4002,10 +3494,7 @@
                               "agentCode": {
                                 "type": "string",
                                 "description": "Agent code",
-                                "title": "Agent code",
-                                "examples": [
-                                  "124959"
-                                ]
+                                "title": "Agent code"
                               },
                               "supplairCode": {
                                 "type": "string"
@@ -4097,10 +3586,7 @@
           "items": {
             "type": "string",
             "description": "Journey ID",
-            "title": "Journey ID",
-            "examples": [
-              "QG194~HLP~DPS"
-            ]
+            "title": "Journey ID"
           }
         },
         "segmentIDS": {
@@ -4108,10 +3594,7 @@
           "items": {
             "type": "string",
             "description": "Segment ID",
-            "title": "Segment ID",
-            "examples": [
-              "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-            ]
+            "title": "Segment ID"
           }
         },
         "currencyCode": {
@@ -4136,10 +3619,7 @@
               "journeyID": {
                 "type": "string",
                 "description": "Journey ID",
-                "title": "Journey ID",
-                "examples": [
-                  "QG194~HLP~DPS"
-                ]
+                "title": "Journey ID"
               },
               "segmentFares": {
                 "type": "array",
@@ -4153,10 +3633,7 @@
                     "segmentID": {
                       "type": "string",
                       "description": "Segment ID",
-                      "title": "Segment ID",
-                      "examples": [
-                        "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-                      ]
+                      "title": "Segment ID"
                     },
                     "fares": {
                       "type": "array",
@@ -4220,10 +3697,7 @@
                                 "agentCode": {
                                   "type": "string",
                                   "description": "Agent code",
-                                  "title": "Agent code",
-                                  "examples": [
-                                    "124959"
-                                  ]
+                                  "title": "Agent code"
                                 },
                                 "supplairCode": {
                                   "type": "string"
@@ -4306,58 +3780,33 @@
         "origin": {
           "type": "string",
           "description": "Station code",
-          "title": "Station code",
-          "examples": [
-            "HLP"
-          ]
+          "title": "Station code"
         },
         "destination": {
           "type": "string",
           "description": "Station code",
-          "title": "Station code",
-          "examples": [
-            "HLP"
-          ]
+          "title": "Station code"
         },
         "departureDate": {
           "type": "string",
           "description": "Date in YYYY-MM-DD format",
-          "title": "Date YYYY-MM-DD",
-          "examples": [
-            "2025-02-19"
-          ]
+          "title": "Date YYYY-MM-DD"
         },
         "returnDate": {
           "type": "string",
           "description": "Date in YYYY-MM-DD format",
-          "title": "Date YYYY-MM-DD",
-          "examples": [
-            "2025-02-19"
-          ]
+          "title": "Date YYYY-MM-DD"
         }
       },
       "additionalProperties": false
     },
     "description": "List of schedules",
-    "title": "Schedules",
-    "examples": [
-      [
-        {
-          "origin": "HLP",
-          "destination": "DPS",
-          "departureDate": "2024-06-27",
-          "returnDate": "2024-06-28"
-        }
-      ]
-    ]
+    "title": "Schedules"
   },
   "SearchKey": {
     "type": "string",
     "description": "Search key",
-    "title": "Search key",
-    "examples": [
-      "2025-02-19+3+2+ID+2.2+0.0+0.0+-+MGH.D.DESTINATION.ID-ESR+true"
-    ]
+    "title": "Search key"
   },
   "Segment": {
     "type": "object",
@@ -4376,10 +3825,7 @@
       "segmentID": {
         "type": "string",
         "description": "Segment ID",
-        "title": "Segment ID",
-        "examples": [
-          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-        ]
+        "title": "Segment ID"
       },
       "origin": {
         "type": "object",
@@ -4391,10 +3837,7 @@
           "code": {
             "type": "string",
             "description": "Station code",
-            "title": "Station code",
-            "examples": [
-              "HLP"
-            ]
+            "title": "Station code"
           },
           "tz": {
             "anyOf": [
@@ -4422,10 +3865,7 @@
           "code": {
             "type": "string",
             "description": "Station code",
-            "title": "Station code",
-            "examples": [
-              "HLP"
-            ]
+            "title": "Station code"
           },
           "tz": {
             "anyOf": [
@@ -4446,18 +3886,12 @@
       "arrivalDateTime": {
         "type": "string",
         "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-        "title": "Date and time YYYY-MM-DDTHH:mm",
-        "examples": [
-          "2025-02-19T16:55"
-        ]
+        "title": "Date and time YYYY-MM-DDTHH:mm"
       },
       "departureDateTime": {
         "type": "string",
         "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-        "title": "Date and time YYYY-MM-DDTHH:mm",
-        "examples": [
-          "2025-02-19T16:55"
-        ]
+        "title": "Date and time YYYY-MM-DDTHH:mm"
       },
       "stopOver": {
         "type": "number"
@@ -4472,18 +3906,12 @@
           "carrierCode": {
             "type": "string",
             "description": "Carrier code",
-            "title": "Carrier code",
-            "examples": [
-              "QG"
-            ]
+            "title": "Carrier code"
           },
           "flightNumber": {
             "type": "string",
             "description": "Flight number",
-            "title": "Flight number",
-            "examples": [
-              "194"
-            ]
+            "title": "Flight number"
           },
           "opSuffix": {
             "type": "string"
@@ -4501,18 +3929,12 @@
           "carrierCode": {
             "type": "string",
             "description": "Carrier code",
-            "title": "Carrier code",
-            "examples": [
-              "QG"
-            ]
+            "title": "Carrier code"
           },
           "flightNumber": {
             "type": "string",
             "description": "Flight number",
-            "title": "Flight number",
-            "examples": [
-              "194"
-            ]
+            "title": "Flight number"
           },
           "opSuffix": {
             "type": "string"
@@ -4525,10 +3947,7 @@
         "items": {
           "type": "string",
           "description": "Leg ID",
-          "title": "Leg ID",
-          "examples": [
-            "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-          ]
+          "title": "Leg ID"
         }
       }
     },
@@ -4544,10 +3963,7 @@
       "segmentID": {
         "type": "string",
         "description": "Segment ID",
-        "title": "Segment ID",
-        "examples": [
-          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-        ]
+        "title": "Segment ID"
       },
       "fares": {
         "type": "array",
@@ -4611,10 +4027,7 @@
                   "agentCode": {
                     "type": "string",
                     "description": "Agent code",
-                    "title": "Agent code",
-                    "examples": [
-                      "124959"
-                    ]
+                    "title": "Agent code"
                   },
                   "supplairCode": {
                     "type": "string"
@@ -4678,10 +4091,7 @@
   "SegmentID": {
     "type": "string",
     "description": "Segment ID",
-    "title": "Segment ID",
-    "examples": [
-      "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-    ]
+    "title": "Segment ID"
   },
   "SegmentResult": {
     "type": "object",
@@ -4698,10 +4108,7 @@
       "segmentID": {
         "type": "string",
         "description": "Segment ID",
-        "title": "Segment ID",
-        "examples": [
-          "QG~194~~HLP~DPS~2024-06-27T16:55~2024-06-27T19:45"
-        ]
+        "title": "Segment ID"
       },
       "operatingCarrierInfo": {
         "type": "object",
@@ -4713,18 +4120,12 @@
           "carrierCode": {
             "type": "string",
             "description": "Carrier code",
-            "title": "Carrier code",
-            "examples": [
-              "QG"
-            ]
+            "title": "Carrier code"
           },
           "flightNumber": {
             "type": "string",
             "description": "Flight number",
-            "title": "Flight number",
-            "examples": [
-              "194"
-            ]
+            "title": "Flight number"
           },
           "opSuffix": {
             "type": "string"
@@ -4742,18 +4143,12 @@
           "carrierCode": {
             "type": "string",
             "description": "Carrier code",
-            "title": "Carrier code",
-            "examples": [
-              "QG"
-            ]
+            "title": "Carrier code"
           },
           "flightNumber": {
             "type": "string",
             "description": "Flight number",
-            "title": "Flight number",
-            "examples": [
-              "194"
-            ]
+            "title": "Flight number"
           },
           "opSuffix": {
             "type": "string"
@@ -4764,34 +4159,22 @@
       "originCode": {
         "type": "string",
         "description": "Station code",
-        "title": "Station code",
-        "examples": [
-          "HLP"
-        ]
+        "title": "Station code"
       },
       "destinationCode": {
         "type": "string",
         "description": "Station code",
-        "title": "Station code",
-        "examples": [
-          "HLP"
-        ]
+        "title": "Station code"
       },
       "departureDateTime": {
         "type": "string",
         "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-        "title": "Date and time YYYY-MM-DDTHH:mm",
-        "examples": [
-          "2025-02-19T16:55"
-        ]
+        "title": "Date and time YYYY-MM-DDTHH:mm"
       },
       "arrivalDateTime": {
         "type": "string",
         "description": "Date and time in YYYY-MM-DDTHH:mm at local timezone",
-        "title": "Date and time YYYY-MM-DDTHH:mm",
-        "examples": [
-          "2025-02-19T16:55"
-        ]
+        "title": "Date and time YYYY-MM-DDTHH:mm"
       },
       "arrivalTz": {
         "type": "number"
@@ -4805,10 +4188,7 @@
   "Signature": {
     "type": "string",
     "description": "Api credentials computed signature `md5(username + password + pre-shared-key)`",
-    "title": "Signature",
-    "examples": [
-      "926a161c6419512d711089538c80ac70"
-    ]
+    "title": "Signature"
   },
   "Station": {
     "type": "object",
@@ -4820,10 +4200,7 @@
       "code": {
         "type": "string",
         "description": "Station code",
-        "title": "Station code",
-        "examples": [
-          "HLP"
-        ]
+        "title": "Station code"
       },
       "tz": {
         "anyOf": [
@@ -4844,49 +4221,31 @@
   "StationCode": {
     "type": "string",
     "description": "Station code",
-    "title": "Station code",
-    "examples": [
-      "HLP"
-    ]
+    "title": "Station code"
   },
   "Term": {
     "type": "string",
     "description": "Search term",
-    "title": "Search term",
-    "examples": [
-      "bandung"
-    ]
+    "title": "Search term"
   },
   "TotalAdults": {
     "type": "number",
     "description": "Total adults",
-    "title": "Total adults",
-    "examples": [
-      1
-    ]
+    "title": "Total adults"
   },
   "TotalChilds": {
     "type": "number",
     "description": "Total childs",
-    "title": "Total childs",
-    "examples": [
-      0
-    ]
+    "title": "Total childs"
   },
   "TotalRooms": {
     "type": "number",
     "description": "Total rooms",
-    "title": "Total rooms",
-    "examples": [
-      1
-    ]
+    "title": "Total rooms"
   },
   "UserName": {
     "type": "string",
     "description": "Api credentials username",
-    "title": "Username",
-    "examples": [
-      "api-001"
-    ]
+    "title": "Username"
   }
 }
