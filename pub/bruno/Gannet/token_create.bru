@@ -5,20 +5,26 @@ meta {
 }
 
 post {
-  url: http://localhost:9000/api
+  url: {{JSONRPC_URL}}
   body: json
   auth: none
 }
 
 body:json {
   {
-    "jsonrpc": 2,
+    "jsonrpc": "2.0",
     "method": "token:create",
     "params": {
-      "username": "API-DEMO",
-      "password": "jag6eitaiS",
-      "signature": "f36fb02a861d11a6d77e32cf3f802306"
+      "username": "{{USERNAME}}",
+      "password": "{{PASSWORD}}",
+      "signature": "{{SIGNATURE}}"
     }
   }
+  
+}
+
+script:post-response {
+  let data = res.body;
+  bru.setEnvVar("TOKEN", data.response.token);
   
 }

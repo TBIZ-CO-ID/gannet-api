@@ -1,0 +1,23 @@
+meta {
+  name: hotel_fetch_detail
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{JSONRPC_URL}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": "2.0",
+    "method": "hotel:fetch:detail",
+    "params": {
+      "id": "756b62c71f83799009f4130af63d17c86aef95be58951b9e8b51c728ba32a122"
+    },
+    "token": "{{TOKEN}}",
+    "id": "HL_1740106640361"
+  }
+}

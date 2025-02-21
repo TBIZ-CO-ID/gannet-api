@@ -5,90 +5,63 @@ meta {
 }
 
 post {
-  url: http://localhost:9000/api
+  url: {{JSONRPC_URL}}
   body: json
   auth: none
 }
 
 body:json {
   {
-    "jsonrpc": 2,
+    "jsonrpc": "2.0",
     "method": "flight:book",
     "params": {
       "info": {
         "contactInfo": {
-          "email": "bonkbonk941@gmail.com",
-          "firstName": "Yongki",
+          "email": "reedho@gmail.com",
           "title": "MR",
-          "lastName": "Herwinda",
-          "phoneNumber": "085218811041"
+          "firstName": "Muhammad",
+          "lastName": "Ridho",
+          "phoneNumber": "08569027811"
         },
         "paxs": [
           {
             "paxType": "ADT",
             "paxID": "PAX1",
             "nationality": "ID",
-            "firstName": "Yongki",
             "title": "MR",
-            "dob": "1978-02-01",
-            "lastName": "Herwinda"
-          },
-          {
-            "paxType": "ADT",
-            "paxID": "PAX2",
-            "nationality": "ID",
-            "firstName": "Misbahudin",
-            "title": "MR",
-            "dob": "1976-06-13",
-            "lastName": "Misbahudin"
-          },
-          {
-            "paxType": "ADT",
-            "paxID": "PAX3",
-            "nationality": "ID",
-            "firstName": "Muchtar",
-            "title": "MR",
-            "dob": "1969-08-08",
-            "lastName": "Muchtar"
-          },
-          {
-            "paxType": "ADT",
-            "paxID": "PAX4",
-            "nationality": "ID",
-            "firstName": "Hendrik",
-            "title": "MR",
-            "dob": "1975-09-29",
-            "lastName": "Sutisna"
+            "firstName": "Muhammad",
+            "lastName": "Ridho",
+            "dob": "1978-02-01"
           }
         ]
       },
       "scheduleFareDetail": [
         {
-          "segmentIDS": [
-            "QG~943~~BTH~CGK~2024-06-29T12:35~2024-06-29T14:20"
-          ],
           "journeyIDS": [
-            "QG943~BTH~CGK"
+            "GA426~CGK~DPS"
           ],
-          "agentCode": "124959",
+          "segmentIDS": [
+            "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"
+          ],
+          "agentCode": "TBIZ",
           "journeySegmentFares": [
             {
+              "journeyID": "GA426~CGK~DPS",
               "segmentFares": [
                 {
+                  "fareCode": "Y",
                   "fareGroupCode": "E",
-                  "fareCode": "D",
-                  "fareBasisCode": "D",
-                  "segmentID": "QG~943~~BTH~CGK~2024-06-29T12:35~2024-06-29T14:20"
+                  "fareBasisCode": "Y",
+                  "segmentID": "GA~426~~CGK~DPS~2025-04-01T18:25~2025-04-01T21:25"
                 }
               ],
-              "journeyID": "QG943~BTH~CGK"
+              "isCombinedJourneys": false
             }
-          ],
-          "isCombinedJourneys": false
+          ]
         }
       ]
     },
-    "token": "",
-    "id": "1718957778996-9052"
+    "token": "{{TOKEN}}",
+    "id": "FBK-GA-CGK-DPS-2025-04-01-1740014329213"
   }
 }

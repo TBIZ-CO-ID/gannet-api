@@ -1,0 +1,25 @@
+meta {
+  name: hotel_cancel
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{JSONRPC_URL}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": "2.0",
+    "method": "hotel:cancel",
+    "params": {
+      "agentCode": "TBIZ",
+      "bookingID": "QILIN~MGH~YYS590CY~~AGID0759692502099476",
+      "remark": "Cancelled by reymond Ridho"
+    },
+    "token": "{{TOKEN}}",
+    "id": "HL_1740106640361"
+  }
+}

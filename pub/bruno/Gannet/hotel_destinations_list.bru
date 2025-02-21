@@ -1,7 +1,7 @@
 meta {
-  name: flight_sync
+  name: hotel_destinations_list
   type: http
-  seq: 7
+  seq: 8
 }
 
 post {
@@ -13,11 +13,11 @@ post {
 body:json {
   {
     "jsonrpc": "2.0",
-    "method": "flight:sync",
+    "method": "hotel:destinations:list",
     "params": {
-      "bookingID": "CLN~XCQ7JF~1757600"
+      "term": "malang"
     },
     "token": "{{TOKEN}}",
-    "id": "FSY-QG-HLP-DPS-2024-06-27-1740014329213"
+    "id": "HL_1740106640361"
   }
 }

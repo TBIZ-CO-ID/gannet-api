@@ -1,0 +1,24 @@
+meta {
+  name: hotel_fetch_booking
+  type: http
+  seq: 13
+}
+
+post {
+  url: {{JSONRPC_URL}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": "2.0",
+    "method": "hotel:fetch:booking",
+    "params": {
+      "agentCode": "TBIZ",
+      "bookingID": "QILIN~MGH~YYS590CY~~AGID0759692502099476"
+    },
+    "token": "{{TOKEN}}",
+    "id": "HL_1740106640361"
+  }
+}

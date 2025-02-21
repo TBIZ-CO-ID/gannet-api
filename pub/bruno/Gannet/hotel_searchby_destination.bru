@@ -1,0 +1,29 @@
+meta {
+  name: hotel_searchby_destination
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{JSONRPC_URL}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "jsonrpc": "2.0",
+    "method": "hotel:searchby:destination",
+    "params": {
+      "destinationKey": "b9d3955b3426a53719122b2760a083ccfec042e9c515c883b2d68df2d30573c118240f5b693a225071a73fb5f89d0290",
+      "totalRooms": 1,
+      "totalAdults": 1,
+      "totalChilds": 0,
+      "checkInDate": "2025-04-01",
+      "checkOutDate": "2025-04-02",
+      "childrenAges": []
+    },
+    "token": "{{TOKEN}}",
+    "id": "HL_1740106640361"
+  }
+}

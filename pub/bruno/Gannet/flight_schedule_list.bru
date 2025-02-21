@@ -5,34 +5,34 @@ meta {
 }
 
 post {
-  url: http://localhost:9000/api
+  url: {{JSONRPC_URL}}
   body: json
   auth: none
 }
 
 body:json {
   {
-    "jsonrpc": 2,
+    "jsonrpc": "2.0",
     "method": "flight:schedule:list",
     "params": {
       "carriers": [
-        "QG"
+        "GA"
       ],
       "paxCount": {
+        "ADT": 1,
         "CHD": 0,
-        "INF": 0,
-        "ADT": 4
+        "INF": 0
       },
       "schedules": [
         {
-          "returnDate": null,
-          "origin": "HLP",
-          "departureDate": "2024-06-27",
-          "destination": "DPS"
+          "origin": "CGK",
+          "destination": "DPS",
+          "departureDate": "2025-04-01",
+          "returnDate": null
         }
       ]
     },
-    "token": "",
-    "id": "1718972983403-4406"
+    "token": "{{TOKEN}}",
+    "id": "FSL-GA-CGK-DPS-2025-04-01-1740014329213"
   }
 }
