@@ -106,7 +106,6 @@ This repository includes ready-to-use [Bruno](https://www.usebruno.com/) collect
 2. **Error Handling**
    - Always check `result.status` in responses
    - Implement proper retry mechanisms for transient failures
-   - Monitor `requestCompletionStatus` for partial results
 
 3. **Booking Management**
    - Implement automatic booking synchronization
@@ -176,554 +175,445 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
 #### "token:create"
 
 - Request Parameters
-
-  - `username` (string, required)
-  - `password` (string, required)
-  - `signature` (string, required)
+  - `username` ([`UserName`](#username-string), required) - Api credentials username
+  - `password` ([`Password`](#password-string), required) - Api credentials password
+  - `signature` ([`Signature`](#signature-string), required) - Api credentials computed signature
 
 - Response
-
-  - `result` (RPCResult, required)
+  - `result` ([`RPCResult`](#rpcresult-object), required)
   - `token` (string, required)
-
----
 
 ### Flight
 
 #### "flight:schedule:list"
 
 - Request Parameters
-
-  - `carriers` (Carriers, required)
-  - `paxCount` (PaxCount, required)
-  - `schedules` (Schedules, required)
+  - `carriers` ([`Carriers`](#carriers-string), required) - Array of carrier codes
+  - `paxCount` ([`PaxCount`](#paxcount-object), required) - Passenger counts
+  - `schedules` (Array of [`Schedule`](#schedule-object), required) - Flight schedules
 
 - Response
-
-  - `result` (RPCResult, required)
-  - `info` (ScheduleInfo, required)
-  - `schedules` (ScheduleResults, required)
+  - `result` ([`RPCResult`](#rpcresult-object), required)
+  - `info` ([`ScheduleInfo`](#scheduleinfo-object), required)
+  - `schedules` (Array of [`ScheduleResult`](#scheduleresult-object), required)
 
 #### "flight:schedule:fare"
 
 - Request Parameters
-
-  - `info` (ScheduleFareInfoParams, required)
-  - `scheduleFareDetail` (ScheduleFareDetails, required)
+  - `info` ([`ScheduleFareInfoParams`](#schedulefareinfoparams-object), required)
+  - `scheduleFareDetail` ([`ScheduleFareDetails`](#schedulefaredetails-object), required)
 
 - Response
-
-  - `result` (RPCResult, required)
-  - `info` (ScheduleFareInfo, required)
-  - `scheduleFareDetail` (ScheduleFareDetailResults, required)
+  - `result` ([`RPCResult`](#rpcresult-object), required)
+  - `info` ([`ScheduleFareInfo`](#schedulefareinfo-object), required)
+  - `scheduleFareDetail` (Array of [`ScheduleFareDetailResult`](#schedulefaredetailresult-object), required)
 
 #### "flight:book"
 
 - Request Parameters
-
-  - `info` (FlightBookInfo, required)
-  - `scheduleFareDetail` (ScheduleFareDetails, required)
+  - `info` ([`FlightBookInfo`](#flightbookinfo-object), required)
+  - `scheduleFareDetail` ([`ScheduleFareDetails`](#schedulefaredetails-object), required)
 
 - Response
+  - `result` ([`RPCResult`](#rpcresult-object), required)
+  - `pnrs` (Array of [`BookingPNR`](#bookingpnr-object), required)
 
-  - `booking` (object, required)
-
-#### "flight:sync"
+#### "flight:sync", "flight:cancel", "flight:issue"
 
 - Request Parameters
-
-  - `bookingID` (string, required)
-
-- Response
-
-  - `booking` (object, required)
-
-#### "flight:cancel"
-
-- Request Parameters
-
-  - `bookingID` (string, required)
+  - `bookingID` ([`BookingID`](#bookingid-string), required)
 
 - Response
-
-  - `booking` (object, required)
-
-#### "flight:issue"
-
-- Request Parameters
-
-  - `bookingID` (string, required)
-
-- Response
-
-  - `booking` (object, required)
+  - `result` ([`RPCResult`](#rpcresult-object), required)
+  - `pnrs` (Array of [`BookingPNR`](#bookingpnr-object), required)
 
 ### Hotel
 
 #### "hotel:destinations:list"
 
 - Request Parameters
-
-  - `term` (string, required)
+  - `term` ([`Term`](#term-string), required) - Search term
 
 - Response
-
-  - `result` (RPCResult, required)
-  - `destinations` (Destination[], required)
+  - `result` ([`RPCResult`](#rpcresult-object), required)
+  - `destinations` (Array of Destination, required)
 
 #### "hotel:searchby:destination"
 
 - Request Parameters
-
-  - `destinationKey` (string, required)
+  - `destinationKey` ([`DestinationKey`](#destinationkey-string), required)
   - `totalRooms` (number, required)
   - `totalAdults` (number, required)
   - `totalChilds` (number, required)
-  - `checkInDate` (string, required)
-  - `checkOutDate` (string, required)
-  - `childrenAges` (ChildrenAge[], required)
+  - `checkInDate` ([`DateYMD`](#dateymd-string), required)
+  - `checkOutDate` ([`DateYMD`](#dateymd-string), required)
+  - `childrenAges` ([`ChildrenAges`](#childrenages-number), required)
 
 - Response
-
-  - `result` (RPCResult, required)
-  - `hotelLists` (HotelResult[], required)
+  - `result` ([`RPCResult`](#rpcresult-object), required)
+  - `hotelLists` (Array of HotelResult, required)
 
 #### "hotel:fetch:detail"
 
 - Request Parameters
-
-  - `id` (string, required)
+  - `id` ([`HotelID`](#hotelid-string), required)
 
 - Response
-
-  - `result` (RPCResult, required)
+  - `result` ([`RPCResult`](#rpcresult-object), required)
   - `hotel` (Hotel, required)
 
 #### "hotel:fetch:rooms"
 
 - Request Parameters
-
-  - `id` (string, required)
+  - `id` ([`HotelID`](#hotelid-string), required)
   - `searchKeyData` (string, required)
-  - `agentCodes` (AgentCode[], required)
+  - `agentCodes` (Array of [`AgentCode`](#agentcode-string), required)
 
 - Response
-
-  - `result` (RPCResult, required)
-  - `hotelLists` (HotelResult[], required)
+  - `result` ([`RPCResult`](#rpcresult-object), required)
+  - `hotelLists` (Array of HotelResult, required)
 
 #### "hotel:book"
 
 - Request Parameters
-
-  - `roomSelectedData` (RoomSelected[], required)
-  - `roomGuestData` (RoomGuestData, required)
-  - `clientReference` (ClientReference, required)
-  - `remarkList` (Remark[], required)
+  - `roomSelectedData` (Array of [`RoomSelected`](#roomselected-object), required)
+  - `roomGuestData` ([`RoomGuestData`](#roomguestdata-object), required)
+  - `clientReference` ([`ClientReference`](#clientreference-string), required)
+  - `remarkList` ([`RemarkList`](#remarklist-string), required)
 
 - Response
-
-  - `result` (RPCResult, required)
+  - `result` ([`RPCResult`](#rpcresult-object), required)
   - `booking` (Booking, required)
 
-#### "hotel:fetch:booking"
+#### "hotel:fetch:booking", "hotel:cancel", "hotel:issue"
 
 - Request Parameters
-
-  - `agentCode` (AgentCode, required)
-  - `bookingID` (BookingID, required)
+  - `agentCode` ([`AgentCode`](#agentcode-string), required)
+  - `bookingID` ([`BookingID`](#bookingid-string), required)
+  - `remark` (string, required) - Only for cancel/issue
 
 - Response
-
-  - `result` (RPCResult, required)
+  - `result` ([`RPCResult`](#rpcresult-object), required)
   - `booking` (Booking, required)
-
-#### "hotel:cancel"
-
-- Request Parameters
-
-  - `agentCode` (string, required)
-  - `bookingID` (string, required)
-  - `remark` (string, required)
-
-- Response
-
-  - `result` (RPCResult, required)
-  - `hotelDetailResponse` (Booking, required)
-
-#### "hotel:issue"
-
-- Request Parameters
-
-  - `agentCode` (string, required)
-  - `bookingID` (string, required)
-  - `remark` (string, required)
-
-- Response
-
-  - `result` (RPCResult, required)
-  - `hotelDetailResponse` (Booking, required)
 
 ---
 
 ## Schema Reference
 
-### `AgentCode` (string)
+### Common Types
 
-Simple string type representing an agent code
+#### `DateYMD` (string)
 
-### `AgentCodes` (array)
+Date in YYYY-MM-DD format
 
-- items: `["AG001", "AG002"]` (string array, required)
-
-### `AgentOffers` (object)
-
-- agentCode: `"AG123"` (string, required)
-- supplairCode: `"SUP456"` (string, required)
-- isSupportNKRI: `true` (boolean, optional)
-- offers: `[]` (array, required)
-
-### `BookingCode` (string)
-
-Simple string type representing a booking code
-
-### `BookingFareSummary` (object)
-
-- totalBaseFare: `1000000` (number, required)
-- totalTax: `150000` (number, required)
-- totalFare: `1150000` (number, required)
-- agentIssuedFee: `25000` (number, optional)
-- agentSellingFare: `1175000` (number, optional)
-- agentServiceFee: `50000` (number, optional)
-- agentServiceFeePPN: `5000` (number, optional)
-- NTSA: `1230000` (number, required)
-- totalPrepaidBaggage: `0` (number, required)
-- totalNTA: `1180000` (number, required)
-- wholesalerFee: `30000` (number, required)
-
-### `BookingID` (string)
-
-Simple string type representing a booking ID
-
-### `BookingJourney` (object)
-
-- journeyID: `"J123"` (string, required)
-- originCode: `"CGK"` (string, required)
-- destinationCode: `"DPS"` (string, required)
-- segmentIDS: `["S1", "S2"]` (array, required)
-
-### `ContactInfo` (object)
-
-- title: `"Mr"` (string, required)
-- firstName: `"John"` (string, required)
-- lastName: `"Doe"` (string, required)
-- phoneNumber: `"+62812345678"` (string, required)
-- email: `"john.doe@email.com"` (string, required)
-
-### `DateTimeLocal` (string)
+#### `DateTimeLocal` (string)
 
 Date and time in YYYY-MM-DDTHH:mm format at local timezone
-Example: `"2024-03-20T10:30"`
 
-### `JourneyType` (string)
+#### `DateTimeUTC` (string)
 
-Enum values: `["OW", "RT"]`
+Date and time in YYYY-MM-DDTHH:mm format at UTC timezone
 
-### `PaxCount` (object)
+#### `AgentCode` (string)
 
-- ADT: `1` (number, required, minimum: 1)
-- CHD: `0` (number, required, minimum: 0)
-- INF: `0` (number, required, minimum: 0)
+Agent code identifier
 
-### `Station` (object)
+#### `BookingID` (string)
 
-- code: `"CGK"` (string, required)
-- tz: `7` (number or "?", required)
+Booking identifier
 
-### `Fare` (object)
+#### `BookingCode` (string)
 
-- fareCode: `"ECOBASIC"` (string, required)
-- fareBasisCode: `"YBASIC"` (string, required)
-- fareGroupCode: `"E"` (string, required)
-- seatAvailable: `10` (number, required)
-- baggageFree: `{ weight: "20", unit: "KG" }` (object, required)
-- canBuyAdditionalBaggage: `true` (boolean, required)
-- currencyCode: `"IDR"` (string, required)
-- agentOffersFare: `[]` (array, required)
+Booking code identifier
 
-### `FareDetail` (object)
+#### `BookingStatus` (enum)
 
-- paxType: `"ADT"` (string, required)
-- price: `{ baseFare: 1000000, totalTax: 150000, taxs: [] }` (object, required)
+Values: "BOOKED" | "CANCELLED" | "TICKETED"
 
-### `FareGroupCode` (string)
+### Response Types
 
-Enum values: `["E", "PE", "B", "F", "PF"]`
+#### `RPCResult` (object)
 
-### `FareSSR` (object)
+- `result` (object, required)
+  - `time` (ProcessTime, required)
+  - `status` (ResultStatus, required)
+  - `errors` (ResultErrors, optional)
 
-- ssrType: `"BAGGAGE"` (string, required)
-- ssrCode: `"BAG20"` (string, required)
-- ssrText: `"Extra Baggage 20KG"` (string, required)
-- ssrPrice: `200000` (number, required)
-- ssrRoute: `"CGK-DPS"` (string, required)
-- ssrWeight: `"20"` (string, required)
-- ssrUnit: `"KG"` (string, required)
+#### `ProcessTime` (object)
 
-### `Journey` (object)
+- `request` (number, required)
+- `response` (number, required)
+- `process` (number, required)
+- `unit` ("ms", required)
 
-- journeyID: `"J123"` (string, required)
-- origin: `"CGK"` (string, required)
-- destination: `"DPS"` (string, required)
-- segmentIDS: `["S1", "S2"]` (array, required)
+#### `ResultStatus` (enum)
 
-### `Pax` (object)
+Values: "OK" | "ERROR"
 
-- paxType: `"ADT"` (string, required)
-- paxID: `"P1"` (string, required)
-- nationality: `"ID"` (string, required)
-- title: `"Mr"` (string, required)
-- firstName: `"John"` (string, required)
-- lastName: `"Doe"` (string, required)
-- dob: `"1990-01-01"` (string, required)
-- freeCheckinBaggage: `[]` (array, optional)
+#### `ResultErrors` (string[])
 
-### `RoomGuest` (object)
+Array of error messages
 
-- roomNumber: `1` (number, required)
-- type: `"ADT"` (string, required)
-- title: `"Mr"` (string, required)
-- firstName: `"John"` (string, required)
-- lastName: `"Doe"` (string, required)
+### Flight Types
 
-### `RoomHolder` (object)
+#### `PaxCount` (object)
 
-- firstName: `"John"` (string, required)
-- lastName: `"Doe"` (string, required)
+- `ADT` (number, required) - Adult count, min: 1
+- `CHD` (number, required) - Child count, min: 0
+- `INF` (number, required) - Infant count, min: 0
 
-### `RoomSelected` (object)
+#### `Schedule` (object)
 
-- agentCode: `"AG123"` (string, required)
-- hotelID: `"HTL123"` (string, required)
-- roomIDS: `[{ roomNumber: 1, roomPriceKey: "RPK123" }]` (array, required)
+- `origin` (StationCode, required)
+- `destination` (StationCode, required)
+- `departureDate` (DateYMD, required)
+- `returnDate` (DateYMD, optional)
 
-### `Schedule` (object)
+#### `Journey` (object)
 
-- origin: `"CGK"` (string, required)
-- destination: `"DPS"` (string, required)
-- departureDate: `"2024-03-20"` (string, required)
-- returnDate: `"2024-03-25"` (string, optional)
+- `journeyID` (string, required)
+- `origin` (StationCode, required)
+- `destination` (StationCode, required)
+- `segmentIDS` (string[], required)
 
-### `Segment` (object)
+#### `Segment` (object)
 
-- segmentID: `"S123"` (string, required)
-- origin: `{ code: "CGK", tz: 7 }` (object, required)
-- destination: `{ code: "DPS", tz: 8 }` (object, required)
-- arrivalDateTime: `"2024-03-20T12:30"` (string, required)
-- departureDateTime: `"2024-03-20T10:30"` (string, required)
-- stopOver: `0` (number, required)
-- operatingCarrierInfo: `{ carrierCode: "GA", flightNumber: "123" }` (object, required)
-- marketingCarrierInfo: `{ carrierCode: "GA", flightNumber: "123" }` (object, required)
-- legIDS: `["L1"]` (array, required)
+- `segmentID` (string, required)
+- `origin` (Station, required)
+- `destination` (Station, required)
+- `arrivalDateTime` (DateTimeLocal, required)
+- `departureDateTime` (DateTimeLocal, required)
+- `stopOver` (number, required)
+- `operatingCarrierInfo` (CarrierInfo, required)
+- `marketingCarrierInfo` (CarrierInfo, required)
+- `legIDS` (string[], required)
 
-### `ProcessTime` (object)
+#### `Leg` (object)
 
-- request: `100` (number, required)
-- response: `200` (number, required)
-- process: `300` (number, required)
-- unit: `"ms"` (string, required)
+- `legID` (string, required)
+- `origin` (Station, required)
+- `destination` (Station, required)
+- `departureDateTime` (DateTimeLocal, required)
+- `arrivalDateTime` (DateTimeLocal, required)
 
-### `RPCResult` (object)
+#### `ContactInfo` (object)
 
-- result: `{
-    time: { request: 100, response: 200, process: 300, unit: "ms" },
-    status: "OK",
-    errors: []
-  }` (object, required)
+- `title` (string, required)
+- `firstName` (string, required)
+- `lastName` (string, required)
+- `phoneNumber` (string, required)
+- `email` (string, required)
 
-### `ResultStatus` (string)
+#### `Pax` (object)
 
-Enum values: `["OK", "ERROR"]`
+- `paxType` (string, required)
+- `paxID` (string, required)
+- `nationality` (string, required)
+- `title` (string, required)
+- `firstName` (string, required)
+- `lastName` (string, required)
+- `dob` (string, required)
+- `freeCheckinBaggage` (array, optional)
 
-### `UserName` (string)
+### Booking Types
 
-Api credentials username
+#### `BookingPNR` (object)
 
-### `Password` (string)
+- `supplairCode` (string, required)
+- `agentCode` (AgentCode, required)
+- `info` (object, required)
+- `bookingSummary` (BookingFareSummary, required)
+- `bookingTimeLimit` (DateTimeUTC, required)
+- `bookingDateTime` (DateTimeUTC, required)
+- `scheduleFareDetail` (array, required)
+- `bookingID` (BookingID, required)
+- `bookingStatus` (BookingStatus, required)
+- `bookingCode` (BookingCode, required)
 
-Api credentials password
+#### `BookingFareSummary` (object)
 
-### `Signature` (string)
+- `totalBaseFare` (number, required)
+- `totalTax` (number, required)
+- `totalFare` (number, required)
+- `agentIssuedFee` (number, optional)
+- `agentSellingFare` (number, optional)
+- `agentServiceFee` (number, optional)
+- `agentServiceFeePPN` (number, optional)
+- `NTSA` (number, required)
+- `totalPrepaidBaggage` (number, required)
+- `totalNTA` (number, required)
+- `wholesalerFee` (number, required)
 
-Api credentials computed signature `md5(username + password + pre-shared-key)`
+### Fare Types
 
-### `ScheduleFareDetail` (object)
+#### `Fare` (object)
 
-- journeyIDS: `["J123", "J124"]` (array, required)
-- segmentIDS: `["S123", "S124"]` (array, required)
-- agentCode: `"AG123"` (string, required)
-- journeySegmentFares: `[]` (array, required)
-- isCombinedJourneys: `false` (boolean, required)
+- `fareCode` (string, required)
+- `fareBasisCode` (string, required)
+- `fareGroupCode` (FareGroupCode, required)
+- `seatAvailable` (number, required)
+- `baggageFree` (object, required)
+  - `weight` (string, required)
+  - `unit` (string, required)
+- `canBuyAdditionalBaggage` (boolean, required)
+- `currencyCode` (string, required)
+- `agentOffersFare` (array, required)
 
-### `ScheduleFareDetailResult` (object)
+#### `FareGroupCode` (enum)
 
-- journeyIDS: `["J123", "J124"]` (array, required)
-- segmentIDS: `["S123", "S124"]` (array, required)
-- agentCode: `"AG123"` (string, required)
-- supplairCode: `"SUP123"` (string, required)
-- fareDetails: `[]` (array, required)
-- fareSummary: `{}` (object, required)
-- segmentSSRS: `[]` (array, optional)
+Values: "E" | "PE" | "B" | "F" | "PF"
 
-### `ScheduleFareInfo` (object)
+#### `FareSSR` (object)
 
-- totalPaxs: `{ ADT: 1, CHD: 0, INF: 0 }` (object, required)
-- segments: `[]` (array, required)
+- `ssrType` (string, required)
+- `ssrCode` (string, required)
+- `ssrText` (string, required)
+- `ssrPrice` (number, required)
+- `ssrRoute` (string, required)
+- `ssrWeight` (string, required)
+- `ssrUnit` (string, required)
 
-### `ScheduleFareInfoParams` (object)
+### Carrier Types
 
-- totalPaxs: `{ ADT: 1, CHD: 0, INF: 0 }` (object, required)
+#### `Carrier` (string)
 
-### `ScheduleInfo` (object)
+Carrier code (e.g., "QG", "GA")
 
-- journeys: `[]` (array, required)
-- segments: `[]` (array, required)
-- legs: `[]` (array, required)
+#### `CarrierInfo` (object)
 
-### `ScheduleResult` (object)
+- `carrierCode` (CarrierCode, required)
+- `flightNumber` (string, required)
+- `opSuffix` (string, optional)
 
-- journeyType: `"OW"` (string, required)
-- journeyIDS: `["J123"]` (array, required)
-- segmentIDS: `["S123"]` (array, required)
-- currencyCode: `"IDR"` (string, optional)
-- journeySegmentFares: `[]` (array, required)
+#### `Carriers` (string[])
 
-### `SearchKey` (string)
+Array of carrier codes
 
-Search key identifier
+### Station Types
 
-### `SegmentFare` (object)
+#### `Station` (object)
 
-- segmentID: `"S123"` (string, required)
-- fares: `[]` (array, required)
+- `code` (StationCode, required)
+- `tz` (number | "?", required)
 
-### `SegmentID` (string)
-
-Segment ID identifier
-
-### `SegmentResult` (object)
-
-- segmentID: `"S123"` (string, required)
-- operatingCarrierInfo: `{ carrierCode: "GA", flightNumber: "123" }` (object, required)
-- marketingCarrierInfo: `{ carrierCode: "GA", flightNumber: "123" }` (object, required)
-- originCode: `"CGK"` (string, required)
-- destinationCode: `"DPS"` (string, required)
-- departureDateTime: `"2024-03-20T10:30"` (string, required)
-- arrivalDateTime: `"2024-03-20T12:30"` (string, required)
-- arrivalTz: `7` (number, optional)
-- departureTz: `7` (number, optional)
-
-### `StationCode` (string)
+#### `StationCode` (string)
 
 Station code identifier
 
-### `Term` (string)
+### Hotel Types
 
-Search term
+#### `RoomSelected` (object)
 
-### `TotalAdults` (number)
+- `agentCode` (AgentCode, required)
+- `hotelID` (HotelID, required)
+- `roomIDS` (array, required)
+  - `roomNumber` (number, required)
+  - `roomPriceKey` (string, required)
 
-Total number of adults
+#### `RoomHolder` (object)
 
-### `TotalChilds` (number)
+- `firstName` (string, required)
+- `lastName` (string, required)
 
-Total number of children
+#### `RoomGuest` (object)
 
-### `TotalRooms` (number)
+- `roomNumber` (number, required)
+- `type` ("ADT" | "CHD", required)
+- `title` (string, required)
+- `firstName` (string, required)
+- `lastName` (string, required)
 
-Total number of rooms
-
-### `Leg` (object)
-
-- legID: `"L123"` (string, required)
-- origin: `{ code: "CGK", tz: 7 }` (object, required)
-- destination: `{ code: "DPS", tz: 8 }` (object, required)
-- departureDateTime: `"2024-03-20T10:30"` (string, required)
-- arrivalDateTime: `"2024-03-20T12:30"` (string, required)
-
-### `LegID` (string)
-
-Leg ID identifier
-
-### `BookingPNR` (object)
-
-- supplairCode: `"SUP123"` (string, required)
-- agentCode: `"AG123"` (string, required)
-- info: `{}` (object, required)
-- bookingSummary: `{}` (object, required)
-- bookingTimeLimit: `"2024-03-20T23:59"` (string, required)
-- bookingDateTime: `"2024-03-20T10:30"` (string, required)
-- scheduleFareDetail: `[]` (array, required)
-- bookingID: `"B123"` (string, required)
-- bookingStatus: `"BOOKED"` (string, required)
-- bookingCode: `"BC123"` (string, required)
-
-### `BookingStatus` (string)
-
-Enum values: `["BOOKED", "CANCELLED", "TICKETED"]`
-
-### `Carrier` (string)
-
-Carrier code (e.g., `"QG"`, `"GA"`)
-
-### `CarrierCode` (string)
-
-Carrier code identifier
-
-### `CarrierInfo` (object)
-
-- carrierCode: `"GA"` (string, required)
-- flightNumber: `"123"` (string, required)
-- opSuffix: `"A"` (string, optional)
-
-### `Carriers` (array)
-
-- items: `["GA", "QG"]` (string array, required)
-
-### `ChildrenAges` (array)
-
-- items: `[5, 8, 10]` (number array)
-
-### `ClientReference` (string)
-
-Client reference identifier
-
-### `DateTimeUTC` (string)
-
-Date and time in YYYY-MM-DDTHH:mm format at UTC timezone
-Example: `"2024-03-20T10:30"`
-
-### `DateYMD` (string)
-
-Date in YYYY-MM-DD format
-Example: `"2024-03-20"`
-
-### `DestinationKey` (string)
-
-Destination key identifier
-
-### `HotelID` (string)
+#### `HotelID` (string)
 
 Hotel ID identifier
 
-### `Remark` (string)
+### Other Types
 
-Remark text
+#### `ClientReference` (string)
 
-### `RemarkList` (array)
+Client reference identifier
 
-- items: `["Remark1", "Remark2"]` (string array, required)
+#### `ChildrenAges` (number[])
 
-### `ResultErrors` (array)
+Array of children ages
 
-- items: `["Error1", "Error2"]` (string array, required)
+#### `RemarkList` (string[])
+
+Array of remarks
+
+#### `Term` (string)
+
+Search term
+
+#### `DestinationKey` (string)
+
+Destination key identifier
+
+### Auth Types
+
+#### `UserName` (string)
+
+Api credentials username
+
+#### `Password` (string)
+
+Api credentials password
+
+#### `Signature` (string)
+
+Api credentials computed signature `md5(username + password + pre-shared-key)`
+
+### Flight Types
+
+#### `ScheduleInfo` (object)
+
+- `journeys` (Array of Journey, required)
+- `segments` (Array of Segment, required)
+- `legs` (Array of Leg, required)
+
+#### `ScheduleResult` (object)
+
+- `journeyType` (JourneyType, required)
+- `journeyIDS` (Array of JourneyID, required)
+- `segmentIDS` (Array of SegmentID, required)
+- `currencyCode` (string, optional)
+- `journeySegmentFares` (Array of JourneySegmentFare, required)
+
+#### `ScheduleFareInfoParams` (object)
+
+- `totalPaxs` (PaxCount, required)
+
+#### `ScheduleFareInfo` (object)
+
+- `totalPaxs` (PaxCount, required)
+- `segments` (Array of SegmentResult, required)
+
+#### `ScheduleFareDetails` (object)
+
+- `journeyIDS` (Array of JourneyID, required)
+- `segmentIDS` (Array of SegmentID, required)
+- `agentCode` (AgentCode, required)
+- `journeySegmentFares` (Array of JourneySegmentFare, required)
+- `isCombinedJourneys` (boolean, required)
+
+#### `ScheduleFareDetailResult` (object)
+
+- `journeyIDS` (Array of JourneyID, required)
+- `segmentIDS` (Array of SegmentID, required)
+- `agentCode` (AgentCode, required)
+- `supplairCode` (string, required)
+- `fareDetails` (Array of FareDetail, required)
+- `fareSummary` (FareSummary, required)
+- `segmentSSRS` (Array of FareSegmentSSR, optional)
+
+#### `FlightBookInfo` (object)
+
+- `contactInfo` (ContactInfo, required)
+- `paxs` (Array of Pax, required)
+
+### Hotel Types
+
+#### `RoomGuestData` (object)
+
+- `roomHolder` (RoomHolder, required)
+- `roomGuestList` (Array of RoomGuest, required)
