@@ -1,10 +1,141 @@
 # Gannet API Documentation
 
-This is documentation repository for the Gannet API.
+Welcome to the official documentation for the Gannet API - a simple solution for booking flight, hotel, and more.
 
-Gannet API follow [JSON-RPC](https://www.jsonrpc.org/) specification. You can [browse the api here](https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/TBIZ-CO-ID/gannet-api/refs/heads/main/pub/openrpc.json) to explore the available methods and its parameters.
+## 📚 Overview
 
-This repository contains postman like [collection folder](./pub/bruno) that you can open with [Bruno](https://www.usebruno.com/).
+Gannet API implements the [JSON-RPC 2.0](https://www.jsonrpc.org/) specification, providing a robust and standardized way to handle travel-related operations. The API supports:
+
+- 🛫 Flight bookings, scheduling, and management
+- 🏨 Hotel search, booking, and reservation management
+- 🔐 Secure authentication and token management
+
+## 🚀 Quick Start
+
+### Interactive API Explorer
+
+Try out the API methods directly in your browser using our [Interactive API Playground](https://playground.open-rpc.org/?schemaUrl=https://raw.githubusercontent.com/TBIZ-CO-ID/gannet-api/refs/heads/main/pub/openrpc.json).
+
+### Development Tools
+
+This repository includes ready-to-use [Bruno](https://www.usebruno.com/) collections in the [./pub/bruno](./pub/bruno) directory. Bruno provides a lightweight, fast, and modern alternative to Postman for API testing and exploration.
+
+## 📖 API Methods Reference
+
+### 🔑 Authentication
+
+| Method         | Description                   | Example                                            |
+| -------------- | ----------------------------- | -------------------------------------------------- |
+| `token:create` | Generate authentication token | [View Example](./pub/example/00_create_token.json) |
+
+### ✈️ Flight Operations
+
+| Method                 | Description                | Example                                                    |
+| ---------------------- | -------------------------- | ---------------------------------------------------------- |
+| `flight:schedule:list` | List available flights     | [View Example](./pub/example/01_flight_schedule_list.json) |
+| `flight:schedule:fare` | Get flight pricing         | [View Example](./pub/example/02_flight_schedule_fare.json) |
+| `flight:book`          | Create flight booking      | [View Example](./pub/example/03_flight_book.json)          |
+| `flight:sync`          | Synchronize booking status | [View Example](./pub/example/04_flight_sync.json)          |
+| `flight:cancel`        | Cancel flight booking      | [View Example](./pub/example/05_flight_cancel.json)        |
+| `flight:issue`         | Issue flight tickets       | [View Example](./pub/example/05_flight_issue.json)         |
+
+### 🏨 Hotel Operations
+
+| Method                       | Description             | Example                                                          |
+| ---------------------------- | ----------------------- | ---------------------------------------------------------------- |
+| `hotel:destinations:list`    | Search destinations     | [View Example](./pub/example/11_hotel_destinations_list.json)    |
+| `hotel:searchby:destination` | Find hotels by location | [View Example](./pub/example/12_hotel_searchby_destination.json) |
+| `hotel:fetch:detail`         | Get hotel details       | [View Example](./pub/example/13_hotel_fetch_detail.json)         |
+| `hotel:fetch:rooms`          | Get available rooms     | [View Example](./pub/example/13_hotel_fetch_rooms.json)          |
+| `hotel:book`                 | Create hotel booking    | [View Example](./pub/example/14_hotel_book.json)                 |
+| `hotel:fetch:booking`        | Get booking details     | [View Example](./pub/example/15_hotel_fetch_booking.json)        |
+| `hotel:cancel`               | Cancel hotel booking    | [View Example](./pub/example/15_hotel_cancel.json)               |
+| `hotel:issue`                | Issue hotel voucher     | [View Example](./pub/example/15_hotel_issue.json)                |
+
+## 🔄 Workflow Guides
+
+### Flight Booking Workflow
+
+1. **Search Phase**
+   - Search flight schedules using `flight:schedule:list`
+   - Verify pricing with `flight:schedule:fare`
+
+2. **Booking Phase**
+   - Create booking using `flight:book`
+   - Monitor booking status with `flight:sync`
+
+3. **Completion Phase**
+   Either:
+   - Issue tickets using `flight:issue`
+   - Or cancel booking using `flight:cancel`
+
+[View Complete Flight Booking Example](./pub/example/FLIGHT_EXAMPLE_1.jsonc)
+
+### Hotel Booking Workflow
+
+1. **Search Phase**
+   - Find destinations using `hotel:destinations:list`
+   - Search hotels using `hotel:searchby:destination`
+   - Get detailed information with `hotel:fetch:detail`
+   - Check room availability using `hotel:fetch:rooms`
+
+2. **Room Selection**
+   Understanding `roomCombinationType`:
+   - `FixedRoomCombination`: Must select specific room combinations
+   - `FreeRoomCombination`: Flexible room selection
+   - `IdenticalRoomCombination`: All rooms must be same type
+
+3. **Booking Phase**
+   - Create booking using `hotel:book`
+   - Monitor status with `hotel:fetch:booking`
+
+4. **Completion Phase**
+   Either:
+   - Issue voucher using `hotel:issue`
+   - Or cancel booking using `hotel:cancel`
+
+[View Complete Hotel Booking Example](./pub/example/HOTEL_EXAMPLE_1.jsonc)
+
+## 💡 Integration Best Practices
+
+1. **Performance Optimization**
+   - Enable HTTP compression for all requests
+   - Consider implementing response caching for destination lists
+   - Use separate requests per supplier for faster hotel searches
+
+2. **Error Handling**
+   - Always check `result.status` in responses
+   - Implement proper retry mechanisms for transient failures
+   - Monitor `requestCompletionStatus` for partial results
+
+3. **Booking Management**
+   - Implement automatic booking synchronization
+   - Set up monitoring for booking deadlines
+   - Handle cancellation deadlines proactively
+
+## 🔒 Security Considerations
+
+1. **Token Management**
+   - Store tokens securely
+   - Implement token refresh mechanism
+   - Never expose tokens in client-side code
+
+2. **Request Signing**
+   - Always include proper signatures
+   - Use secure random generators for nonces
+   - Implement timestamp validation
+
+## 🆘 Support
+
+For technical support or questions:
+
+- Check our example implementations
+- Review the [full API schema](./pub/schemas.json)
+- Contact our support team (contact details in your service agreement)
+
+---
+
+For detailed schema definitions and data types, refer to the [Schema Reference](#schema-reference) section below.
 
 ## Request and response examples:
 
