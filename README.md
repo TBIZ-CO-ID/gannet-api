@@ -333,6 +333,10 @@ Date and time in YYYY-MM-DDTHH:mm format at UTC timezone
 
 Agent code identifier
 
+#### `AgentCodes` (string[])
+
+Array of agent codes
+
 #### `BookingID` (string)
 
 Booking identifier
@@ -344,6 +348,18 @@ Booking code identifier
 #### `BookingStatus` (enum)
 
 Values: "BOOKED" | "CANCELLED" | "TICKETED"
+
+#### `SupplairCode` (string)
+
+Supplier airline code identifier
+
+#### `SupplierCode` (string)
+
+Supplier code identifier (e.g., "MGH")
+
+#### `VendorCode` (string)
+
+Vendor code identifier (e.g., "QILIN")
 
 ### Response Types
 
@@ -369,7 +385,31 @@ Values: "OK" | "ERROR"
 
 Array of error messages
 
+#### `SearchKeyData` (string)
+
+Encrypted search key data used for hotel room searches
+
 ### Flight Types
+
+#### `JourneyType` (enum)
+
+Values: "OW" (One Way) | "RT" (Round Trip)
+
+#### `JourneyID` (string)
+
+Journey identifier (e.g., "QG194~HLP~DPS")
+
+#### `SegmentID` (string)
+
+Segment identifier (e.g., "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55")
+
+#### `LegID` (string)
+
+Leg identifier (e.g., "HLP~DPS~2025-04-01T17:05~2025-04-01T19:55")
+
+#### `PaxType` (enum)
+
+Passenger type. Values: "ADT" (Adult) | "CHD" (Child) | "INF" (Infant)
 
 #### `PaxCount` (object)
 
@@ -393,7 +433,7 @@ Array of error messages
 
 #### `Segment` (object)
 
-- `segmentID` (string, required)
+- `segmentID` (SegmentID, required)
 - `origin` (Station, required)
 - `destination` (Station, required)
 - `arrivalDateTime` (DateTimeLocal, required)
@@ -401,11 +441,25 @@ Array of error messages
 - `stopOver` (number, required)
 - `operatingCarrierInfo` (CarrierInfo, required)
 - `marketingCarrierInfo` (CarrierInfo, required)
-- `legIDS` (string[], required)
+- `legIDS` (LegID[], required)
+
+#### `SegmentResult` (object)
+
+Used in schedule fare info response
+
+- `segmentID` (SegmentID, required)
+- `operatingCarrierInfo` (CarrierInfo, required)
+- `marketingCarrierInfo` (CarrierInfo, required)
+- `originCode` (StationCode, required)
+- `destinationCode` (StationCode, required)
+- `departureDateTime` (DateTimeLocal, required)
+- `arrivalDateTime` (DateTimeLocal, required)
+- `arrivalTz` (number, optional) - Timezone offset for arrival
+- `departureTz` (number, optional) - Timezone offset for departure
 
 #### `Leg` (object)
 
-- `legID` (string, required)
+- `legID` (LegID, required)
 - `origin` (Station, required)
 - `destination` (Station, required)
 - `departureDateTime` (DateTimeLocal, required)
@@ -421,29 +475,50 @@ Array of error messages
 
 #### `Pax` (object)
 
-- `paxType` (string, required)
+- `paxType` (PaxType, required)
 - `paxID` (string, required)
-- `nationality` (string, required)
-- `title` (string, required)
+- `paxRefID` (string, optional) - Reference ID for passenger in booking
+- `nationality` (string, required) - ISO country code (e.g., "ID")
+- `title` (string, required) - e.g., "MR", "MRS", "MS"
 - `firstName` (string, required)
 - `lastName` (string, required)
-- `dob` (string, required)
-- `freeCheckinBaggage` (array, optional)
+- `dob` (DateYMD, required) - Date of birth
+- `freeCheckinBaggage` (FreeCheckinBaggage[], optional)
+
+#### `FreeCheckinBaggage` (object)
+
+- `baggageRoute` (string, required) - Route code (e.g., "HLP-DPS")
+- `baggageWeight` (string, required) - Weight value (e.g., "15")
+- `baggageUnit` (string, required) - Weight unit (e.g., "KG")
 
 ### Booking Types
 
 #### `BookingPNR` (object)
 
-- `supplairCode` (string, required)
+- `supplairCode` (SupplairCode, required)
 - `agentCode` (AgentCode, required)
-- `info` (object, required)
+- `info` (BookingInfo, required)
 - `bookingSummary` (BookingFareSummary, required)
 - `bookingTimeLimit` (DateTimeUTC, required)
 - `bookingDateTime` (DateTimeUTC, required)
-- `scheduleFareDetail` (array, required)
+- `scheduleFareDetail` (ScheduleFareDetailResult[], required)
 - `bookingID` (BookingID, required)
 - `bookingStatus` (BookingStatus, required)
 - `bookingCode` (BookingCode, required)
+
+#### `BookingInfo` (object)
+
+- `contactInfo` (ContactInfo, required)
+- `paxs` (Pax[], required)
+- `journeys` (BookingJourney[], required)
+- `segments` (SegmentResult[], required)
+
+#### `BookingJourney` (object)
+
+- `journeyID` (JourneyID, required)
+- `originCode` (StationCode, required)
+- `destinationCode` (StationCode, required)
+- `segmentIDS` (SegmentID[], required)
 
 #### `BookingFareSummary` (object)
 
@@ -467,20 +542,90 @@ Array of error messages
 - `fareBasisCode` (string, required)
 - `fareGroupCode` (FareGroupCode, required)
 - `seatAvailable` (number, required)
-- `baggageFree` (object, required)
-  - `weight` (string, required)
-  - `unit` (string, required)
+- `baggageFree` (BaggageFree, required)
 - `canBuyAdditionalBaggage` (boolean, required)
 - `currencyCode` (string, required)
-- `agentOffersFare` (array, required)
+- `agentOffersFare` (AgentOffers[], required)
+
+#### `BaggageFree` (object)
+
+- `weight` (string, required) - Weight value (e.g., "15")
+- `unit` (string, required) - Weight unit (e.g., "KG")
 
 #### `FareGroupCode` (enum)
 
-Values: "E" | "PE" | "B" | "F" | "PF"
+Fare class codes. Values:
+
+- "E" - Economy
+- "PE" - Premium Economy
+- "B" - Business
+- "F" - First
+- "PF" - Premium First
+
+#### `AgentOffers` (object)
+
+- `agentCode` (AgentCode, required)
+- `supplairCode` (SupplairCode, required)
+- `isSupportNKRI` (boolean, optional)
+- `offers` (Offer[], required)
+
+#### `Offer` (object)
+
+- `paxType` (PaxType, required)
+- `baseFare` (number, required)
+- `totalTax` (number, required)
+- `totalFare` (number, required)
+- `agentServiceFee` (number, required)
+- `agentServiceFeePPN` (number, required)
+- `agentIssuedFee` (number, optional)
+- `agentSellingFare` (number, required)
+
+#### `FareDetail` (object)
+
+- `paxType` (PaxType, required)
+- `price` (FarePrice, required)
+- `fareComponent` (FareComponent[], optional)
+- `paxRefID` (string, optional) - Reference to passenger ID
+
+#### `FarePrice` (object)
+
+- `baseFare` (number, required)
+- `taxs` (FareTax[], required)
+- `totalTax` (number, required)
+- `totalPublishFare` (number, optional)
+- `agentServiceFee` (number, optional)
+- `agentServiceFeePPN` (number, optional)
+- `agentIssuedFee` (number, optional)
+- `agentSellingFare` (number, optional)
+
+#### `FareComponent` (object)
+
+- `fareGroupCode` (FareGroupCode, required)
+- `fareCode` (string, required)
+- `fareBasisCode` (string, required)
+- `segmentID` (SegmentID, required)
+
+#### `FareTax` (object)
+
+- `taxCode` (string, required) - Tax code (e.g., "SC", "IWJR", "PSC", "VAT", "VS")
+- `taxFare` (number, required)
+
+#### `FareSummary` (object)
+
+- `totalBaseFare` (number, required)
+- `totalTax` (number, required)
+- `totalFare` (number, required)
+- `totalPrepaidBaggage` (number, optional)
+- `agentServiceFee` (number, optional)
+- `agentServiceFeePPN` (number, optional)
+- `agentIssuedFee` (number, optional)
+- `agentSellingFare` (number, optional)
 
 #### `FareSSR` (object)
 
-- `ssrType` (string, required)
+Special Service Request for baggage
+
+- `ssrType` (string, required) - Type of SSR (e.g., "BAGGAGE")
 - `ssrCode` (string, required)
 - `ssrText` (string, required)
 - `ssrPrice` (number, required)
@@ -488,16 +633,48 @@ Values: "E" | "PE" | "B" | "F" | "PF"
 - `ssrWeight` (string, required)
 - `ssrUnit` (string, required)
 
+#### `FareSegmentSSR` (object)
+
+- `segmentID` (SegmentID, required)
+- `ssrs` (FareSSR[], required)
+
+#### `JourneySegmentFare` (object)
+
+- `journeyID` (JourneyID, required)
+- `segmentFares` (SegmentFare[], required)
+
+#### `SegmentFare` (object)
+
+- `segmentID` (SegmentID, required)
+- `fares` (Fare[], required)
+
+#### `SegmentFareSelection` (object)
+
+Used in schedule fare request/booking params
+
+- `fareGroupCode` (FareGroupCode, required)
+- `fareCode` (string, required)
+- `fareBasisCode` (string, required)
+- `segmentID` (SegmentID, required)
+
 ### Carrier Types
 
 #### `Carrier` (string)
 
 Carrier code (e.g., "QG", "GA")
 
+#### `CarrierCode` (string)
+
+Carrier/airline code identifier
+
+#### `FlightNumber` (string)
+
+Flight number (e.g., "194")
+
 #### `CarrierInfo` (object)
 
 - `carrierCode` (CarrierCode, required)
-- `flightNumber` (string, required)
+- `flightNumber` (FlightNumber, required)
 - `opSuffix` (string, optional)
 
 #### `Carriers` (string[])
@@ -517,30 +694,296 @@ Station code identifier
 
 ### Hotel Types
 
+#### `HotelID` (string)
+
+Hotel ID identifier (hashed/encrypted ID)
+
+#### `Destination` (object)
+
+- `destinationName` (string, required) - Destination name (e.g., "Malang")
+- `destinationText` (string, required) - Full destination text (e.g., "Malang, Indonesia")
+- `destinationKey` (DestinationKey, required) - Encrypted destination key for searches
+- `countryCode` (string, required) - ISO country code (e.g., "ID")
+
+#### `HotelResult` (object)
+
+Hotel search result from `hotel:searchby:destination`
+
+- `id` (HotelID, required)
+- `name` (string, required)
+- `description` (string, required)
+- `address` (string, required)
+- `destinationName` (string, required)
+- `countryName` (string, required)
+- `countryCode` (string, required)
+- `star` (number, required) - Hotel star rating (1-5)
+- `latitude` (number, required)
+- `longitude` (number, required)
+- `pictureUrl` (string, nullable)
+- `agentSellingPrice` (AgentSellingPrice[], required)
+
+#### `AgentSellingPrice` (object)
+
+- `agentCode` (AgentCode, required)
+- `vendorCode` (VendorCode, required)
+- `lowestPrice` (LowestPrice, required)
+
+#### `LowestPrice` (object)
+
+- `currencyCode` (string, required) - e.g., "IDR"
+- `totalPrice` (number, required)
+- `supplierCode` (SupplierCode, required)
+- `typeOfRate` (string, required) - e.g., "AG"
+
+#### `HotelInformation` (object)
+
+Hotel detail from `hotel:fetch:detail`
+
+- `id` (HotelID, required)
+- `name` (string, required)
+- `description` (string, required)
+- `address` (string, required)
+- `destinationName` (string, required)
+- `countryName` (string, required)
+- `countryCode` (string, required)
+- `star` (number, required)
+- `latitude` (number, required)
+- `longitude` (number, required)
+- `pictureUrls` (string[], required)
+- `phoneNumber` (string, optional)
+- `fax` (string, optional)
+- `websiteUrl` (string, optional)
+- `checkinInfo` (string, required) - Check-in time (e.g., "14:00:00")
+- `checkoutInfo` (string, required) - Check-out time (e.g., "12:00:00")
+- `facilityList` (string[], required)
+- `roomFacilityList` (string[], required)
+- `amenityList` (string[], required)
+- `attractionList` (string[], required)
+- `locationList` (string[], required)
+- `typeOfRate` (string, required)
+- `supplierCode` (SupplierCode, required)
+
+#### `HotelRoomInformation` (object)
+
+Room information from `hotel:fetch:rooms`
+
+- `hotelID` (HotelID, required)
+- `agentCode` (AgentCode, required)
+- `supplierCode` (SupplierCode, required)
+- `checkInDate` (DateYMD, required)
+- `checkOutDate` (DateYMD, required)
+- `numberOfNights` (number, required)
+- `totalNumberOfRooms` (number, required)
+- `roomCombinationType` (RoomCombinationType, required)
+- `roomIndexCombinationList` (RoomIndexCombination[], required)
+- `roomInformations` (RoomInformation[], required)
+- `typeOfRate` (string, required)
+
+#### `RoomCombinationType` (enum)
+
+Values:
+
+- "FixedRoomCombination" - Must select specific room combinations
+- "FreeRoomCombination" - Flexible room selection
+- "IdenticalRoomCombination" - All rooms must be same type
+
+#### `RoomIndexCombination` (object)
+
+- `numberOfRooms` (number, required)
+- `roomNumber` (number, required)
+- `roomGroup` (number, required)
+- `roomIndexSequence` (number[], required) - Array of valid room indices
+
+#### `RoomInformation` (object)
+
+- `roomIndex` (number, required)
+- `roomID` (string, required) - Room identifier/key
+- `roomName` (string, required)
+- `roomDescription` (string, required)
+- `roomSize` (string, required)
+- `roomMaxOccupancy` (number, required)
+- `roomBoardCode` (string, required) - e.g., "RO" (Room Only), "BDBF" (Breakfast)
+- `roomBoardInclusion` (string, required) - e.g., "Room Only", "Breakfast"
+- `roomPrice` (RoomPrice, required)
+- `roomBed` (RoomBed, required)
+- `roomAmenities` (string[], required)
+- `roomSupplementList` (object[], required)
+- `roomCancellationPolicyList` (RoomCancellationPolicyList, required)
+- `nightlyRates` (number[], optional) - Price per night breakdown
+
+#### `RoomPrice` (object)
+
+- `currencyCode` (string, required)
+- `totalPrice` (number, required)
+- `supplierNTA` (number, optional) - Supplier net amount
+- `agentServiceFee` (number, optional)
+- `agentServiceFeePPN` (number, optional)
+- `agentIssuedFee` (number, optional)
+- `agentSellingFare` (number, optional)
+- `TOPSellingFare` (number, optional)
+- `platformFee` (number, optional)
+- `platformFeeAmount` (number, optional)
+- `discountCBD` (number, optional)
+- `discountCBDAmount` (number, optional)
+
+#### `RoomBed` (object)
+
+- `bedCount` (string, required) - Number of beds or "N/A"
+- `bedType` (string, required) - Bed type or "N/A"
+- `bedText` (string, required) - Bed description or "N/A"
+
+#### `RoomCancellationPolicyList` (object)
+
+- `isCancellable` (boolean, required)
+- `lastCancellationDeadline` (string, required) - ISO datetime
+- `defaultPolicy` (string, required)
+- `autoCancellationText` (string, required)
+- `textualPolicyList` (string[], required)
+- `noShowCharges` (object[], required)
+- `roomCancellationCharges` (RoomCancellationCharge[], required)
+
+#### `RoomCancellationCharge` (object)
+
+- `fromDate` (string, required) - ISO datetime
+- `toDate` (string, required) - ISO datetime
+- `chargeType` (string, required) - e.g., "Percentage"
+- `currencyCode` (string, required)
+- `chargeAmount` (number, required) - Charge percentage or amount
+
 #### `RoomSelected` (object)
 
 - `agentCode` (AgentCode, required)
 - `hotelID` (HotelID, required)
-- `roomIDS` (array, required)
-  - `roomNumber` (number, required)
-  - `roomPriceKey` (string, required)
+- `roomIDS` (RoomID[], required)
+
+#### `RoomID` (object)
+
+- `roomNumber` (number, required) - Room number in booking
+- `roomID` (string, required) - Room identifier from room search
+- `roomPriceKey` (string, optional) - Room price key
 
 #### `RoomHolder` (object)
 
+Contact person for hotel booking
+
 - `firstName` (string, required)
 - `lastName` (string, required)
+- `email` (string, optional)
+- `phone` (string, optional)
 
 #### `RoomGuest` (object)
 
-- `roomNumber` (number, required)
-- `type` ("ADT" | "CHD", required)
-- `title` (string, required)
+- `roomNumber` (number, required) - Room number (1-indexed)
+- `type` (RoomGuestType, required)
+- `title` (string, required) - e.g., "MR", "MRS", "MS"
 - `firstName` (string, required)
 - `lastName` (string, required)
 
-#### `HotelID` (string)
+#### `RoomGuestType` (enum)
 
-Hotel ID identifier
+Values: "ADT" (Adult) | "CHD" (Child)
+
+#### `RoomGuestData` (object)
+
+- `roomHolder` (RoomHolder, required)
+- `roomGuestList` (RoomGuest[], required)
+
+#### `SupplierInformation` (object)
+
+- `supplierCode` (SupplierCode, required)
+- `typeOfRate` (string, required)
+- `supplierTripId` (string, optional)
+- `supplierUpstreamVoucherCode` (string, optional)
+- `supplierUpstreamRef` (string, optional)
+- `supplierUpstreamConfirmationCode` (string, optional)
+- `supplierConfirmationCode` (string, optional)
+- `creationDate` (string, nullable)
+- `creationUser` (string, nullable)
+- `currencyCode` (string, nullable)
+- `pendingAmount` (number, nullable)
+- `invoiceCompany` (string, nullable)
+- `modificationPolicies` (object, nullable)
+
+#### `VendorInformation` (object)
+
+- `vendorCode` (VendorCode, required)
+- `locatorCode` (string, required)
+- `toSupplierRef` (string, required)
+- `fromClientRef` (string, required)
+- `bookedAt` (string, required) - ISO datetime
+- `voucheredAt` (string, nullable)
+- `cancelledAt` (string, nullable)
+- `bookingStatus` (string, required) - e.g., "CONFIRMED"
+- `voucherStatus` (string, nullable) - e.g., "VOUCHERED"
+- `cancelStatus` (string, nullable) - e.g., "CANCELLED"
+
+#### `HotelBookingResponse` (object)
+
+Response from `hotel:book`
+
+- `agentCode` (AgentCode, required)
+- `bookingID` (BookingID, required)
+- `supplierInformation` (SupplierInformation, required)
+- `vendorInformation` (VendorInformation, required)
+- `hotelInformation` (HotelBookingInfo, required)
+- `hotelRoomInformation` (HotelBookingRoomInfo[], required)
+- `hotelRoomGuestData` (RoomGuestData, required)
+- `roomCombinationType` (RoomCombinationType, required)
+- `roomIndexCombinationList` (RoomIndexCombination[], required)
+- `remarkList` (RemarkList, required)
+
+#### `HotelBookingInfo` (object)
+
+Hotel info in booking response
+
+- `id` (string, required) - Supplier hotel ID
+- `name` (string, required)
+- `description` (string, required)
+- `address` (string, required)
+- `star` (number, required)
+- `checkInDate` (DateYMD, required)
+- `checkInInfo` (string, required)
+- `checkOutDate` (DateYMD, required)
+- `checkOutInfo` (string, required)
+- `countryCode` (string, required)
+- `countryName` (string, required)
+- `destinationName` (string, required)
+- `latitude` (number, required)
+- `longitude` (number, required)
+- `pictureUrl` (string, required)
+- `norms` (string[], required)
+
+#### `HotelBookingRoomInfo` (object)
+
+- `roomIndex` (number, required)
+- `roomID` (string, required)
+- `roomName` (string, required)
+- `roomBoardInclusion` (string, required)
+- `roomSupplementList` (object[], nullable)
+- `roomPrice` (RoomPrice, required)
+- `roomNote` (string, nullable)
+- `numberOfRooms` (number, required)
+- `numberOfAdults` (number, required)
+- `numberOfChildrens` (number, required)
+- `numberOfInfants` (number, required)
+- `roomCancellationPolicyList` (RoomCancellationPolicyList, required)
+
+#### `HotelRoomCheckPriceResponse` (object)
+
+Response from `hotel:room:checkprice`
+
+- `hotelID` (object, required)
+  - `supplierCode` (SupplierCode, required)
+  - `hotelID` (string, required) - Supplier hotel ID
+- `agentCode` (AgentCode, required)
+- `supplierCode` (SupplierCode, required)
+- `checkInDate` (DateYMD, required)
+- `checkOutDate` (DateYMD, required)
+- `numberOfNights` (number, required)
+- `totalNumberOfRooms` (number, required)
+- `roomCombinationType` (RoomCombinationType, required)
+- `roomIndexCombinationList` (RoomIndexCombination[], required)
+- `roomInformations` (RoomInformation[], required)
 
 ### Other Types
 
@@ -582,17 +1025,17 @@ Api credentials computed signature `md5(username + password + pre-shared-key)`
 
 #### `ScheduleInfo` (object)
 
-- `journeys` (Array of Journey, required)
-- `segments` (Array of Segment, required)
-- `legs` (Array of Leg, required)
+- `journeys` (Journey[], required)
+- `segments` (Segment[], required)
+- `legs` (Leg[], required)
 
 #### `ScheduleResult` (object)
 
 - `journeyType` (JourneyType, required)
-- `journeyIDS` (Array of JourneyID, required)
-- `segmentIDS` (Array of SegmentID, required)
+- `journeyIDS` (JourneyID[], required)
+- `segmentIDS` (SegmentID[], required)
 - `currencyCode` (string, optional)
-- `journeySegmentFares` (Array of JourneySegmentFare, required)
+- `journeySegmentFares` (JourneySegmentFare[], required)
 
 #### `ScheduleFareInfoParams` (object)
 
@@ -601,34 +1044,35 @@ Api credentials computed signature `md5(username + password + pre-shared-key)`
 #### `ScheduleFareInfo` (object)
 
 - `totalPaxs` (PaxCount, required)
-- `segments` (Array of SegmentResult, required)
+- `segments` (SegmentResult[], required)
+- `journeys` (BookingJourney[], optional)
 
 #### `ScheduleFareDetails` (object)
 
-- `journeyIDS` (Array of JourneyID, required)
-- `segmentIDS` (Array of SegmentID, required)
+- `journeyIDS` (JourneyID[], required)
+- `segmentIDS` (SegmentID[], required)
 - `agentCode` (AgentCode, required)
-- `journeySegmentFares` (Array of JourneySegmentFare, required)
+- `journeySegmentFares` (JourneySegmentFareSelection[], required)
 - `isCombinedJourneys` (boolean, required)
+
+#### `JourneySegmentFareSelection` (object)
+
+Used in schedule fare request
+
+- `journeyID` (JourneyID, required)
+- `segmentFares` (SegmentFareSelection[], required)
 
 #### `ScheduleFareDetailResult` (object)
 
-- `journeyIDS` (Array of JourneyID, required)
-- `segmentIDS` (Array of SegmentID, required)
+- `journeyIDS` (JourneyID[], required)
+- `segmentIDS` (SegmentID[], required)
 - `agentCode` (AgentCode, required)
-- `supplairCode` (string, required)
-- `fareDetails` (Array of FareDetail, required)
+- `supplairCode` (SupplairCode, required)
+- `fareDetails` (FareDetail[], required)
 - `fareSummary` (FareSummary, required)
-- `segmentSSRS` (Array of FareSegmentSSR, optional)
+- `segmentSSRS` (FareSegmentSSR[], optional)
 
 #### `FlightBookInfo` (object)
 
 - `contactInfo` (ContactInfo, required)
-- `paxs` (Array of Pax, required)
-
-### Hotel Types
-
-#### `RoomGuestData` (object)
-
-- `roomHolder` (RoomHolder, required)
-- `roomGuestList` (Array of RoomGuest, required)
+- `paxs` (Pax[], required)
