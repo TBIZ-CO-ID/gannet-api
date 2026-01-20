@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: {{JSONRPC_URL}}
+  url: https://gannet-va7zie.julia.id/jsonrpc
   body: json
   auth: none
 }
@@ -20,6 +20,13 @@ body:json {
       "signature": "{{SIGNATURE}}"
     }
   }
+  
+}
+
+script:pre-request {
+  const crypto = require('crypto');
+  const signature = crypto.createHash('md5').update(bru.getEnvVar('USERNAME') + bru.getEnvVar('PASSWORD') + bru.getEnvVar('SALTKEY')).digest('hex');
+  bru.setEnvVar('SIGNATURE', signature);
   
 }
 

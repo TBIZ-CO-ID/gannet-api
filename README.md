@@ -46,11 +46,12 @@ This repository includes ready-to-use [Bruno](https://www.usebruno.com/) collect
 | `hotel:destinations:list`    | Search destinations     | [View Example](./pub/example/11_hotel_destinations_list.json)    |
 | `hotel:searchby:destination` | Find hotels by location | [View Example](./pub/example/12_hotel_searchby_destination.json) |
 | `hotel:fetch:detail`         | Get hotel details       | [View Example](./pub/example/13_hotel_fetch_detail.json)         |
-| `hotel:fetch:rooms`          | Get available rooms     | [View Example](./pub/example/13_hotel_fetch_rooms.json)          |
-| `hotel:book`                 | Create hotel booking    | [View Example](./pub/example/14_hotel_book.json)                 |
-| `hotel:fetch:booking`        | Get booking details     | [View Example](./pub/example/15_hotel_fetch_booking.json)        |
-| `hotel:cancel`               | Cancel hotel booking    | [View Example](./pub/example/15_hotel_cancel.json)               |
-| `hotel:issue`                | Issue hotel voucher     | [View Example](./pub/example/15_hotel_issue.json)                |
+| `hotel:fetch:booking`        | Get booking details     | [View Example](./pub/example/14_hotel_fetch_booking.json)        |
+| `hotel:fetch:rooms`          | Get available rooms     | [View Example](./pub/example/15_hotel_fetch_rooms.json)          |
+| `hotel:room:checkprice`      | Verify room pricing     | [View Example](./pub/example/16_hotel_room_checkprice.json)      |
+| `hotel:book`                 | Create hotel booking    | [View Example](./pub/example/17_hotel_book.json)                 |
+| `hotel:cancel`               | Cancel hotel booking    | [View Example](./pub/example/18_hotel_cancel.json)               |
+| `hotel:issue`                | Issue hotel voucher     | [View Example](./pub/example/19_hotel_issue.json)                |
 
 ## 🔄 Workflow Guides
 
@@ -85,11 +86,15 @@ This repository includes ready-to-use [Bruno](https://www.usebruno.com/) collect
    - `FreeRoomCombination`: Flexible room selection
    - `IdenticalRoomCombination`: All rooms must be same type
 
-3. **Booking Phase**
+3. **Price Verification**
+   - Verify current room pricing using `hotel:room:checkprice`
+   - This ensures prices haven't changed before booking
+
+4. **Booking Phase**
    - Create booking using `hotel:book`
    - Monitor status with `hotel:fetch:booking`
 
-4. **Completion Phase**
+5. **Completion Phase**
    Either:
    - Issue voucher using `hotel:issue`
    - Or cancel booking using `hotel:cancel`
@@ -158,11 +163,12 @@ Consult the [example folder](./pub/example) for request and response examples.
   - 11 - [Hotel Destinations List](./pub/example/11_hotel_destinations_list.json)
   - 12 - [Hotel Search By Destination](./pub/example/12_hotel_searchby_destination.json)
   - 13 - [Hotel Fetch Detail](./pub/example/13_hotel_fetch_detail.json)
-  - 13 - [Hotel Fetch Rooms](./pub/example/13_hotel_fetch_rooms.json)
-  - 14 - [Hotel Book](./pub/example/14_hotel_book.json)
-  - 15 - [Hotel Fetch Booking](./pub/example/15_hotel_fetch_booking.json)
-  - 15 - [Hotel Cancel](./pub/example/15_hotel_cancel.json)
-  - 15 - [Hotel Issue](./pub/example/15_hotel_issue.json)
+  - 14 - [Hotel Fetch Booking](./pub/example/14_hotel_fetch_booking.json)
+  - 15 - [Hotel Fetch Rooms](./pub/example/15_hotel_fetch_rooms.json)
+  - 16 - [Hotel Room Check Price](./pub/example/16_hotel_room_checkprice.json)
+  - 17 - [Hotel Book](./pub/example/17_hotel_book.json)
+  - 18 - [Hotel Cancel](./pub/example/18_hotel_cancel.json)
+  - 19 - [Hotel Issue](./pub/example/19_hotel_issue.json)
 
 Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [full hotel booking flow](./pub/example/HOTEL_EXAMPLE_1.jsonc) for end-to-end request and response examples.
 
@@ -272,6 +278,15 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
 - Response
   - `result` ([`RPCResult`](#rpcresult-object), required)
   - `hotelLists` (Array of HotelResult, required)
+
+#### "hotel:room:checkprice"
+
+- Request Parameters
+  - `roomSelectedData` (Array of [`RoomSelected`](#roomselected-object), required)
+
+- Response
+  - `result` ([`RPCResult`](#rpcresult-object), required)
+  - `hotelRoomCheckPriceResponse` (HotelRoomCheckPriceResponse, required)
 
 #### "hotel:book"
 
