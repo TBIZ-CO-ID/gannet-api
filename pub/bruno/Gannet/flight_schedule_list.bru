@@ -16,7 +16,7 @@ body:json {
     "method": "flight:schedule:list",
     "params": {
       "carriers": [
-        "GA"
+        "JT"
       ],
       "paxCount": {
         "ADT": 1,
@@ -26,13 +26,16 @@ body:json {
       "schedules": [
         {
           "origin": "CGK",
-          "destination": "DPS",
-          "departureDate": "2025-04-01",
+          "destination": "SUB",
+          "departureDate": "2025-11-01",
           "returnDate": null
         }
+      ],
+      "cabins": [
+        "B"
       ]
     },
     "token": "{{TOKEN}}",
-    "id": "FSL-GA-CGK-DPS-2025-04-01-1740014329213"
+    "id": "REQ_{{current_counter}}"
   }
 }

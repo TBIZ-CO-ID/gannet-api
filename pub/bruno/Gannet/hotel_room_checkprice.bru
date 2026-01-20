@@ -1,0 +1,34 @@
+meta {
+  name: hotel_room_checkprice
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{JSONRPC_URL}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "jsonrpc": 2,
+      "method": "hotel:room:checkprice",
+      "params": {
+        "roomSelectedData": [
+          {
+            "hotelID": "e4383054df6ed3956a29d0d3bcdffdb8cd9320066ddd96eb4cfc5ba9b9a89972",
+            "roomIDS": [
+              {
+                "roomID": "2026-02-17+1+1+ID+1+0+0++MGH.D.CITY.ID-SUB+false/RM_272544_0|Standard Room|RO|Flexi|true|1|1|0|0.0|0.0|false|ID",
+                "roomNumber": 2
+              }
+            ],
+            "agentCode": "SGT"
+          }
+        ]
+      },
+      "token": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..aGGKU1IHJGzrl9nIsrwLyw.bieDCvZX6J7YTGGmY60vtk1NZdHONMd96lMni-iTiZ5JpPphXeTadrtqkcgtW_-0T4gN9JnHquUnuTbcgUYkFNiB0IDEDcFl1gQ6uuPs7Tktr8Dd1PXGWyW0o_EayQtj0mjlH_OB8UY3BxyHwDqwBCAsiEcfdtH8-mX4gdbF2o_HNKweqkDNxFtS8sSCPiws2WlrPzDQpkvMUqE-yZ7rhSvKhqmlGLnWUu2hN7-twd35UluR3pS2DHv0PRy7VnkFLPGcfGhawPVxLALbjfue3IegtxFlpTNmuPwgTy5TH58VjwUA9wwXOC6opy_o-6hwK1GZrQS5-FiI3mSbu_g3pUvKLF4ncu7p-ZPM1rTgTBv6sESrzUGQTg1Kw4R-C60X5uZiQputBWRIh_S7wBOEseajnyGUSm6ItK7cNtXSd6AD7drmis9lbVX20BGvbh_SVlFTDXRvCIQVTbSumwLX8A.M2VhLoK4_yxCGvy7qhD7Qg",
+      "id": "1768874870087-4763"
+    }
+}

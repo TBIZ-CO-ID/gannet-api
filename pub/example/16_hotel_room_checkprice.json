@@ -1,0 +1,111 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "hotel:room:checkprice",
+    "params": {
+      "roomSelectedData": [
+        {
+          "hotelID": "e4383054df6ed3956a29d0d3bcdffdb8cd9320066ddd96eb4cfc5ba9b9a89972",
+          "roomIDS": [
+            {
+              "roomID": "2026-02-17+1+1+ID+1+0+0++MGH.D.CITY.ID-SUB+false/RM_272544_0|Standard Room|RO|Flexi|true|1|1|0|0.0|0.0|false|ID",
+              "roomNumber": 2
+            }
+          ],
+          "agentCode": "SGT"
+        }
+      ]
+    },
+    "token": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..aGGKU1IHJGzrl9nIsrwLyw.bieDCvZX6J7YTGGmY60vtk1NZdHONMd96lMni-iTiZ5JpPphXeTadrtqkcgtW_-0T4gN9JnHquUnuTbcgUYkFNiB0IDEDcFl1gQ6uuPs7Tktr8Dd1PXGWyW0o_EayQtj0mjlH_OB8UY3BxyHwDqwBCAsiEcfdtH8-mX4gdbF2o_HNKweqkDNxFtS8sSCPiws2WlrPzDQpkvMUqE-yZ7rhSvKhqmlGLnWUu2hN7-twd35UluR3pS2DHv0PRy7VnkFLPGcfGhawPVxLALbjfue3IegtxFlpTNmuPwgTy5TH58VjwUA9wwXOC6opy_o-6hwK1GZrQS5-FiI3mSbu_g3pUvKLF4ncu7p-ZPM1rTgTBv6sESrzUGQTg1Kw4R-C60X5uZiQputBWRIh_S7wBOEseajnyGUSm6ItK7cNtXSd6AD7drmis9lbVX20BGvbh_SVlFTDXRvCIQVTbSumwLX8A.M2VhLoK4_yxCGvy7qhD7Qg",
+    "id": "1768874870087-4763"
+  },
+  "RESPONSE": {
+    "status": 200,
+    "body": {
+      "jsonrpc": "2.0",
+      "id": "1768874870087-4763",
+      "response": {
+        "result": {
+          "time": {
+            "request": 1768874870160,
+            "response": 1768874872686,
+            "process": 2526,
+            "unit": "Milisecond"
+          },
+          "status": "OK"
+        },
+        "hotelRoomCheckPriceResponse": {
+          "totalNumberOfRooms": 1,
+          "hotelID": {
+            "supplierCode": "MGH",
+            "hotelID": "ID10016904"
+          },
+          "roomIndexCombinationList": [
+            {
+              "numberOfRooms": 1,
+              "roomNumber": 1,
+              "roomGroup": 1,
+              "roomIndexSequence": [1]
+            }
+          ],
+          "agentCode": "SGT",
+          "checkInDate": "2026-02-17",
+          "supplierCode": "MGH",
+          "numberOfNights": 1,
+          "checkOutDate": "2026-02-18",
+          "roomCombinationType": "FixedRoomCombination",
+          "roomInformations": [
+            {
+              "roomMaxOccupancy": 0,
+              "roomSupplementList": [],
+              "roomID": "2026-02-17+1+1+ID+1+0+0++MGH.D.CITY.ID-SUB+false/RM_272544_0|Standard Room|RO|Flexi|true|1|1|0|0.0|0.0|false|ID",
+              "roomPrice": {
+                "agentIssuedFee": 0,
+                "TOPSellingFare": 163287,
+                "totalPrice": 160085.49,
+                "discountCBDAmount": 0,
+                "discountCBD": 0.0,
+                "platformFeeAmount": 3202,
+                "platformFee": 0.02,
+                "agentSellingFare": 160085,
+                "currencyCode": "IDR",
+                "agentServiceFee": 0,
+                "agentServiceFeePPN": 0
+              },
+              "roomSize": "",
+              "roomDescription": "",
+              "roomBoardCode": "RO",
+              "roomAmenities": [],
+              "nightlyRates": [160085.49],
+              "roomName": "Standard Room",
+              "roomIndex": 1,
+              "roomBoardInclusion": "Room Only",
+              "roomCancellationPolicyList": {
+                "isCancellable": true,
+                "lastCancellationDeadline": "2026-02-12T12:00:00+00:00",
+                "textualPolicyList": [],
+                "noShowCharges": [],
+                "defaultPolicy": "",
+                "autoCancellationText": "",
+                "roomCancellationCharges": [
+                  {
+                    "fromDate": "2026-02-12T12:00:00+00:00",
+                    "toDate": "2026-02-15T12:00:00+00:00",
+                    "chargeType": "Percentage",
+                    "currencyCode": "IDR",
+                    "chargeAmount": 100.0
+                  }
+                ]
+              },
+              "roomBed": {
+                "bedCount": "N/A",
+                "bedType": "N/A",
+                "bedText": "N/A"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+script:pre-request {
+  // Get the current value of the counter from the environment variables
+  let counter = bru.getEnvVar("counter");
+  
+  // If the counter variable doesn't exist, initialize it to 0
+  if (counter === undefined || counter === null) {
+    counter = 0;
+  }
+  
+  counter = parseInt(counter)
+  
+  // Increment the counter
+  counter++;
+  
+  // Set the updated counter value back to the environment variable, making it persistent
+  bru.setEnvVar("counter", counter.toString(), { persist: true });
+  
+  // You can also set the counter as a collection variable for use in the current request
+  bru.setVar("current_counter", counter, { persist: true });
+  
+}
