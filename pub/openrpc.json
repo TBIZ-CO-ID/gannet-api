@@ -38,6 +38,24 @@
           "description": "Request signature for authentication",
           "required": true,
           "schema": { "type": "string" }
+        },
+        {
+          "name": "profile",
+          "description": "Optional per-agent settings for flight methods, stored in the token. Each entry's `policy` (and optional `policyFlight`) determines the agent fee and platform fee fields added to flight prices in responses made with this token. The agent codes listed here are also used to activate any additional agents configured for the account.",
+          "required": false,
+          "schema": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AgentProfile" }
+          }
+        },
+        {
+          "name": "profileHotel",
+          "description": "Optional per-agent settings for hotel methods, stored in the token. Each entry's `policy` determines the agent fee and platform fee fields added to hotel room prices in responses made with this token. `policyFlight` is not used here.",
+          "required": false,
+          "schema": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AgentProfile" }
+          }
         }
       ],
       "result": {
@@ -63,8 +81,8 @@
       "params": [
         {
           "name": "carriers",
-          "description": "List of airline carrier codes to search (e.g., ['QG', 'GA'])",
-          "required": true,
+          "description": "Optional list of airline carrier codes to search (e.g., ['QG', 'GA']). When omitted or empty, all carriers available to your agents are searched.",
+          "required": false,
           "schema": {
             "type": "array",
             "items": { "$ref": "#/components/schemas/CarrierCode" }
@@ -200,7 +218,7 @@
     {
       "name": "flight:sync",
       "summary": "Synchronize/retrieve flight booking details",
-      "description": "Retrieves the current status and details of an existing flight booking.",
+      "description": "Retrieves the current status and details of an existing flight booking. Only bookings whose current status is BOOKED can be synced: syncing a booking that has already been issued (TICKETED) or cancelled returns an ERROR result (\"Booking Status of PNR restricted to sync\"). In the sync response each passenger's `paxID` is derived from the passenger type and names as stored by the airline (e.g. 'ADTJOHNDOE'), not the `paxID` sent in `flight:book`. The synced PNR replaces the stored one, so later `flight:issue` responses use these derived `paxID` values. Ticket numbers are not returned by this method.",
       "tags": [{ "name": "flight" }],
       "params": [
         {
@@ -228,7 +246,7 @@
     {
       "name": "flight:issue",
       "summary": "Issue flight tickets",
-      "description": "Issues tickets for an existing flight booking. Converts a booked PNR to issued tickets.",
+      "description": "Issues tickets for an existing flight booking. Converts a booked PNR to issued tickets. Only bookings with status BOOKED can be issued. On success the returned PNR has `bookingStatus` TICKETED and carries the ticket numbers in `info.ticketNumbers` (see PaxTicketNumbers). This is the only method that returns ticket numbers; the booking cannot be synced afterwards.",
       "tags": [{ "name": "flight" }],
       "params": [
         {
@@ -256,7 +274,7 @@
     {
       "name": "flight:cancel",
       "summary": "Cancel a flight booking",
-      "description": "Cancels an existing flight booking. Only booked (not issued) bookings can be cancelled.",
+      "description": "Cancels an existing flight booking. Only booked (not issued) bookings can be cancelled. On success the cancelled PNR is returned with `bookingStatus` CANCELLED, or CANCELDELAYED when the supplier has accepted the cancellation but will complete it later.",
       "tags": [{ "name": "flight" }],
       "params": [
         {
@@ -271,7 +289,11 @@
         "schema": {
           "type": "object",
           "properties": {
-            "result": { "$ref": "#/components/schemas/Result" }
+            "result": { "$ref": "#/components/schemas/Result" },
+            "pnrs": {
+              "type": "array",
+              "items": { "$ref": "#/components/schemas/FlightPNR" }
+            }
           },
           "required": ["result"]
         }
@@ -308,7 +330,7 @@
     {
       "name": "hotel:searchby:destination",
       "summary": "Search hotels by destination",
-      "description": "Returns available hotels for a destination with room count and dates.",
+      "description": "Returns available hotels for a destination with room count and dates. Adults, children and infants are given as totals and spread across `totalRooms`. When a total is a multiple of `totalRooms` it is split evenly; otherwise the per-room counts are rounded up, so the occupancy searched can be larger than the requested total (e.g. 3 adults in 2 rooms are searched as 2 + 2, and 1 child in 2 rooms as 1 + 1). Children can instead be placed per room with `childrenAges`. The resulting per-room occupancy is carried in `searchKeyData` and reused by `hotel:fetch:rooms`.",
       "tags": [{ "name": "hotel" }],
       "params": [
         {
@@ -325,14 +347,20 @@
         },
         {
           "name": "totalAdults",
-          "description": "Total number of adult guests",
+          "description": "Total number of adult guests, spread across the rooms",
           "required": true,
           "schema": { "type": "integer" }
         },
         {
           "name": "totalChilds",
-          "description": "Total number of child guests",
+          "description": "Total number of child guests, spread across the rooms. Ignored when `childrenAges` is not empty (the per-room child counts then come from `childrenAges`).",
           "required": true,
+          "schema": { "type": "integer" }
+        },
+        {
+          "name": "totalInfants",
+          "description": "Total number of infant guests, spread across the rooms. Defaults to 0.",
+          "required": false,
           "schema": { "type": "integer" }
         },
         {
@@ -349,11 +377,14 @@
         },
         {
           "name": "childrenAges",
-          "description": "Ages of children (required if totalChilds > 0)",
+          "description": "Children ages PER ROOM: one array per room (length = totalRooms), each holding the ages of the children in that room; use [] for a room without children, e.g. [[5, 8], []] for 2 rooms. When not empty, the number of children in each room is the length of its array. A flat array such as [5, 8] is not accepted. When omitted or empty, `totalChilds` is spread across the rooms and every child's age is taken as 8.",
           "required": false,
           "schema": {
             "type": "array",
-            "items": { "type": "integer" }
+            "items": {
+              "type": "array",
+              "items": { "type": "integer" }
+            }
           }
         }
       ],
@@ -489,8 +520,8 @@
         },
         {
           "name": "clientReference",
-          "description": "Client reference for the booking",
-          "required": false,
+          "description": "Client reference for the booking. Must be present: a request without `clientReference` returns an ERROR result.",
+          "required": true,
           "schema": { "type": "string" }
         },
         {
@@ -501,6 +532,12 @@
             "type": "array",
             "items": { "type": "string" }
           }
+        },
+        {
+          "name": "doIssueImmediately",
+          "description": "Optional. When `true`, the supplier is asked to issue (voucher) the booking as part of this request, instead of leaving it for a separate `hotel:issue` call. Check `vendorInformation.voucherStatus` in the response. Any other value, or omitting it, only books.",
+          "required": false,
+          "schema": { "type": "boolean" }
         }
       ],
       "result": {
@@ -682,6 +719,74 @@
         "items": {
           "$ref": "#/components/schemas/AgentCode"
         }
+      },
+      "AgentProfile": {
+        "type": "object",
+        "description": "Per-agent settings passed to token:create in `profile` (flight) or `profileHotel` (hotel)",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/AgentCode"
+          },
+          "policy": {
+            "oneOf": [
+              { "$ref": "#/components/schemas/AgentPricingPolicy" },
+              { "type": "null" }
+            ]
+          },
+          "policyFlight": {
+            "oneOf": [
+              { "$ref": "#/components/schemas/FlightPricingPolicy" },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": ["code"]
+      },
+      "AgentPricingPolicy": {
+        "type": "object",
+        "description": "Pricing policy of one agent. Values may be numbers or numeric strings. Without `markupPercent` the policy is not applied (for flights, unless a `policyFlight` entry matches), so send `markupPercent` even when there is no markup (use 0). Give `platformFee` and `discountCBD` as well (use 0 when not applicable).",
+        "properties": {
+          "markupPercent": {
+            "type": ["number", "string"],
+            "description": "Agent markup in percent (e.g. 4 = 4%), returned as agentServiceFee / agentIssuedFee and included in agentSellingFare"
+          },
+          "platformFee": {
+            "type": ["number", "string"],
+            "description": "Platform fee in percent (e.g. 2 = 2%). Returned as the fraction `platformFee` (0.02) and the amount `platformFeeAmount`, which is included in `TOPSellingFare`"
+          },
+          "discountCBD": {
+            "type": ["number", "string"],
+            "description": "CBD discount in percent. Returned as the fraction `discountCBD` and the amount `discountCBDAmount` (informational, not subtracted from `TOPSellingFare`)"
+          }
+        }
+      },
+      "FlightPricingPolicy": {
+        "type": "object",
+        "description": "Optional flight markup for specific airlines (`profile` only). For flights whose marketing carrier is listed in `airline`, it replaces `policy.markupPercent`; `policy.platformFee` and `policy.discountCBD` still apply and must be given.",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["FIXED", "PERCENT"],
+            "description": "FIXED: `amount` per passenger. PERCENT: `percent` of the published fare"
+          },
+          "amount": {
+            "type": ["number", "string"],
+            "description": "Agent fee per passenger when type is FIXED"
+          },
+          "percent": {
+            "type": ["number", "string"],
+            "description": "Agent markup in percent when type is PERCENT"
+          },
+          "airline": {
+            "type": "object",
+            "description": "Object whose values are lists of marketing carrier codes this policy applies to (the keys are not interpreted), e.g. {\"domestic\": [\"GA\", \"QG\"]}",
+            "additionalProperties": {
+              "type": "array",
+              "items": { "$ref": "#/components/schemas/CarrierCode" }
+            }
+          }
+        },
+        "required": ["type", "airline"]
       },
       "SupplairCode": {
         "type": "string",
@@ -1001,6 +1106,26 @@
           "agentSellingFare": {
             "type": "number",
             "description": "Final selling fare for agent"
+          },
+          "platformFee": {
+            "type": "number",
+            "description": "Platform fee rate as a fraction (e.g. 0.02 = 2%), from the token profile"
+          },
+          "platformFeeAmount": {
+            "type": "number",
+            "description": "Platform fee amount: totalFare x platformFee, rounded"
+          },
+          "discountCBD": {
+            "type": "number",
+            "description": "CBD discount rate as a fraction (e.g. 0.05 = 5%), from the token profile"
+          },
+          "discountCBDAmount": {
+            "type": "number",
+            "description": "CBD discount amount: totalFare x discountCBD, rounded. Informational; not subtracted from TOPSellingFare"
+          },
+          "TOPSellingFare": {
+            "type": "number",
+            "description": "agentSellingFare + platformFeeAmount"
           }
         },
         "required": ["paxType", "baseFare", "totalTax", "totalFare", "agentSellingFare"]
@@ -1275,6 +1400,26 @@
           "agentSellingFare": {
             "type": "number",
             "description": "Final agent selling price"
+          },
+          "platformFee": {
+            "type": "number",
+            "description": "Platform fee rate as a fraction (e.g. 0.02 = 2%), from the token profile"
+          },
+          "platformFeeAmount": {
+            "type": "number",
+            "description": "Platform fee amount: totalPublishFare x platformFee, rounded"
+          },
+          "discountCBD": {
+            "type": "number",
+            "description": "CBD discount rate as a fraction (e.g. 0.05 = 5%), from the token profile"
+          },
+          "discountCBDAmount": {
+            "type": "number",
+            "description": "CBD discount amount: totalPublishFare x discountCBD, rounded. Informational; not subtracted from TOPSellingFare"
+          },
+          "TOPSellingFare": {
+            "type": "number",
+            "description": "agentSellingFare + platformFeeAmount"
           }
         },
         "required": ["baseFare", "taxs", "totalTax", "totalPublishFare", "agentSellingFare"]
@@ -1348,6 +1493,18 @@
           },
           "agentSellingFare": {
             "type": "number"
+          },
+          "platformFeeAmount": {
+            "type": "number",
+            "description": "Sum of fareDetails[].price.platformFeeAmount"
+          },
+          "discountCBDAmount": {
+            "type": "number",
+            "description": "Sum of fareDetails[].price.discountCBDAmount"
+          },
+          "TOPSellingFare": {
+            "type": "number",
+            "description": "Sum of fareDetails[].price.TOPSellingFare"
           }
         },
         "required": ["totalBaseFare", "totalTax", "totalFare", "agentSellingFare"]
@@ -1412,21 +1569,26 @@
       },
       "Passenger": {
         "type": "object",
-        "description": "Passenger information for flight booking",
+        "description": "Passenger information for flight booking. `dob` and `nationality` are required for CHD and INF passengers",
         "properties": {
           "paxType": {
             "$ref": "#/components/schemas/PaxType"
           },
           "paxID": {
             "type": "string",
-            "description": "Unique passenger identifier"
+            "description": "Unique passenger identifier. PNRs returned by `flight:sync`, and by `flight:issue` after a sync, carry a `paxID` derived from the passenger type and names (e.g. 'ADTJOHNDOE') instead of the one sent in `flight:book`"
+          },
+          "paxRefID": {
+            "type": "string",
+            "description": "For INF passengers in `flight:book`: the `paxID` of the adult the infant travels with"
           },
           "nationality": {
             "$ref": "#/components/schemas/CountryCode"
           },
           "title": {
             "type": "string",
-            "enum": ["MR", "MRS", "MS", "MISS"]
+            "description": "ADT: MR, MRS or MS. CHD and INF: MSTR or MISS (MR and MRS sent for a child or infant are converted to MSTR and MISS). Any other combination is rejected.",
+            "enum": ["MR", "MRS", "MS", "MSTR", "MISS"]
           },
           "firstName": {
             "type": "string"
@@ -1437,7 +1599,18 @@
           "dob": {
             "type": "string",
             "format": "date",
-            "description": "Date of birth in YYYY-MM-DD format"
+            "description": "Date of birth in YYYY-MM-DD format. Required for CHD and INF passengers"
+          },
+          "identityNumber": {
+            "type": "string",
+            "description": "National identity number. Forwarded to the airline only when `nationality` is 'ID'"
+          },
+          "passport": {
+            "$ref": "#/components/schemas/Passport"
+          },
+          "staffIdentityNumber": {
+            "type": "string",
+            "description": "Staff identity number, forwarded to the airline as a passenger document when not empty"
           },
           "freeCheckinBaggage": {
             "type": "array",
@@ -1448,6 +1621,25 @@
           }
         },
         "required": ["paxType", "paxID", "title", "firstName", "lastName"]
+      },
+      "Passport": {
+        "type": "object",
+        "description": "Passport details for a passenger. Forwarded to the airline only when `number` is not empty",
+        "properties": {
+          "number": {
+            "type": "string",
+            "description": "Passport number"
+          },
+          "countryOfIssuer": {
+            "$ref": "#/components/schemas/CountryCode"
+          },
+          "expired": {
+            "type": "string",
+            "format": "date",
+            "description": "Passport expiry date in YYYY-MM-DD format"
+          }
+        },
+        "required": ["number", "expired"]
       },
       "FlightBookingInfo": {
         "type": "object",
@@ -1504,14 +1696,26 @@
           },
           "agentSellingFare": {
             "type": "number"
+          },
+          "platformFeeAmount": {
+            "type": "number",
+            "description": "Sum of scheduleFareDetail[].fareSummary.platformFeeAmount. Present only when greater than 0"
+          },
+          "discountCBDAmount": {
+            "type": "number",
+            "description": "Sum of scheduleFareDetail[].fareSummary.discountCBDAmount. Present only when greater than 0"
+          },
+          "TOPSellingFare": {
+            "type": "number",
+            "description": "Sum of scheduleFareDetail[].fareSummary.TOPSellingFare. Present only when greater than 0"
           }
         },
         "required": ["totalBaseFare", "totalTax", "totalFare", "totalNTA", "agentSellingFare"]
       },
       "BookingStatus": {
         "type": "string",
-        "description": "Status of a flight booking",
-        "enum": ["BOOKED", "ISSUED", "CANCELLED", "EXPIRED"]
+        "description": "Status of a flight booking. Values returned by the server: BOOKED (booked/held, not yet ticketed), TICKETED (tickets issued; returned by a successful flight:issue), CANCELLED (returned by flight:cancel), CANCELDELAYED (returned by flight:cancel when the supplier has accepted the cancellation but will complete it later). Any other status reported by the supplier is passed through unchanged.",
+        "examples": ["BOOKED", "TICKETED", "CANCELLED", "CANCELDELAYED"]
       },
       "FlightPNR": {
         "type": "object",
@@ -1546,6 +1750,13 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/Segment"
+                }
+              },
+              "ticketNumbers": {
+                "type": "array",
+                "description": "Ticket numbers per passenger. Returned only by a successful `flight:issue`",
+                "items": {
+                  "$ref": "#/components/schemas/PaxTicketNumbers"
                 }
               }
             },
@@ -1583,6 +1794,41 @@
           }
         },
         "required": ["supplairCode", "agentCode", "info", "bookingSummary", "bookingID", "bookingStatus", "bookingCode"]
+      },
+      "PaxTicketNumbers": {
+        "type": "object",
+        "description": "Ticket numbers of one passenger, returned by `flight:issue` in FlightPNR `info.ticketNumbers`. A passenger for whom the supplier returned no ticket is not listed",
+        "properties": {
+          "paxID": {
+            "type": "string",
+            "description": "`paxID` of the passenger in the stored PNR (`info.paxs[].paxID`): the one sent in `flight:book`, or the derived one (e.g. 'ADTJOHNDOE') if the booking was synced before issuing"
+          },
+          "segmentTicketNumbers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SegmentTicketNumber"
+            }
+          }
+        },
+        "required": ["paxID", "segmentTicketNumbers"]
+      },
+      "SegmentTicketNumber": {
+        "type": "object",
+        "description": "One ticket of a passenger and the segments it covers",
+        "properties": {
+          "ticketNumber": {
+            "type": ["string", "null"],
+            "description": "Ticket number. May be null when the supplier does not return a ticket number"
+          },
+          "segmentIDS": {
+            "type": "array",
+            "description": "Segments covered by this ticket",
+            "items": {
+              "$ref": "#/components/schemas/SegmentID"
+            }
+          }
+        },
+        "required": ["ticketNumber", "segmentIDS"]
       },
       "Destination": {
         "type": "object",
@@ -1852,23 +2098,23 @@
           },
           "TOPSellingFare": {
             "type": "number",
-            "description": "Top-level selling fare"
+            "description": "agentSellingFare + platformFeeAmount"
           },
           "discountCBD": {
             "type": "number",
-            "description": "CBD discount percentage"
+            "description": "CBD discount rate as a fraction (e.g. 0.05 = 5%), from the token profileHotel"
           },
           "discountCBDAmount": {
             "type": "number",
-            "description": "CBD discount amount"
+            "description": "CBD discount amount. Informational; not subtracted from TOPSellingFare"
           },
           "platformFee": {
             "type": "number",
-            "description": "Platform fee percentage"
+            "description": "Platform fee rate as a fraction (e.g. 0.02 = 2%), from the token profileHotel"
           },
           "platformFeeAmount": {
             "type": "number",
-            "description": "Platform fee amount"
+            "description": "Platform fee amount: totalPrice x platformFee, rounded"
           }
         },
         "required": ["currencyCode", "totalPrice"]
@@ -2070,8 +2316,8 @@
       },
       "RoomCombinationType": {
         "type": "string",
-        "description": "Type of room combination for booking",
-        "enum": ["FixedRoomCombination", "FlexibleRoomCombination"]
+        "description": "Type of room combination for booking. The value is passed through unchanged from the hotel supplier, so treat it as an open string. Known values: FixedRoomCombination (the value seen in the examples), FreeRoomCombination, IdenticalRoomCombination, FlexibleRoomCombination.",
+        "examples": ["FixedRoomCombination", "FreeRoomCombination", "IdenticalRoomCombination", "FlexibleRoomCombination"]
       },
       "HotelRoomInformation": {
         "type": "object",
@@ -2123,10 +2369,11 @@
       },
       "RoomIDSelection": {
         "type": "object",
-        "description": "Room ID selection for booking",
+        "description": "Room ID selection for booking: one entry per room of the booking",
         "properties": {
           "roomID": {
-            "type": "string"
+            "type": "string",
+            "description": "`roomID` from hotel:fetch:rooms. The same roomID may be repeated for several room numbers (e.g. two rooms of the same type)"
           },
           "roomNumber": {
             "type": "integer",
@@ -2144,6 +2391,7 @@
           },
           "roomIDS": {
             "type": "array",
+            "description": "One entry per room number, each sent to the supplier as-is (e.g. for 2 rooms: [{roomNumber: 1, roomID: X}, {roomNumber: 2, roomID: X}])",
             "items": {
               "$ref": "#/components/schemas/RoomIDSelection"
             }
@@ -2194,6 +2442,10 @@
           },
           "lastName": {
             "type": "string"
+          },
+          "age": {
+            "type": "integer",
+            "description": "Optional guest age, forwarded to the supplier when present (e.g. for children)"
           }
         },
         "required": ["roomNumber", "type", "title", "firstName", "lastName"]

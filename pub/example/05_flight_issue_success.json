@@ -1,0 +1,195 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "flight:issue",
+    "params": {
+      "bookingID": "CLN~ABC123~1000001"
+    },
+    "token": "{{TOKEN}}",
+    "id": "FIS-QG-HLP-DPS-2025-04-01-1743300000000"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "FIS-QG-HLP-DPS-2025-04-01-1743300000000",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1743300000000,
+          "response": 1743300004500,
+          "process": 4500,
+          "unit": "Milisecond"
+        },
+        "status": "OK"
+      },
+      "pnrs": [
+        {
+          "supplairCode": "PGS",
+          "agentCode": "TBIZ",
+          "info": {
+            "contactInfo": {
+              "email": "john.doe@example.com",
+              "firstName": "John",
+              "title": "MR",
+              "lastName": "Doe",
+              "phoneNumber": "081200000000"
+            },
+            "paxs": [
+              {
+                "paxType": "ADT",
+                "paxID": "PAX1",
+                "nationality": "ID",
+                "firstName": "John",
+                "title": "MR",
+                "dob": "1980-01-01",
+                "lastName": "Doe",
+                "freeCheckinBaggage": [
+                  {
+                    "baggageRoute": "HLP-DPS",
+                    "baggageWeight": "15",
+                    "baggageUnit": "KG"
+                  }
+                ]
+              }
+            ],
+            "journeys": [
+              {
+                "journeyID": "QG194~HLP~DPS",
+                "originCode": "HLP",
+                "destinationCode": "DPS",
+                "segmentIDS": [
+                  "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+                ]
+              }
+            ],
+            "segments": [
+              {
+                "originCode": "HLP",
+                "operatingCarrierInfo": {
+                  "carrierCode": "QG",
+                  "flightNumber": "194",
+                  "opSuffix": ""
+                },
+                "destinationCode": "DPS",
+                "marketingCarrierInfo": {
+                  "carrierCode": "QG",
+                  "flightNumber": "194"
+                },
+                "arrivalDateTime": "2025-04-01T19:55",
+                "departureDateTime": "2025-04-01T17:05",
+                "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55",
+                "arrivalTz": 8,
+                "departureTz": 7
+              }
+            ],
+            "ticketNumbers": [
+              {
+                "paxID": "PAX1",
+                "segmentTicketNumbers": [
+                  {
+                    "ticketNumber": "0000000000001",
+                    "segmentIDS": [
+                      "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "bookingSummary": {
+            "agentIssuedFee": 0,
+            "totalFare": 1552521,
+            "NTSA": 1517212,
+            "totalPrepaidBaggage": 0,
+            "totalBaseFare": 1201000,
+            "wholesalerFee": 0,
+            "agentSellingFare": 1552521,
+            "totalNTA": 1517212,
+            "agentServiceFee": 0,
+            "agentServiceFeePPN": 0,
+            "totalTax": 351521,
+            "platformFeeAmount": 31050,
+            "TOPSellingFare": 1583571
+          },
+          "bookingTimeLimit": "2025-03-31T03:00",
+          "bookingDateTime": "2025-03-30T03:00",
+          "scheduleFareDetail": [
+            {
+              "journeyIDS": [
+                "QG194~HLP~DPS"
+              ],
+              "segmentIDS": [
+                "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+              ],
+              "fareDetails": [
+                {
+                  "paxType": "ADT",
+                  "price": {
+                    "baseFare": 1201000,
+                    "taxs": [
+                      {
+                        "taxCode": "SC",
+                        "taxFare": 120100
+                      },
+                      {
+                        "taxCode": "IWJR",
+                        "taxFare": 5000
+                      },
+                      {
+                        "taxCode": "PSC",
+                        "taxFare": 81100
+                      },
+                      {
+                        "taxCode": "VAT",
+                        "taxFare": 132110
+                      },
+                      {
+                        "taxCode": "VS",
+                        "taxFare": 13211
+                      }
+                    ],
+                    "totalTax": 351521,
+                    "totalPublishFare": 1552521,
+                    "agentServiceFee": 0,
+                    "agentServiceFeePPN": 0,
+                    "agentIssuedFee": 0,
+                    "agentSellingFare": 1552521,
+                    "platformFee": 0.02,
+                    "platformFeeAmount": 31050,
+                    "discountCBD": 0.0,
+                    "discountCBDAmount": 0,
+                    "TOPSellingFare": 1583571
+                  },
+                  "fareComponent": [
+                    {
+                      "fareCode": "A/A",
+                      "fareBasisCode": "A/A",
+                      "fareGroupCode": "E",
+                      "segmentID": "QG~194~~HLP~DPS~2025-04-01T17:05~2025-04-01T19:55"
+                    }
+                  ],
+                  "paxRefID": "PAX1"
+                }
+              ],
+              "fareSummary": {
+                "totalBaseFare": 1201000,
+                "totalTax": 351521,
+                "totalPrepaidBaggage": 0,
+                "totalFare": 1552521,
+                "agentServiceFee": 0,
+                "agentServiceFeePPN": 0,
+                "agentIssuedFee": 0,
+                "agentSellingFare": 1552521,
+                "platformFeeAmount": 31050,
+                "discountCBDAmount": 0,
+                "TOPSellingFare": 1583571
+              }
+            }
+          ],
+          "bookingID": "CLN~ABC123~1000001",
+          "bookingStatus": "TICKETED",
+          "bookingCode": "ABC123"
+        }
+      ]
+    }
+  }
+}
