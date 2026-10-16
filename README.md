@@ -30,14 +30,14 @@ This repository includes ready-to-use [Bruno](https://www.usebruno.com/) collect
 
 ### ✈️ Flight Operations
 
-| Method                 | Description                | Example                                                    |
-| ---------------------- | -------------------------- | ---------------------------------------------------------- |
-| `flight:schedule:list` | List available flights     | [View Example](./pub/example/01_flight_schedule_list.json) |
-| `flight:schedule:fare` | Get flight pricing         | [View Example](./pub/example/02_flight_schedule_fare.json) |
-| `flight:book`          | Create flight booking      | [View Example](./pub/example/03_flight_book.json)          |
-| `flight:sync`          | Synchronize booking status | [View Example](./pub/example/04_flight_sync.json)          |
-| `flight:cancel`        | Cancel flight booking      | [View Example](./pub/example/05_flight_cancel.json)        |
-| `flight:issue`         | Issue flight tickets       | [View Example](./pub/example/05_flight_issue.json)         |
+| Method                 | Description                | Example                                                                                             |
+| ---------------------- | -------------------------- | --------------------------------------------------------------------------------------------------- |
+| `flight:schedule:list` | List available flights     | [View Example](./pub/example/01_flight_schedule_list.json)                                          |
+| `flight:schedule:fare` | Get flight pricing         | [View Example](./pub/example/02_flight_schedule_fare.json)                                          |
+| `flight:book`          | Create flight booking      | [View Example](./pub/example/03_flight_book.json)                                                   |
+| `flight:sync`          | Synchronize booking status | [View Example](./pub/example/04_flight_sync.json)                                                   |
+| `flight:cancel`        | Cancel flight booking      | [View Example](./pub/example/05_flight_cancel.json)                                                 |
+| `flight:issue`         | Issue flight tickets       | [Success](./pub/example/05_flight_issue_success.json) · [Error](./pub/example/05_flight_issue.json) |
 
 ### 🏨 Hotel Operations
 
@@ -81,10 +81,13 @@ This repository includes ready-to-use [Bruno](https://www.usebruno.com/) collect
    - Check room availability using `hotel:fetch:rooms`
 
 2. **Room Selection**
-   Understanding `roomCombinationType`:
-   - `FixedRoomCombination`: Must select specific room combinations
+   Understanding `roomCombinationType` (passed through unchanged from the hotel supplier, so treat it as an open string — see [`RoomCombinationType`](#roomcombinationtype-string)):
+   - `FixedRoomCombination`: Must select specific room combinations (the value seen in the examples)
    - `FreeRoomCombination`: Flexible room selection
    - `IdenticalRoomCombination`: All rooms must be same type
+   - `FlexibleRoomCombination`: Listed in an earlier version of the OpenRPC schema
+
+   Send one `roomIDS` entry per room, each with its own `roomNumber`; the same `roomID` may be repeated for several rooms of the same type.
 
 3. **Price Verification**
    - Verify current room pricing using `hotel:room:checkprice`
@@ -156,7 +159,8 @@ Consult the [example folder](./pub/example) for request and response examples.
   - 03 - [Flight Book](./pub/example/03_flight_book.json)
   - 04 - [Flight Sync](./pub/example/04_flight_sync.json)
   - 05 - [Flight Cancel](./pub/example/05_flight_cancel.json)
-  - 05 - [Flight Issue](./pub/example/05_flight_issue.json)
+  - 05 - [Flight Issue (success)](./pub/example/05_flight_issue_success.json)
+  - 05 - [Flight Issue (error)](./pub/example/05_flight_issue.json)
 
 - Hotel
 
@@ -184,6 +188,8 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
   - `username` ([`UserName`](#username-string), required) - Api credentials username
   - `password` ([`Password`](#password-string), required) - Api credentials password
   - `signature` ([`Signature`](#signature-string), required) - Api credentials computed signature
+  - `profile` (Array of [`AgentProfile`](#agentprofile-object), optional) - Per-agent settings for flight methods, stored in the token. Each entry's `policy` (and optional `policyFlight`) determines the agent fee and platform fee fields added to flight prices in responses made with this token. The agent codes listed here are also used to activate any additional agents configured for the account.
+  - `profileHotel` (Array of [`AgentProfile`](#agentprofile-object), optional) - Per-agent settings for hotel methods, stored in the token. Each entry's `policy` determines the agent fee and platform fee fields added to hotel room prices. `policyFlight` is not used here.
 
 - Response
   - `result` ([`RPCResult`](#rpcresult-object), required)
@@ -194,7 +200,7 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
 #### "flight:schedule:list"
 
 - Request Parameters
-  - `carriers` ([`Carriers`](#carriers-string), required) - Array of carrier codes
+  - `carriers` ([`Carriers`](#carriers-string), optional) - Array of carrier codes. When omitted or empty, all carriers available to your agents are searched.
   - `paxCount` ([`PaxCount`](#paxcount-object), required) - Passenger counts
   - `schedules` (Array of [`Schedule`](#schedule-object), required) - Flight schedules
 
@@ -233,6 +239,12 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
   - `result` ([`RPCResult`](#rpcresult-object), required)
   - `pnrs` (Array of [`BookingPNR`](#bookingpnr-object), required)
 
+- Notes
+  - All three methods only act on a booking whose current status is `BOOKED`.
+  - `flight:issue`: on success the PNR has `bookingStatus` `TICKETED` and carries the ticket numbers in `info.ticketNumbers` (Array of [`PaxTicketNumbers`](#paxticketnumbers-object)). This is the only method that returns ticket numbers. See the [success example](./pub/example/05_flight_issue_success.json).
+  - `flight:sync`: syncing a booking that has already been issued (`TICKETED`) or cancelled returns an `ERROR` result (`"Booking Status of PNR restricted to sync"`). In the sync response each passenger's `paxID` is derived from the passenger type and names as stored by the airline (e.g. `ADTJOHNDOE`), not the `paxID` sent in `flight:book`. The synced PNR replaces the stored one, so a later `flight:issue` reports ticket numbers against these derived `paxID` values.
+  - `flight:cancel`: the cancelled PNR has `bookingStatus` `CANCELLED`, or `CANCELDELAYED` when the supplier has accepted the cancellation but will complete it later.
+
 ### Hotel
 
 #### "hotel:destinations:list"
@@ -249,15 +261,22 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
 - Request Parameters
   - `destinationKey` ([`DestinationKey`](#destinationkey-string), required)
   - `totalRooms` (number, required)
-  - `totalAdults` (number, required)
-  - `totalChilds` (number, required)
+  - `totalAdults` (number, required) - Total adults, spread across the rooms
+  - `totalChilds` (number, required) - Total children, spread across the rooms. Ignored when `childrenAges` is not empty
+  - `totalInfants` (number, optional) - Total infants, spread across the rooms. Defaults to 0
   - `checkInDate` ([`DateYMD`](#dateymd-string), required)
   - `checkOutDate` ([`DateYMD`](#dateymd-string), required)
-  - `childrenAges` ([`ChildrenAges`](#childrenages-number), required)
+  - `childrenAges` ([`ChildrenAges`](#childrenages-number), optional) - Children ages per room, e.g. `[[5, 8], []]` for 2 rooms
 
 - Response
   - `result` ([`RPCResult`](#rpcresult-object), required)
-  - `hotelLists` (Array of HotelResult, required)
+  - `searchKeyData` ([`SearchKeyData`](#searchkeydata-string), required) - Pass to `hotel:fetch:rooms`
+  - `hotelLists` (Array of [`HotelResult`](#hotelresult-object), required)
+
+- Occupancy
+  - Adults, children and infants are given as totals and spread across `totalRooms`. When a total is a multiple of `totalRooms` it is split evenly; otherwise the per-room counts are rounded up, so the occupancy searched can be larger than the requested total (e.g. 3 adults in 2 rooms are searched as 2 + 2, and 1 child in 2 rooms as 1 + 1).
+  - To place children per room, use `childrenAges` (see [`ChildrenAges`](#childrenages-number)). When it is omitted or empty, `totalChilds` is spread across the rooms and every child's age is taken as 8.
+  - The resulting per-room occupancy is carried in `searchKeyData` and reused by `hotel:fetch:rooms`.
 
 #### "hotel:fetch:detail"
 
@@ -266,7 +285,7 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
 
 - Response
   - `result` ([`RPCResult`](#rpcresult-object), required)
-  - `hotel` (Hotel, required)
+  - `hotelInformation` ([`HotelInformation`](#hotelinformation-object), required)
 
 #### "hotel:fetch:rooms"
 
@@ -277,7 +296,7 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
 
 - Response
   - `result` ([`RPCResult`](#rpcresult-object), required)
-  - `hotelLists` (Array of HotelResult, required)
+  - `hotelRoomInformation` (Array of [`HotelRoomInformation`](#hotelroominformation-object), required)
 
 #### "hotel:room:checkprice"
 
@@ -286,30 +305,33 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
 
 - Response
   - `result` ([`RPCResult`](#rpcresult-object), required)
-  - `hotelRoomCheckPriceResponse` (HotelRoomCheckPriceResponse, required)
+  - `hotelRoomCheckPriceResponse` ([`HotelRoomCheckPriceResponse`](#hotelroomcheckpriceresponse-object), required)
 
 #### "hotel:book"
 
 - Request Parameters
   - `roomSelectedData` (Array of [`RoomSelected`](#roomselected-object), required)
   - `roomGuestData` ([`RoomGuestData`](#roomguestdata-object), required)
-  - `clientReference` ([`ClientReference`](#clientreference-string), required)
-  - `remarkList` ([`RemarkList`](#remarklist-string), required)
+  - `clientReference` ([`ClientReference`](#clientreference-string), required) - A request without `clientReference` returns an `ERROR` result
+  - `remarkList` ([`RemarkList`](#remarklist-string), optional)
+  - `doIssueImmediately` (boolean, optional) - When `true`, the supplier is asked to issue (voucher) the booking as part of this request, instead of leaving it for a separate `hotel:issue` call. Check `vendorInformation.voucherStatus` in the response. Any other value, or omitting it, only books.
 
 - Response
   - `result` ([`RPCResult`](#rpcresult-object), required)
-  - `booking` (Booking, required)
+  - `hotelBookingResponses` (Array of [`HotelBookingResponse`](#hotelbookingresponse-object), required)
 
 #### "hotel:fetch:booking", "hotel:cancel", "hotel:issue"
 
 - Request Parameters
   - `agentCode` ([`AgentCode`](#agentcode-string), required)
   - `bookingID` ([`BookingID`](#bookingid-string), required)
-  - `remark` (string, required) - Only for cancel/issue
+  - `remark` (string, optional) - Only for cancel/issue
 
 - Response
   - `result` ([`RPCResult`](#rpcresult-object), required)
-  - `booking` (Booking, required)
+  - `hotelDetailResponse` ([`HotelBookingResponse`](#hotelbookingresponse-object)) - `hotel:fetch:booking`
+  - `hotelCancelResponse` ([`HotelBookingResponse`](#hotelbookingresponse-object)) - `hotel:cancel`
+  - `hotelIssueResponse` ([`HotelBookingResponse`](#hotelbookingresponse-object)) - `hotel:issue`
 
 ---
 
@@ -345,9 +367,16 @@ Booking identifier
 
 Booking code identifier
 
-#### `BookingStatus` (enum)
+#### `BookingStatus` (string)
 
-Values: "BOOKED" | "CANCELLED" | "TICKETED"
+Values returned by the server:
+
+- "BOOKED" - Booked (held), not yet ticketed
+- "TICKETED" - Tickets issued; returned by a successful `flight:issue`
+- "CANCELLED" - Returned by `flight:cancel`
+- "CANCELDELAYED" - Returned by `flight:cancel` when the supplier has accepted the cancellation but will complete it later
+
+Any other status reported by the supplier is passed through unchanged.
 
 #### `SupplairCode` (string)
 
@@ -476,14 +505,23 @@ Used in schedule fare info response
 #### `Pax` (object)
 
 - `paxType` (PaxType, required)
-- `paxID` (string, required)
-- `paxRefID` (string, optional) - Reference ID for passenger in booking
-- `nationality` (string, required) - ISO country code (e.g., "ID")
-- `title` (string, required) - e.g., "MR", "MRS", "MS"
+- `paxID` (string, required) - PNRs returned by `flight:sync`, and by `flight:issue` after a sync, carry a `paxID` derived from the passenger type and names (e.g. "ADTJOHNDOE") instead of the one sent in `flight:book`
+- `paxRefID` (string, optional) - Reference ID for passenger in booking. For an `INF` passenger in `flight:book`: the `paxID` of the adult the infant travels with
+- `nationality` (string, required) - ISO country code (e.g., "ID"). Must not be empty for `CHD` and `INF`
+- `title` (string, required) - `ADT`: "MR", "MRS" or "MS". `CHD` and `INF`: "MSTR" or "MISS" ("MR" and "MRS" sent for a child or infant are converted to "MSTR" and "MISS"). Any other combination is rejected
 - `firstName` (string, required)
 - `lastName` (string, required)
-- `dob` (DateYMD, required) - Date of birth
+- `dob` (DateYMD, required) - Date of birth. Must not be empty for `CHD` and `INF`
+- `identityNumber` (string, optional) - National identity number. Forwarded to the airline only when `nationality` is "ID"
+- `passport` ([`Passport`](#passport-object), optional) - Forwarded to the airline only when `passport.number` is not empty
+- `staffIdentityNumber` (string, optional) - Staff identity number, forwarded to the airline as a passenger document when not empty
 - `freeCheckinBaggage` (FreeCheckinBaggage[], optional)
+
+#### `Passport` (object)
+
+- `number` (string, required) - Passport number
+- `countryOfIssuer` (string, optional) - ISO country code of the issuing country
+- `expired` (DateYMD, required) - Passport expiry date
 
 #### `FreeCheckinBaggage` (object)
 
@@ -512,6 +550,19 @@ Used in schedule fare info response
 - `paxs` (Pax[], required)
 - `journeys` (BookingJourney[], required)
 - `segments` (SegmentResult[], required)
+- `ticketNumbers` ([`PaxTicketNumbers`](#paxticketnumbers-object)[], optional) - Returned only by a successful `flight:issue`
+
+#### `PaxTicketNumbers` (object)
+
+Ticket numbers of one passenger, returned by `flight:issue`. A passenger for whom the supplier returned no ticket is not listed.
+
+- `paxID` (string, required) - `paxID` of the passenger in the stored PNR (`info.paxs[].paxID`): the one sent in `flight:book`, or the derived one (e.g. "ADTJOHNDOE") if the booking was synced before issuing
+- `segmentTicketNumbers` ([`SegmentTicketNumber`](#segmentticketnumber-object)[], required)
+
+#### `SegmentTicketNumber` (object)
+
+- `ticketNumber` (string, nullable, required) - Ticket number. May be `null` when the supplier does not return a ticket number
+- `segmentIDS` (SegmentID[], required) - Segments covered by this ticket
 
 #### `BookingJourney` (object)
 
@@ -533,6 +584,9 @@ Used in schedule fare info response
 - `totalPrepaidBaggage` (number, required)
 - `totalNTA` (number, required)
 - `wholesalerFee` (number, required)
+- `platformFeeAmount` (number, optional) - Sum of `scheduleFareDetail[].fareSummary.platformFeeAmount`. Present only when greater than 0
+- `discountCBDAmount` (number, optional) - Sum of `scheduleFareDetail[].fareSummary.discountCBDAmount`. Present only when greater than 0
+- `TOPSellingFare` (number, optional) - Sum of `scheduleFareDetail[].fareSummary.TOPSellingFare`. Present only when greater than 0
 
 ### Fare Types
 
@@ -579,6 +633,11 @@ Fare class codes. Values:
 - `agentServiceFeePPN` (number, required)
 - `agentIssuedFee` (number, optional)
 - `agentSellingFare` (number, required)
+- `platformFee` (number, optional) - Platform fee rate as a fraction (e.g. 0.02 = 2%), from the token `profile`
+- `platformFeeAmount` (number, optional) - `totalFare` x `platformFee`, rounded
+- `discountCBD` (number, optional) - CBD discount rate as a fraction, from the token `profile`
+- `discountCBDAmount` (number, optional) - `totalFare` x `discountCBD`, rounded. Informational; not subtracted from `TOPSellingFare`
+- `TOPSellingFare` (number, optional) - `agentSellingFare` + `platformFeeAmount`
 
 #### `FareDetail` (object)
 
@@ -597,6 +656,11 @@ Fare class codes. Values:
 - `agentServiceFeePPN` (number, optional)
 - `agentIssuedFee` (number, optional)
 - `agentSellingFare` (number, optional)
+- `platformFee` (number, optional) - Platform fee rate as a fraction (e.g. 0.02 = 2%), from the token `profile`
+- `platformFeeAmount` (number, optional) - `totalPublishFare` x `platformFee`, rounded
+- `discountCBD` (number, optional) - CBD discount rate as a fraction, from the token `profile`
+- `discountCBDAmount` (number, optional) - `totalPublishFare` x `discountCBD`, rounded. Informational; not subtracted from `TOPSellingFare`
+- `TOPSellingFare` (number, optional) - `agentSellingFare` + `platformFeeAmount`
 
 #### `FareComponent` (object)
 
@@ -620,6 +684,9 @@ Fare class codes. Values:
 - `agentServiceFeePPN` (number, optional)
 - `agentIssuedFee` (number, optional)
 - `agentSellingFare` (number, optional)
+- `platformFeeAmount` (number, optional) - Sum of `fareDetails[].price.platformFeeAmount`
+- `discountCBDAmount` (number, optional) - Sum of `fareDetails[].price.discountCBDAmount`
+- `TOPSellingFare` (number, optional) - Sum of `fareDetails[].price.TOPSellingFare`
 
 #### `FareSSR` (object)
 
@@ -779,13 +846,14 @@ Room information from `hotel:fetch:rooms`
 - `roomInformations` (RoomInformation[], required)
 - `typeOfRate` (string, required)
 
-#### `RoomCombinationType` (enum)
+#### `RoomCombinationType` (string)
 
-Values:
+The value is passed through unchanged from the hotel supplier, so treat it as an open string. Known values:
 
-- "FixedRoomCombination" - Must select specific room combinations
+- "FixedRoomCombination" - Must select specific room combinations (the value seen in the examples)
 - "FreeRoomCombination" - Flexible room selection
 - "IdenticalRoomCombination" - All rooms must be same type
+- "FlexibleRoomCombination" - Listed in an earlier version of the OpenRPC schema
 
 #### `RoomIndexCombination` (object)
 
@@ -820,11 +888,11 @@ Values:
 - `agentServiceFeePPN` (number, optional)
 - `agentIssuedFee` (number, optional)
 - `agentSellingFare` (number, optional)
-- `TOPSellingFare` (number, optional)
-- `platformFee` (number, optional)
-- `platformFeeAmount` (number, optional)
-- `discountCBD` (number, optional)
-- `discountCBDAmount` (number, optional)
+- `TOPSellingFare` (number, optional) - `agentSellingFare` + `platformFeeAmount`
+- `platformFee` (number, optional) - Platform fee rate as a fraction (e.g. 0.02 = 2%), from the token `profileHotel`
+- `platformFeeAmount` (number, optional) - `totalPrice` x `platformFee`, rounded
+- `discountCBD` (number, optional) - CBD discount rate as a fraction, from the token `profileHotel`
+- `discountCBDAmount` (number, optional) - Informational; not subtracted from `TOPSellingFare`
 
 #### `RoomBed` (object)
 
@@ -854,12 +922,12 @@ Values:
 
 - `agentCode` (AgentCode, required)
 - `hotelID` (HotelID, required)
-- `roomIDS` (RoomID[], required)
+- `roomIDS` (RoomID[], required) - One entry per room number, each sent to the supplier as-is (e.g. for 2 rooms: `[{roomNumber: 1, roomID: X}, {roomNumber: 2, roomID: X}]`)
 
 #### `RoomID` (object)
 
 - `roomNumber` (number, required) - Room number in booking
-- `roomID` (string, required) - Room identifier from room search
+- `roomID` (string, required) - Room identifier from room search. The same `roomID` may be repeated for several room numbers (e.g. two rooms of the same type)
 - `roomPriceKey` (string, optional) - Room price key
 
 #### `RoomHolder` (object)
@@ -878,6 +946,7 @@ Contact person for hotel booking
 - `title` (string, required) - e.g., "MR", "MRS", "MS"
 - `firstName` (string, required)
 - `lastName` (string, required)
+- `age` (number, optional) - Guest age, forwarded to the supplier when present (e.g. for children)
 
 #### `RoomGuestType` (enum)
 
@@ -991,9 +1060,9 @@ Response from `hotel:room:checkprice`
 
 Client reference identifier
 
-#### `ChildrenAges` (number[])
+#### `ChildrenAges` (number[][])
 
-Array of children ages
+Children ages PER ROOM: one array per room (length = `totalRooms`), each holding the ages of the children in that room; use `[]` for a room without children, e.g. `[[5, 8], []]` for 2 rooms. When not empty, the number of children in each room is the length of its array (`totalChilds` is then ignored). A flat array such as `[5, 8]` is not accepted. When omitted or empty, `totalChilds` is spread across the rooms and every child's age is taken as 8.
 
 #### `RemarkList` (string[])
 
@@ -1020,6 +1089,31 @@ Api credentials password
 #### `Signature` (string)
 
 Api credentials computed signature `md5(username + password + pre-shared-key)`
+
+#### `AgentProfile` (object)
+
+Per-agent settings passed to `token:create` in `profile` (flight) or `profileHotel` (hotel).
+
+- `code` (AgentCode, required)
+- `policy` ([`AgentPricingPolicy`](#agentpricingpolicy-object), nullable, optional)
+- `policyFlight` ([`FlightPricingPolicy`](#flightpricingpolicy-object), nullable, optional) - Only used in `profile`
+
+#### `AgentPricingPolicy` (object)
+
+Values may be numbers or numeric strings. Without `markupPercent` the policy is not applied (for flights, unless a `policyFlight` entry matches), so send `markupPercent` even when there is no markup (use 0). Give `platformFee` and `discountCBD` as well (use 0 when not applicable).
+
+- `markupPercent` (number, optional) - Agent markup in percent (e.g. 4 = 4%), returned as `agentServiceFee` / `agentIssuedFee` and included in `agentSellingFare`
+- `platformFee` (number, optional) - Platform fee in percent (e.g. 2 = 2%). Returned as the fraction `platformFee` (0.02) and the amount `platformFeeAmount`, which is included in `TOPSellingFare`
+- `discountCBD` (number, optional) - CBD discount in percent. Returned as the fraction `discountCBD` and the amount `discountCBDAmount` (informational, not subtracted from `TOPSellingFare`)
+
+#### `FlightPricingPolicy` (object)
+
+Optional flight markup for specific airlines (`profile` only). For flights whose marketing carrier is listed in `airline`, it replaces `policy.markupPercent`; `policy.platformFee` and `policy.discountCBD` still apply and must be given.
+
+- `type` ("FIXED" | "PERCENT", required) - "FIXED": `amount` per passenger. "PERCENT": `percent` of the published fare
+- `amount` (number, optional) - Agent fee per passenger when `type` is "FIXED"
+- `percent` (number, optional) - Agent markup in percent when `type` is "PERCENT"
+- `airline` (object, required) - Object whose values are lists of marketing carrier codes this policy applies to (the keys are not interpreted), e.g. `{"domestic": ["GA", "QG"]}`
 
 ### Flight Types
 
