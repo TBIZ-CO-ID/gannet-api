@@ -34,6 +34,7 @@ This repository includes ready-to-use [Bruno](https://www.usebruno.com/) collect
 | ---------------------- | -------------------------- | --------------------------------------------------------------------------------------------------- |
 | `flight:schedule:list` | List available flights     | [View Example](./pub/example/01_flight_schedule_list.json)                                          |
 | `flight:schedule:fare` | Get flight pricing         | [View Example](./pub/example/02_flight_schedule_fare.json)                                          |
+| `flight:fare:rules`    | Get fare rules (ATPCO)     | [View Example](./pub/example/06_flight_fare_rules.json)                                             |
 | `flight:book`          | Create flight booking      | [View Example](./pub/example/03_flight_book.json)                                                   |
 | `flight:sync`          | Synchronize booking status | [View Example](./pub/example/04_flight_sync.json)                                                   |
 | `flight:cancel`        | Cancel flight booking      | [View Example](./pub/example/05_flight_cancel.json)                                                 |
@@ -59,6 +60,7 @@ This repository includes ready-to-use [Bruno](https://www.usebruno.com/) collect
 
 1. **Search Phase**
    - Search flight schedules using `flight:schedule:list`
+   - Optionally read the fare rules (penalties, changes, refunds) with `flight:fare:rules`, for fares that carry a `fareRuleKey`
    - Verify pricing with `flight:schedule:fare`
 
 2. **Booking Phase**
@@ -220,6 +222,23 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
   - `info` ([`ScheduleFareInfo`](#schedulefareinfo-object), required)
   - `scheduleFareDetail` (Array of [`ScheduleFareDetailResult`](#schedulefaredetailresult-object), required)
 
+#### "flight:fare:rules"
+
+- Request Parameters
+  - `agentCode` ([`AgentCode`](#agentcode-string), required) - Agent that offers the fare (`agentOffersFare[].agentCode`)
+  - `fareRuleKeys` (string[], required) - `fareRuleKey` values from [`Fare`](#fare-object)
+
+- Response
+  - `result` ([`RPCResult`](#rpcresult-object), required)
+  - `fareRules` (Array of [`FareRule`](#farerule-object), required) - One entry per requested key, in request order
+
+- Notes
+  - Only fares that carry a `fareRuleKey` can be queried. Full-service carriers through PGS carry one; LCC fares do not.
+  - The rules are the airline's ATPCO categories as plain text. Each category starts with `TYPE=RULE, CATEGORY=<n>` and its title, e.g. `16` `PENALTIES`, `31` `VOLUNTARY CHANGES`, `33` `VOLUNTARY REFUNDS`.
+  - A key the supplier does not recognise still returns `OK`, with a short generic text instead of the fare's rules.
+  - A missing or unknown `agentCode` returns an `ERROR` result.
+  - See the [example](./pub/example/06_flight_fare_rules.json).
+
 #### "flight:book"
 
 - Request Parameters
@@ -241,6 +260,7 @@ Also see [full flight booking flow](./pub/example/FLIGHT_EXAMPLE_1.jsonc) and [f
 
 - Notes
   - All three methods only act on a booking whose current status is `BOOKED`.
+  - `bookingTimeLimit` can be `null` in the `flight:book` response (observed for a PGS round-trip combined fare). A `flight:sync` shortly after the booking returns it.
   - `flight:issue`: on success the PNR has `bookingStatus` `TICKETED` and carries the ticket numbers in `info.ticketNumbers` (Array of [`PaxTicketNumbers`](#paxticketnumbers-object)). This is the only method that returns ticket numbers. See the [success example](./pub/example/05_flight_issue_success.json).
   - `flight:sync`: syncing a booking that has already been issued (`TICKETED`) or cancelled returns an `ERROR` result (`"Booking Status of PNR restricted to sync"`). In the sync response each passenger's `paxID` is derived from the passenger type and names as stored by the airline (e.g. `ADTJOHNDOE`), not the `paxID` sent in `flight:book`. The synced PNR replaces the stored one, so a later `flight:issue` reports ticket numbers against these derived `paxID` values.
   - `flight:cancel`: the cancelled PNR has `bookingStatus` `CANCELLED`, or `CANCELDELAYED` when the supplier has accepted the cancellation but will complete it later.
@@ -537,7 +557,7 @@ Used in schedule fare info response
 - `agentCode` (AgentCode, required)
 - `info` (BookingInfo, required)
 - `bookingSummary` (BookingFareSummary, required)
-- `bookingTimeLimit` (DateTimeUTC, required)
+- `bookingTimeLimit` (DateTimeUTC, nullable, required) - Deadline for ticket issuance. Can be `null` in the `flight:book` response; `flight:sync` returns it
 - `bookingDateTime` (DateTimeUTC, required)
 - `scheduleFareDetail` (ScheduleFareDetailResult[], required)
 - `bookingID` (BookingID, required)
@@ -598,8 +618,16 @@ Ticket numbers of one passenger, returned by `flight:issue`. A passenger for who
 - `seatAvailable` (number, required)
 - `baggageFree` (BaggageFree, required)
 - `canBuyAdditionalBaggage` (boolean, required)
+- `fareRuleKey` (string, optional) - Opaque key for [`flight:fare:rules`](#flightfarerules). Present only on fares whose supplier provides fare rules (full-service carriers through PGS); absent on LCC fares
 - `currencyCode` (string, required)
 - `agentOffersFare` (AgentOffers[], required)
+
+#### `FareRule` (object)
+
+Fare rules of one fare, returned by `flight:fare:rules`.
+
+- `fareRuleKey` (string, required) - The requested `fareRuleKey`
+- `fareRuleText` (string, required) - Plain-text rules; each category starts with a line `TYPE=RULE, CATEGORY=<n>` followed by its title
 
 #### `BaggageFree` (object)
 
