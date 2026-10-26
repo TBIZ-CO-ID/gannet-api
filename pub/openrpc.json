@@ -178,6 +178,40 @@
       }
     },
     {
+      "name": "flight:fare:rules",
+      "summary": "Get fare rules (ATPCO) for fares",
+      "description": "Returns the airline fare rules (ATPCO categories, e.g. CATEGORY=16 PENALTIES, 31 VOLUNTARY CHANGES, 33 VOLUNTARY REFUNDS) for the given `fareRuleKey` values from a `flight:schedule:list` response. Only fares that carry a `fareRuleKey` can be queried; LCC fares do not carry one. One `fareRules` entry is returned per requested key, in request order. A key the supplier does not recognise still returns status OK with a short generic text instead of an error. `agentCode` is required and must be an agent of your token: a missing or unknown agent returns an ERROR result.",
+      "tags": [{ "name": "flight" }],
+      "params": [
+        {
+          "name": "agentCode",
+          "description": "Agent that offers the fare (from `agentOffersFare[].agentCode`)",
+          "required": true,
+          "schema": { "$ref": "#/components/schemas/AgentCode" }
+        },
+        {
+          "name": "fareRuleKeys",
+          "description": "`fareRuleKey` values taken from `Fare.fareRuleKey`",
+          "required": true,
+          "schema": { "type": "array", "items": { "type": "string" } }
+        }
+      ],
+      "result": {
+        "name": "response",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "result": { "$ref": "#/components/schemas/Result" },
+            "fareRules": {
+              "type": "array",
+              "items": { "$ref": "#/components/schemas/FareRule" }
+            }
+          },
+          "required": ["result"]
+        }
+      }
+    },
+    {
       "name": "flight:book",
       "summary": "Create a flight booking",
       "description": "Creates a flight booking (PNR) with passenger details for the selected schedule and fare.",
@@ -1181,6 +1215,10 @@
             "type": "boolean",
             "description": "Whether additional baggage can be purchased"
           },
+          "fareRuleKey": {
+            "type": "string",
+            "description": "Opaque key for `flight:fare:rules`. Present only on fares whose supplier provides fare rules (full-service carriers through PGS); absent on LCC fares"
+          },
           "currencyCode": {
             "$ref": "#/components/schemas/CurrencyCode"
           },
@@ -1423,6 +1461,21 @@
           }
         },
         "required": ["baseFare", "taxs", "totalTax", "totalPublishFare", "agentSellingFare"]
+      },
+      "FareRule": {
+        "type": "object",
+        "description": "Fare rules of one fare, returned by `flight:fare:rules`",
+        "properties": {
+          "fareRuleKey": {
+            "type": "string",
+            "description": "The requested `fareRuleKey`"
+          },
+          "fareRuleText": {
+            "type": "string",
+            "description": "Plain-text rules. Each category starts with a line `TYPE=RULE, CATEGORY=<n>` followed by the category title (e.g. `PENALTIES`)"
+          }
+        },
+        "required": ["fareRuleKey", "fareRuleText"]
       },
       "FareComponent": {
         "type": "object",
@@ -1766,9 +1819,9 @@
             "$ref": "#/components/schemas/BookingSummary"
           },
           "bookingTimeLimit": {
-            "type": "string",
+            "type": ["string", "null"],
             "format": "date-time",
-            "description": "Deadline for ticket issuance"
+            "description": "Deadline for ticket issuance. Can be null in the `flight:book` response (observed for a PGS round-trip combined fare); a `flight:sync` shortly after the booking returns it"
           },
           "bookingDateTime": {
             "type": "string",

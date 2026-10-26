@@ -1,0 +1,33 @@
+{
+  "REQUEST": {
+    "jsonrpc": "2.0",
+    "method": "flight:fare:rules",
+    "params": {
+      "agentCode": "TBIZ",
+      "fareRuleKeys": ["{{FARE_RULE_KEY_FROM_FLIGHT_SCHEDULE_LIST}}"]
+    },
+    "token": "{{TOKEN}}",
+    "id": "FFR-SQ-CGK-SIN-2026-11-18-1761450000000"
+  },
+  "RESPONSE": {
+    "jsonrpc": "2.0",
+    "id": "FFR-SQ-CGK-SIN-2026-11-18-1761450000000",
+    "response": {
+      "result": {
+        "time": {
+          "request": 1761450000000,
+          "response": 1761450001241,
+          "process": 1241,
+          "unit": "Milisecond"
+        },
+        "status": "OK"
+      },
+      "fareRules": [
+        {
+          "fareRuleKey": "{{FARE_RULE_KEY_FROM_FLIGHT_SCHEDULE_LIST}}",
+          "fareRuleText": "TYPE=RULE, CATEGORY=0\nAPPLICATION AND OTHER CONDITIONS\nTHESE FARES APPLY FOR ECONOMY CLASS SERVICE.\n\nTYPE=RULE, CATEGORY=16\nPENALTIES\nCANCELLATIONS\nANY TIME\nCHARGE IDR 2550000 FOR CANCEL.\nCHANGES\nANY TIME\nCHARGE IDR 850000 FOR REISSUE/REVALIDATION.\n\nTYPE=RULE, CATEGORY=33\nVOLUNTARY REFUNDS\nREFUND MUST BE REQUESTED BEFORE DEPARTURE OF JOURNEY.\n"
+        }
+      ]
+    }
+  }
+}
